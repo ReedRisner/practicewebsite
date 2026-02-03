@@ -21,40 +21,48 @@ function parseGameDate(dateStr) {
     }
 }
 
-// Live Rankings Integration
+// Rankings Manager - Now loads from local JSON file (no CORS issues!)
 const RankingsManager = {
-    API_BASE_URL: 'https://ncaa-api.henrygd.me',
     cache: {
         rankings: null,
         timestamp: null,
-        expiryMinutes: 60
+        expiryMinutes: 60 // Cache for 1 hour
     },
 
-    async fetchAPRankings() {
+    async fetchLocalRankings() {
         try {
-            const response = await fetch(`${this.API_BASE_URL}/rankings/basketball-men/d1/associated-press`);
-            if (!response.ok) return null;
-            return await response.json();
+            // Load from your local ap-rankings.json file (created by GitHub Actions)
+            const response = await fetch('../data/ap-rankings.json');
+            if (!response.ok) {
+                console.warn('Could not load ap-rankings.json, using static rankings');
+                return null;
+            }
+            const data = await response.json();
+            console.log('✓ Loaded AP rankings from local file');
+            console.log(`  Last updated: ${data.apPollDate}`);
+            return data;
         } catch (error) {
-            console.error('Error fetching AP rankings:', error);
+            console.warn('Error loading local rankings:', error);
             return null;
         }
     },
 
     parseRankings(data) {
+        if (!data || !data.teams) return null;
+        
+        // Convert the teams object to a Map for consistent interface
         const rankings = new Map();
-        if (data && data.data && Array.isArray(data.data)) {
-            data.data.forEach(team => {
-                const rank = parseInt(team.RANK);
-                const school = team.SCHOOL.toLowerCase().replace(/\s*\(\d+\)/, '').trim();
-                rankings.set(school, rank);
-            });
-        }
+        Object.entries(data.teams).forEach(([school, info]) => {
+            rankings.set(school, info.rank);
+        });
+        
         return rankings;
     },
 
     async getRankings() {
         const now = Date.now();
+        
+        // Check cache
         if (this.cache.rankings && this.cache.timestamp) {
             const ageMinutes = (now - this.cache.timestamp) / (1000 * 60);
             if (ageMinutes < this.cache.expiryMinutes) {
@@ -62,11 +70,13 @@ const RankingsManager = {
             }
         }
         
-        const data = await this.fetchAPRankings();
+        // Fetch fresh data from local file
+        const data = await this.fetchLocalRankings();
         if (data) {
             this.cache.rankings = this.parseRankings(data);
             this.cache.timestamp = now;
         }
+        
         return this.cache.rankings;
     },
 
@@ -101,9 +111,15 @@ const RankingsManager = {
 
     async updateGameRankings(games) {
         const rankings = await this.getRankings();
-        if (!rankings) return games;
+        
+        // If we can't get rankings, just use what's in the JSON
+        if (!rankings) {
+            console.log('Using rankings from schedule JSON file');
+            return games;
+        }
         
         games.forEach(game => {
+            // Only update upcoming games
             if (game.result === 'TBD') {
                 const rank = this.findTeamRank(game.opponent, rankings);
                 if (rank !== null && rank <= 25) {
@@ -125,7 +141,7 @@ async function loadSchedule(season) {
         if (!response.ok) throw new Error('Schedule not found');
         let games = await response.json();
 
-        // Update rankings for upcoming games
+        // Update rankings for upcoming games from local JSON file
         games = await RankingsManager.updateGameRankings(games);
 
         const tbody = document.getElementById('scheduleBody');
