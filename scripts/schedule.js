@@ -212,7 +212,6 @@ async function loadSchedule(season) {
             let rankDisplay = '';
             if (game.opponentRank && game.opponentRank <= 25) {
                 const rankIndicator = game.liveRank ? 
-                    '<span class="live-rank-indicator" title="Current AP ranking">●</span>' : '';
                 rankDisplay = `<span class="opponent-rank">#${game.opponentRank}</span>${rankIndicator} `;
             }
 
@@ -331,3 +330,4 @@ document.getElementById('seasonSelect').addEventListener('change', function() {
     window.history.replaceState({}, '', url);
     loadSchedule(season);
 });
+
