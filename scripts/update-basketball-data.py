@@ -21,7 +21,7 @@ import urllib.error
 # Configuration
 API_KEY = os.environ.get('BASKETBALL_API_KEY', '0/5PdgRvOqvcUo9VqUAcXFUEYqXxU3T26cGqt9c6FFArBcyqE4BD3njMuwOnQz+3')
 API_BASE_URL = 'https://api.collegebasketballdata.com'
-KENTUCKY_TEAM_ID = 'kentucky'  # May need adjustment
+KENTUCKY_TEAM_ID = '135'  # May need adjustment
 SEASON = '2025'
 
 # File paths
