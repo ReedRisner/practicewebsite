@@ -29,7 +29,7 @@ jobs:
       - name: Run update script
         env:
           BASKETBALL_API_KEY: ${{ secrets.BASKETBALL_API_KEY }}
-        run: python scripts/update-basketball-data-fixed.py
+        run: python scripts/update-basketball-data.py
       
       - name: Check for changes
         id: check_changes
