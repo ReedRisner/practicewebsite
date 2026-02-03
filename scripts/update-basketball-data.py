@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 """
-Kentucky Basketball Data Auto-Updater (Improved Version)
+Kentucky Basketball Data Auto-Updater (Simplified)
 
-This script uses the official CBBD Python library to automatically update:
-1. Team stats and rankings in update.json
-2. Game results in 2025-schedule.json
+This script updates:
+1. Total season record (W-L) for 2025-2026 season
+2. Conference standings/rankings (SEC - Conference ID 24)
+
+You will manually update: KenPom, NET Rankings, Bracketology
 
 Usage:
-    python update-basketball-data-improved.py
-
-Requirements:
-    pip install cbbd --break-system-packages
+    python update-basketball-data.py
 """
 
 import json
@@ -24,13 +23,13 @@ from cbbd.rest import ApiException
 # Configuration
 API_KEY = os.environ.get('BASKETBALL_API_KEY', '')
 KENTUCKY_TEAM = 'Kentucky'
-SEASON = 2025
+SEASON = 2026  # 2025-2026 season
+CONFERENCE_ID = 24  # SEC Conference
 
 # File paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(os.path.dirname(SCRIPT_DIR), 'data')
 UPDATE_JSON_PATH = os.path.join(DATA_DIR, 'update.json')
-SCHEDULE_JSON_PATH = os.path.join(DATA_DIR, '2025-schedule.json')
 
 
 def get_api_configuration():
@@ -47,54 +46,9 @@ def get_api_configuration():
     return configuration
 
 
-def parse_schedule_date(date_str: str) -> Optional[datetime]:
-    """Parse date from schedule JSON format (e.g., 'November 4, 2024')."""
-    try:
-        # Try common formats
-        for fmt in ['%B %d, %Y', '%b %d, %Y', '%m/%d/%Y', '%Y-%m-%d']:
-            try:
-                return datetime.strptime(date_str, fmt)
-            except ValueError:
-                continue
-        return None
-    except Exception:
-        return None
-
-
-def parse_api_date(date_str: str) -> Optional[datetime]:
-    """Parse date from API format."""
-    try:
-        # API typically returns ISO format like '2024-11-04' or '2024-11-04T19:00:00'
-        if 'T' in date_str:
-            return datetime.fromisoformat(date_str.split('T')[0])
-        return datetime.fromisoformat(date_str)
-    except Exception:
-        return None
-
-
-def normalize_opponent_name(name: str) -> str:
-    """Normalize opponent name for matching."""
-    # Remove common prefixes
-    name = name.replace('vs ', '').replace('at ', '').replace('vs. ', '').replace('@ ', '')
-    # Remove special characters and extra spaces
-    name = name.strip().lower()
-    # Handle common variations
-    replacements = {
-        'st.': 'st',
-        'st ': 'st',
-        'state': 'st',
-        'university': '',
-        'univ': '',
-        'u.': '',
-    }
-    for old, new in replacements.items():
-        name = name.replace(old, new)
-    return ' '.join(name.split())  # Remove extra whitespace
-
-
-def fetch_team_stats() -> Optional[Dict]:
-    """Fetch Kentucky team statistics."""
-    print("Fetching Kentucky team stats...")
+def fetch_team_record() -> Optional[Dict]:
+    """Fetch Kentucky's current season record (W-L)."""
+    print("Fetching Kentucky season record...")
     
     try:
         configuration = get_api_configuration()
@@ -108,226 +62,147 @@ def fetch_team_stats() -> Optional[Dict]:
                     team=KENTUCKY_TEAM
                 )
                 
-                if stats_response:
-                    print(f"  ✓ Successfully fetched stats for {KENTUCKY_TEAM}")
-                    return {'stats': stats_response}
+                if stats_response and len(stats_response) > 0:
+                    stat = stats_response[0]
+                    wins = getattr(stat, 'wins', 0)
+                    losses = getattr(stat, 'losses', 0)
+                    conf_wins = getattr(stat, 'conference_wins', 0)
+                    conf_losses = getattr(stat, 'conference_losses', 0)
+                    
+                    print(f"  ✓ Overall Record: {wins}-{losses}")
+                    print(f"  ✓ Conference Record: {conf_wins}-{conf_losses}")
+                    
+                    return {
+                        'overall_record': f"{wins}-{losses}",
+                        'conference_record': f"{conf_wins}-{conf_losses}",
+                        'wins': wins,
+                        'losses': losses,
+                        'conf_wins': conf_wins,
+                        'conf_losses': conf_losses
+                    }
+                else:
+                    print("  ⚠️  No stats found for current season")
+                    return None
                 
             except ApiException as e:
                 print(f"  ✗ Stats API error: {e}")
                 return None
                 
     except Exception as e:
-        print(f"  ✗ Error fetching team stats: {e}")
+        print(f"  ✗ Error fetching team record: {e}")
         return None
 
 
-def fetch_ratings() -> Optional[Dict]:
-    """Fetch Kentucky team ratings."""
-    print("Fetching Kentucky ratings...")
+def fetch_conference_standings() -> Optional[Dict]:
+    """Fetch SEC conference standings to find Kentucky's ranking."""
+    print("Fetching SEC conference standings...")
     
     try:
         configuration = get_api_configuration()
         
         with cbbd.ApiClient(configuration) as api_client:
-            ratings_api = cbbd.RatingsApi(api_client)
+            stats_api = cbbd.StatsApi(api_client)
             
             try:
-                ratings_response = ratings_api.get_adjusted_efficiency(
+                # Get all SEC teams' stats
+                standings_response = stats_api.get_team_season_stats(
                     season=SEASON,
-                    team=KENTUCKY_TEAM
+                    conference=CONFERENCE_ID
                 )
                 
-                if ratings_response:
-                    print(f"  ✓ Successfully fetched ratings for {KENTUCKY_TEAM}")
-                    return {'ratings': ratings_response}
+                if standings_response:
+                    # Sort by conference record (wins desc, losses asc)
+                    teams = []
+                    for team_stat in standings_response:
+                        team_name = getattr(team_stat, 'team', '')
+                        conf_wins = getattr(team_stat, 'conference_wins', 0)
+                        conf_losses = getattr(team_stat, 'conference_losses', 0)
+                        
+                        teams.append({
+                            'team': team_name,
+                            'conf_wins': conf_wins,
+                            'conf_losses': conf_losses,
+                            'win_pct': conf_wins / (conf_wins + conf_losses) if (conf_wins + conf_losses) > 0 else 0
+                        })
+                    
+                    # Sort by conference win percentage
+                    teams.sort(key=lambda x: (-x['win_pct'], x['conf_losses']))
+                    
+                    # Find Kentucky's position
+                    kentucky_rank = None
+                    for i, team in enumerate(teams, 1):
+                        if team['team'] == KENTUCKY_TEAM:
+                            kentucky_rank = i
+                            print(f"  ✓ Kentucky is #{i} in SEC standings")
+                            print(f"    Conference Record: {team['conf_wins']}-{team['conf_losses']}")
+                            break
+                    
+                    if kentucky_rank:
+                        return {
+                            'conference_rank': kentucky_rank,
+                            'total_teams': len(teams)
+                        }
+                    else:
+                        print("  ⚠️  Kentucky not found in SEC standings")
+                        return None
+                else:
+                    print("  ⚠️  No conference standings found")
+                    return None
                 
             except ApiException as e:
-                print(f"  ✗ Ratings API error: {e}")
+                print(f"  ✗ Standings API error: {e}")
                 return None
                 
     except Exception as e:
-        print(f"  ✗ Error fetching ratings: {e}")
+        print(f"  ✗ Error fetching conference standings: {e}")
         return None
 
 
-def fetch_schedule() -> Optional[List]:
-    """Fetch Kentucky team schedule and game results."""
-    print("Fetching Kentucky schedule...")
+def update_json_file(record_data: Dict, standings_data: Dict) -> bool:
+    """Update the update.json file with record and conference ranking."""
+    print("Updating update.json file...")
     
     try:
-        configuration = get_api_configuration()
-        
-        with cbbd.ApiClient(configuration) as api_client:
-            games_api = cbbd.GamesApi(api_client)
-            
-            try:
-                games_response = games_api.get_games(
-                    season=SEASON,
-                    team=KENTUCKY_TEAM
-                )
-                
-                if games_response:
-                    print(f"  ✓ Successfully fetched {len(games_response)} games for {KENTUCKY_TEAM}")
-                    return games_response
-                
-            except ApiException as e:
-                print(f"  ✗ Games API error: {e}")
-                return None
-                
-    except Exception as e:
-        print(f"  ✗ Error fetching schedule: {e}")
-        return None
-
-
-def update_stats_file(stats_data: Dict, ratings_data: Dict) -> bool:
-    """Update the update.json file with new statistics."""
-    print("Updating stats file...")
-    
-    try:
+        # Read existing data
         with open(UPDATE_JSON_PATH, 'r') as f:
             existing_data = json.load(f)
         
+        # Ensure 2025 section exists (this represents 2025-2026 season)
         if '2025' not in existing_data:
             existing_data['2025'] = {'stats': {}, 'rankings': {}}
         
-        # Update ratings
-        if ratings_data and ratings_data.get('ratings'):
-            for rating in ratings_data['ratings']:
-                if hasattr(rating, 'adj_o'):
-                    existing_data['2025']['stats']['Offensive Rating'] = {
-                        'value': f"{rating.adj_o:.1f}",
-                        'rank': getattr(rating, 'adj_o_rank', 'N/A')
-                    }
-                if hasattr(rating, 'adj_d'):
-                    existing_data['2025']['stats']['Defensive Rating'] = {
-                        'value': f"{rating.adj_d:.1f}",
-                        'rank': getattr(rating, 'adj_d_rank', 'N/A')
-                    }
+        # Update overall record
+        if record_data:
+            existing_data['2025']['rankings']['Overall Record'] = record_data['overall_record']
+            print(f"  ✓ Updated Overall Record: {record_data['overall_record']}")
+            
+            # Also update conference record if you want to track it
+            if 'conference_record' in record_data:
+                existing_data['2025']['rankings']['Conference Record'] = record_data['conference_record']
+                print(f"  ✓ Updated Conference Record: {record_data['conference_record']}")
         
-        # Update basic stats
-        if stats_data and stats_data.get('stats'):
-            for stat in stats_data['stats']:
-                if hasattr(stat, 'wins') and hasattr(stat, 'losses'):
-                    existing_data['2025']['rankings']['Overall Record'] = f"{stat.wins}-{stat.losses}"
-                
-                if hasattr(stat, 'ppg'):
-                    existing_data['2025']['stats']['Points Per Game'] = {
-                        'value': f"{stat.ppg:.1f}",
-                        'rank': 'N/A'
-                    }
-                if hasattr(stat, 'fg_pct'):
-                    existing_data['2025']['stats']['Field Goal %'] = {
-                        'value': f"{stat.fg_pct * 100:.1f}%",
-                        'rank': 'N/A'
-                    }
+        # Update conference standing
+        if standings_data:
+            conference_standing = f"#{standings_data['conference_rank']} in SEC"
+            existing_data['2025']['rankings']['Conference Standing'] = conference_standing
+            print(f"  ✓ Updated Conference Standing: {conference_standing}")
         
+        # Write updated data back
         with open(UPDATE_JSON_PATH, 'w') as f:
             json.dump(existing_data, f, indent=4)
         
-        print("  ✓ Stats file updated successfully!")
+        print("  ✓ File updated successfully!")
         return True
         
     except FileNotFoundError:
         print(f"  ✗ Error: File not found: {UPDATE_JSON_PATH}")
+        print(f"     Please make sure {UPDATE_JSON_PATH} exists")
+        return False
+    except json.JSONDecodeError as e:
+        print(f"  ✗ Error: Invalid JSON in file: {e}")
         return False
     except Exception as e:
-        print(f"  ✗ Error updating stats file: {e}")
-        return False
-
-
-def update_schedule_file(games: List) -> bool:
-    """Update the 2025-schedule.json file with game results."""
-    print("Updating schedule file...")
-    
-    try:
-        with open(SCHEDULE_JSON_PATH, 'r') as f:
-            existing_schedule = json.load(f)
-        
-        if not games:
-            print("  ! No games data available to update")
-            return True  # Not an error, just no data
-        
-        games_updated = 0
-        games_checked = 0
-        
-        print(f"  Checking {len(existing_schedule)} scheduled games against {len(games)} API games...")
-        
-        # Create a lookup map for API games by date
-        api_games_by_date = {}
-        for api_game in games:
-            api_date = getattr(api_game, 'game_date', None)
-            if api_date:
-                parsed_date = parse_api_date(api_date)
-                if parsed_date:
-                    date_key = parsed_date.strftime('%Y-%m-%d')
-                    api_games_by_date[date_key] = api_game
-        
-        # Update scheduled games with results
-        for schedule_game in existing_schedule:
-            games_checked += 1
-            schedule_date_str = schedule_game.get('date', '')
-            
-            if not schedule_date_str:
-                continue
-                
-            parsed_schedule_date = parse_schedule_date(schedule_date_str)
-            if not parsed_schedule_date:
-                print(f"  ⚠️  Could not parse date: {schedule_date_str}")
-                continue
-            
-            date_key = parsed_schedule_date.strftime('%Y-%m-%d')
-            
-            # Find matching API game
-            api_game = api_games_by_date.get(date_key)
-            
-            if api_game:
-                # Check if game is completed
-                completed = getattr(api_game, 'completed', False)
-                
-                if completed:
-                    home_team = getattr(api_game, 'home_team', '')
-                    away_team = getattr(api_game, 'away_team', '')
-                    home_score = getattr(api_game, 'home_score', 0)
-                    away_score = getattr(api_game, 'away_score', 0)
-                    
-                    # Determine Kentucky's score
-                    if home_team == KENTUCKY_TEAM:
-                        kentucky_score = home_score
-                        opponent_score = away_score
-                    else:
-                        kentucky_score = away_score
-                        opponent_score = home_score
-                    
-                    # Build result string
-                    if kentucky_score > opponent_score:
-                        new_result = f"W {kentucky_score}-{opponent_score}"
-                    else:
-                        new_result = f"L {kentucky_score}-{opponent_score}"
-                    
-                    # Update only if changed
-                    current_result = schedule_game.get('result', 'TBD')
-                    if current_result != new_result:
-                        schedule_game['result'] = new_result
-                        print(f"  ✓ Updated: {schedule_date_str} - {new_result}")
-                        games_updated += 1
-        
-        print(f"  Checked {games_checked} games, updated {games_updated} results")
-        
-        if games_updated > 0:
-            # Write updated schedule
-            with open(SCHEDULE_JSON_PATH, 'w') as f:
-                json.dump(existing_schedule, f, indent=4)
-            print(f"  ✓ Schedule file updated successfully!")
-            return True
-        else:
-            print("  ℹ️  All games already up to date")
-            return True  # Not an error
-            
-    except FileNotFoundError:
-        print(f"  ✗ Error: File not found: {SCHEDULE_JSON_PATH}")
-        return False
-    except Exception as e:
-        print(f"  ✗ Error updating schedule file: {e}")
+        print(f"  ✗ Error updating file: {e}")
         import traceback
         traceback.print_exc()
         return False
@@ -335,49 +210,65 @@ def update_schedule_file(games: List) -> bool:
 
 def main():
     """Main execution function."""
-    print("=" * 60)
-    print("Kentucky Basketball Data Updater (CBBD API)")
+    print("=" * 70)
+    print("Kentucky Basketball Auto-Updater - Simplified")
+    print(f"Season: 2025-2026 (API season {SEASON})")
     print(f"Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("=" * 60)
+    print("=" * 70)
     print()
     
+    # Ensure data directory exists
     os.makedirs(DATA_DIR, exist_ok=True)
     
     success = True
     
-    # Fetch and update stats
-    stats_data = fetch_team_stats()
-    ratings_data = fetch_ratings()
-    
-    if stats_data or ratings_data:
-        if not update_stats_file(stats_data or {}, ratings_data or {}):
-            success = False
-    else:
-        print("⚠️  Warning: Could not fetch team stats or ratings")
+    # Fetch team record
+    record_data = fetch_team_record()
+    if not record_data:
+        print("⚠️  Warning: Could not fetch team record")
         success = False
     
     print()
     
-    # Fetch and update schedule
-    games = fetch_schedule()
-    if games is not None:
-        if not update_schedule_file(games):
-            success = False
-    else:
-        print("⚠️  Warning: Could not fetch schedule")
+    # Fetch conference standings
+    standings_data = fetch_conference_standings()
+    if not standings_data:
+        print("⚠️  Warning: Could not fetch conference standings")
         success = False
     
     print()
-    print("=" * 60)
+    
+    # Update the JSON file
+    if record_data or standings_data:
+        if not update_json_file(record_data or {}, standings_data or {}):
+            success = False
+    else:
+        print("✗ No data to update")
+        success = False
+    
+    print()
+    print("=" * 70)
     print(f"Finished at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     if success:
         print("Status: SUCCESS ✓")
-        print("=" * 60)
+        print()
+        print("Updated:")
+        if record_data:
+            print(f"  • Overall Record: {record_data['overall_record']}")
+            print(f"  • Conference Record: {record_data['conference_record']}")
+        if standings_data:
+            print(f"  • Conference Standing: #{standings_data['conference_rank']} in SEC")
+        print()
+        print("You can manually update:")
+        print("  • KenPom Rankings")
+        print("  • NET Rankings")
+        print("  • Bracketology")
+        print("=" * 70)
         return 0
     else:
-        print("Status: COMPLETED WITH ERRORS ✗")
-        print("=" * 60)
+        print("Status: FAILED ✗")
+        print("=" * 70)
         return 1
 
 
