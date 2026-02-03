@@ -1,0 +1,47 @@
+name: Update AP Rankings
+
+on:
+  # Run every Monday at 2 PM EST (AP Poll is typically released Monday mornings)
+  schedule:
+    - cron: '0 20 * * 1'  # 8 PM UTC = 3 PM EST
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  update-rankings:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Run ranking update script
+        run: |
+          cd scripts
+          node update-rankings.js
+      
+      - name: Check for changes
+        id: verify-changed-files
+        run: |
+          git diff --quiet data/ || echo "changed=true" >> $GITHUB_OUTPUT
+      
+      - name: Commit and push if changes
+        if: steps.verify-changed-files.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/2025-schedule.json data/update.json
+          git commit -m "🏀 Auto-update: AP Rankings for $(date +'%B %d, %Y')"
+          git push
+      
+      - name: No changes detected
+        if: steps.verify-changed-files.outputs.changed != 'true'
+        run: echo "No ranking changes detected"
