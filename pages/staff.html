@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kentucky Basketball Coaches - BBN Stats</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="../images/uk-logo/favicon.png">
+    <link rel="stylesheet" href="../styles/search.css">
+    <link rel="stylesheet" href="../styles/staff.css">
+</head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-25CW7MFC29"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-25CW7MFC29');
+</script>
+<body>
+    <nav class="navbar navbar-expand-lg py-3 bg-white">
+        <div class="container">
+            <div class="d-flex justify-content-between w-100 align-items-center">
+                <div class="dropdown order-1">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        More
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../index.html">Home</a></li>
+                        <li><a class="dropdown-item" href="players.html">Players</a></li>
+                        <li><a class="dropdown-item" href="schedule.html">Schedule</a></li>
+                        <li><a class="dropdown-item" href="rankings.html">Rankings</a></li>
+                        <li><a class="dropdown-item" href="stats.html">Statistics</a></li>
+                        <li><a class="dropdown-item" href="comparison.html">Compare</a></li>
+                        <li><a class="dropdown-item" href="history.html">History</a></li>
+                        <li><a class="dropdown-item" href="news.html">News</a></li>
+                    </ul>
+                </div>
+                <div class="order-2 mx-auto text-center">
+                    <h1 class="bbn-title mb-0">BBN Stats</h1>
+                </div>
+                <div class="order-3 d-flex align-items-center gap-2">
+                    <button class="search-btn" onclick="openSearch()" title="Search (Ctrl+K)">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <a href="../index.html" class="btn btn-primary d-none d-lg-inline-flex align-items-center gap-2">
+                        <i class="fas fa-arrow-left"></i> <span>Back to Home</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="searchModal" class="search-modal">
+        <div class="search-container">
+            <div class="search-header">
+                <h3 style="margin: 0;">Search BBN Stats</h3>
+                <button class="search-close" onclick="closeSearch()">&times;</button>
+            </div>
+            <div class="search-input-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search players, staff, games, and more..." autocomplete="off">
+            </div>
+            <div id="searchResults" class="search-results">
+                <div class="no-results">Start typing to search for players, staff, games, and more...</div>
+            </div>
+        </div>
+    </div>
+
+    <header class="history-header text-center mb-5">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-center">
+                <h1 class="display-4 fw-bold mb-0 me-3">Kentucky Basketball Coaching Staff</h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mb-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="coach-card" data-bs-toggle="modal" data-bs-target="#coach1">
+                    <img src="../images/coaches/pope.jpg" alt="Mark Pope">
+                    <h3>Mark Pope</h3>
+                    <div class="coach-title">Head Coach</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="coach-card" data-bs-toggle="modal" data-bs-target="#coach2">
+                    <img src="../images/coaches/brooks.jpg" alt="Brooks">
+                    <h3>Alvin Brooks III</h3>
+                    <div class="coach-title">Associate Head Coach</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="coach-card" data-bs-toggle="modal" data-bs-target="#coach3">
+                    <img src="../images/coaches/fox.jpg" alt="Mark Fox">
+                    <h3>Mark Fox</h3>
+                    <div class="coach-title">Associate Coach</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="coach-card" data-bs-toggle="modal" data-bs-target="#coach4">
+                    <img src="../images/coaches/fueger.jpg" alt="Cody Fueger">
+                    <h3>Cody Fueger</h3>
+                    <div class="coach-title">Assistant Coach</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="coach-card" data-bs-toggle="modal" data-bs-target="#coach5">
+                    <img src="../images/coaches/hart.jpg" alt="Jason Hart">
+                    <h3>Jason Hart</h3>
+                    <div class="coach-title">Assitant Coach</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="coach-card" data-bs-toggle="modal" data-bs-target="#coach6">
+                    <img src="../images/coaches/mclean.jpg" alt="Mikhail McLean">
+                    <h3>Mikhail McLean</h3>
+                    <div class="coach-title">Assistant Coach</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="coach-card" data-bs-toggle="modal" data-bs-target="#coach7">
+                    <img src="../images/coaches/robinson.jpg" alt="Nick Robinson">
+                    <h3>Nick Robinson</h3>
+                    <div class="coach-title">Director of Men's Basketball Operations</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="coach-card" data-bs-toggle="modal" data-bs-target="#coach8">
+                    <img src="../images/coaches/towner.jpg" alt="Randy Towner">
+                    <h3>Randy Towner</h3>
+                    <div class="coach-title">Head Strength Coach</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="coach-card" data-bs-toggle="modal" data-bs-target="#coach9">
+                    <img src="../images/coaches/wells.jpg" alt="Brandon Wells">
+                    <h3>Brandon Wells</h3>
+                    <div class="coach-title">Head Athletic Trainer</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="coach1" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mark Pope - Head Coach</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="../images/coaches/pope.jpg" class="modal-coach-img" alt="Mark Pope">
+                    <p>Mark Pope, a captain of the University of Kentucky's 1996 National Championship team, returned to Lexington as the 23rd head coach of Kentucky's storied men's basketball program in April of 2024.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="coach2" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Alvin Brooks III - Associate Head Coach</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="../images/coaches/brooks.jpg" class="modal-coach-img" alt="Alvin Brooks III">
+                    <p>Alvin Brooks III, regarded as one of the nation's best assistant coaches, joined the Kentucky men's basketball coaching staff as associate head coach in April of 2024.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="coach3" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mark Fox - Associate Coach</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="../images/coaches/fox.jpg" class="modal-coach-img" alt="Mark Fox">
+                    <p>Mark Fox, who has 18 years of collegiate head coaching experience, joined the Kentucky men's basketball staff as an associate coach in April of 2024 and begins his second season with the Wildcats in 2025-26.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="coach4" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cody Fueger - Assistant Coach</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="../images/coaches/fueger.jpg" class="modal-coach-img" alt="Cody Fueger">
+                    <p>Cody Fueger joined the Kentucky men's basketball staff as assistant coach in April of 2024. Often praised as an offensive strategist, Fueger has been a part of several highly effective offensive teams during his coaching career.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="coach5" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Jason Hart - Assistant Coach</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="../images/coaches/hart.jpg" class="modal-coach-img" alt="Jason Hart">
+                    <p>Nine-year NBA veteran with extensive coaching experience at the high school, collegiate and professional levels, Jason Hart, joined the Kentucky men's basketball staff in April of 2024.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="coach6" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mikhail McLean - Assistant Coach</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="../images/coaches/mclean.jpg" class="modal-coach-img" alt="Mikhail McLean">
+                    <p>McLean had a hand in his prior teams rise as the team's offensive coordinator. He was also responsible for on-court player development with the guards and wings. Mikhail McLean joined the Kentucky men's basketball coaching staff in June of 2024..</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="coach7" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nick Robinson - Director of Men's Basketball Operations</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="../images/coaches/robinson.jpg" class="modal-coach-img" alt="Nick Robinson">
+                    <p>A former student-athlete at Stanford with more than 20 years of college basketball experience and a combined eight NCAA Tournament appearances as a player and coach, Nick Robinson was hired as the Kentucky men's basketball director of operations in June of 2024.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="coach8" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Randy Towner - Head Strength Coach</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="../images/coaches/towner.jpg" class="modal-coach-img" alt="Randy Towner">
+                    <p>Towner worked with the Milwaukee Bucks from 2022-24. Prior to that, he was involved with several college basketball programs, including UTSA, Utah, UAB and Utah Valley, where he worked alongside Pope during the coach's time with the Wolverines.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="coach9" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Brandon Wells - Head Athletic Trainer</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="../images/coaches/wells.jpg" class="modal-coach-img" alt="Brandon Wells">
+                    <p>Brandon Wells is the Senior Athletic Trainer for the University of Kentucky men's basketball team, overseeing injury prevention, treatment, and rehabilitation. He earned his bachelor's degree from Eastern Kentucky University and has been a part of UK Athletics for several years, bringing extensive experience in sports medicine.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 BBN Stats. All rights reserved.<br>
+            University of Kentucky Basketball Statistics</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts/search.js"></script>
+</body>
+</html>

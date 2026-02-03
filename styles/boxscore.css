@@ -1,0 +1,169 @@
+
+        :root {
+            --uk-blue: #0033A0;
+            --uk-white: #FFFFFF;
+            --uk-silver: #808080;
+        }
+
+        body { 
+            background: #f8f9fa; 
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+        
+        .boxscore-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .game-header {
+            background: var(--uk-blue);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .team-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .game-info {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .boxscore-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        
+        .boxscore-table th {
+            background: var(--uk-blue);
+            color: white;
+            padding: 0.75rem;
+            text-align: center;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .boxscore-table th:hover {
+            background: #00267a;
+        }
+        
+        .boxscore-table th.sort-asc::after {
+            content: " ▲";
+            font-size: 0.8em;
+        }
+        
+        .boxscore-table th.sort-desc::after {
+            content: " ▼";
+            font-size: 0.8em;
+        }
+        
+        .boxscore-table td {
+            padding: 0.5rem;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            white-space: nowrap;
+        }
+        
+        .boxscore-table tr:last-child td {
+            border-bottom: 2px solid var(--uk-blue);
+            font-weight: bold;
+            background-color: rgba(0, 51, 160, 0.05);
+        }
+        
+        .player-name {
+            text-align: left;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .game-stats {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--uk-blue);
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .stat-card h4 {
+            color: var(--uk-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Zebra striping for rows */
+        .boxscore-table tbody tr:nth-child(odd) {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        /* Column borders for better readability */
+        .boxscore-table td:not(:first-child) {
+            border-left: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Rating cell styles */
+        .rating-cell {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+            color: white;
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .rating-0 { background-color: #6c757d; }
+        .rating-1 { background-color: #6c757d; }
+        .rating-2 { background-color: #dc3545; }
+        .rating-3 { background-color: #dc3545; }
+        .rating-4 { background-color: #fd7e14; }
+        .rating-5 { background-color: #ffc107; }
+        .rating-6 { background-color: #ffc107; }
+        .rating-7 { background-color: #28a745; }
+        .rating-8 { background-color: #28a745; }
+        .rating-9 { background-color: #5cd809; }
+        .rating-10 { background-color: #65fd00; }
+
+        @media (max-width: 768px) {
+            .boxscore-table {
+                font-size: 0.85rem;
+            }
+            
+            .boxscore-table th, 
+            .boxscore-table td {
+                padding: 0.4rem 0.3rem;
+            }
+
+            .stat-card {
+                padding: 0.8rem 1rem;
+                min-width: 100px;
+            }
+        }
+    

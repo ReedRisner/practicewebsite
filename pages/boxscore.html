@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Box Score - BBN Stats</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="icon" type="image/x-icon" href="../images/uk-logo/favicon.png">
+    <link rel="stylesheet" href="../styles/boxscore.css">
+</head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-25CW7MFC29"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-25CW7MFC29');
+</script>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <div class="container">
+        <div class="boxscore-container">
+            <a href="schedule.html" class="btn btn-primary mb-4">&laquo; Back to Schedule</a>
+            
+            <div class="loading" id="loading">
+                <div class="spinner-border text-primary"></div>
+                <p class="mt-2">Loading box score...</p>
+            </div>
+            
+            <div id="boxscore-content" style="display: none;">
+                <div class="game-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="team-name">Kentucky Wildcats</div>
+                            <div class="team-name" id="opponent-name"></div>
+                        </div>
+                        <div class="text-end">
+                            <div class="game-info" id="game-date"></div>
+                            <div class="game-info" id="game-result"></div>
+                            <div class="game-info" id="game-location"></div>
+                            <a id="video-button" class="btn btn-danger mt-2" target="_blank" style="display: none;">
+                                <i class="bi bi-play-btn-fill"></i> Watch Highlights
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4 class="mb-3">Kentucky Box Score</h4>
+                <div class="table-responsive">
+                    <table class="boxscore-table">
+                        <thead>
+                            <tr>
+                                <th data-sort="player">Player</th>
+                                <th data-sort="min">MIN</th>
+                                <th data-sort="pts">PTS</th>
+                                <th data-sort="reb">REB</th>
+                                <th data-sort="ast">AST</th>
+                                <th data-sort="stl">STL</th>
+                                <th data-sort="blk">BLK</th>
+                                <th data-sort="to">TO</th>
+                                <th data-sort="fg">FG</th>
+                                <th data-sort="threept">3PT</th>
+                                <th data-sort="ft">FT</th>
+                                <th data-sort="rating">Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody id="player-stats"></tbody>
+                    </table>
+                </div>
+                
+                <div class="game-stats">
+                    <div class="stat-card">
+                        <h4>FG%</h4>
+                        <div class="stat-value" id="fg-pct">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>3P%</h4>
+                        <div class="stat-value" id="three-pct">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>FT%</h4>
+                        <div class="stat-value" id="ft-pct">-</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="error-message" class="alert alert-danger mt-3" style="display: none;"></div>
+        </div>
+    </div>
+
+<script src="../scripts/boxscore.js"></script>
+</body>
+</html>

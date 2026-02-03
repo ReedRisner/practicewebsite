@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Comparison - BBN Stats</title>
+    <link rel="icon" type="image/x-icon" href="../images/uk-logo/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/search.css">
+    <link rel="stylesheet" href="../styles/comparison.css">
+</head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-25CW7MFC29"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-25CW7MFC29');
+</script>
+<body>
+    <nav class="navbar navbar-expand-lg py-3 bg-white">
+        <div class="container">
+            <div class="d-flex justify-content-between w-100 align-items-center">
+                <div class="dropdown order-1">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">More</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../index.html">Home</a></li>
+                        <li><a class="dropdown-item" href="players.html">Players</a></li>
+                        <li><a class="dropdown-item" href="staff.html">Staff</a></li>
+                        <li><a class="dropdown-item" href="schedule.html">Schedule</a></li>
+                        <li><a class="dropdown-item" href="rankings.html">Rankings</a></li>
+                        <li><a class="dropdown-item" href="stats.html">Statistics</a></li>
+                        <li><a class="dropdown-item" href="history.html">History</a></li>
+                        <li><a class="dropdown-item" href="news.html">News</a></li>
+                    </ul>
+                </div>
+                <div class="order-2 mx-auto text-center">
+                    <h1 class="bbn-title mb-0">BBN Stats</h1>
+                </div>
+                <div class="order-3 d-flex align-items-center gap-2">
+                    <button class="search-btn" onclick="openSearch()" title="Search (Ctrl+K)">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <a href="../index.html" class="btn btn-primary d-none d-lg-inline-flex align-items-center gap-2">
+                        <i class="fas fa-arrow-left"></i> <span>Back to Home</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="searchModal" class="search-modal">
+        <div class="search-container">
+            <div class="search-header">
+                <h3 style="margin: 0;">Search BBN Stats</h3>
+                <button class="search-close" onclick="closeSearch()">&times;</button>
+            </div>
+            <div class="search-input-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search players, staff, games, and more..." autocomplete="off">
+            </div>
+            <div id="searchResults" class="search-results">
+                <div class="no-results">Start typing to search for players, staff, games, and more...</div>
+            </div>
+        </div>
+    </div>
+
+    <header class="comparison-header text-center mb-5">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">Player Comparison</h1>
+        </div>
+    </header>
+
+    <main class="container mb-5">
+        <div class="player-select-container">
+            <div>
+                <div class="mb-3">
+                    <select class="form-select bg-white text-uk-blue season-selector" id="player1Season">
+                        <option value="2025">2025-2026 Season</option>
+                        <option value="2024">2024-2025 Season</option>
+                    </select>
+                </div>
+                <select class="form-select bg-white text-uk-blue mb-3" id="player1Select">
+                    <option value="">Select First Player</option>
+                </select>
+                <div class="mb-3">
+                    <select class="form-select bg-white text-uk-blue" id="player1Filter">
+                        <option value="whole">Whole Season</option>
+                        <option value="last5">Past 5 Games</option>
+                        <option value="home">Home Games</option>
+                        <option value="away">Away Games</option>
+                        <option value="conference">Conference Games</option>
+                        <option value="nonconference">Non-Conference Games</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <div class="mb-3">
+                    <select class="form-select bg-white text-uk-blue season-selector" id="player2Season">
+                        <option value="2025">2025-2026 Season</option>
+                        <option value="2024">2024-2025 Season</option>
+                    </select>
+                </div>
+                <select class="form-select bg-white text-uk-blue mb-3" id="player2Select">
+                    <option value="">Select Second Player</option>
+                </select>
+                <div class="mb-3">
+                    <select class="form-select bg-white text-uk-blue" id="player2Filter">
+                        <option value="whole">Whole Season</option>
+                        <option value="last5">Past 5 Games</option>
+                        <option value="home">Home Games</option>
+                        <option value="away">Away Games</option>
+                        <option value="conference">Conference Games</option>
+                        <option value="nonconference">Non-Conference Games</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="per30-toggle-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="per30Toggle">
+                    <label class="form-check-label" for="per30Toggle">Show Per-30-Minute Stats</label>
+                </div>
+            </div>
+
+            <div class="download-btn-container">
+                <button id="downloadBtn" class="btn btn-success btn-lg" onclick="downloadComparison()" style="display: none;">
+                    <i class="fas fa-download"></i> Download Comparison
+                </button>
+            </div>
+
+            <div id="player1Card" class="player-card"></div>
+            <div id="player2Card" class="player-card"></div>
+        </div>
+
+        <div class="comparison-box mt-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="averagesChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="shootingChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="playingTimeChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="advancedChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>      
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 BBN Stats. All rights reserved.<br>
+            University of Kentucky Basketball Statistics</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts/comparison.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../scripts/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+:root {
+    --uk-blue: #0033A0;
+    --uk-white: #FFFFFF;
+    --uk-silver: #808080;
+    --uk-gold: #d4af37;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.schedule-header {
+    background: var(--uk-blue);
+    color: white;
+    padding: 2rem 0;
+    border-bottom: 5px solid var(--uk-silver);
+}
+
+.bbn-title {
+    color: var(--uk-blue);
+    font-family: 'Arial Black', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 1.5px;
+}
+
+.season-selector {
+    max-width: 200px;
+    margin-left: 1rem;
+}
+
+.opponent-rank {
+    background-color: var(--uk-gold);
+    color: #000;
+    font-weight: bold;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+    margin-right: 0.5rem;
+    display: inline-block;
+}
+
+.game-tournament {
+    background-color: #0033A0;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    display: inline-block;
+}
+
+/* Desktop: Boxed list layout */
+@media (min-width: 769px) {
+    .schedule-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+    
+    .game-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+        border: 2px solid var(--uk-blue);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .game-card:hover {
+        transform: translateX(5px);
+        box-shadow: 0 8px 20px rgba(0, 51, 160, 0.2);
+        border-color: var(--uk-gold);
+    }
+    
+    .game-card.completed {
+        cursor: pointer;
+    }
+    
+    .game-info {
+        display: flex;
+        align-items: center;
+        flex: 1;
+    }
+    
+    .game-details {
+        flex: 2;
+    }
+    
+    .game-date {
+        font-weight: 600;
+        color: var(--uk-blue);
+        margin: 0;
+        font-size: 1.1rem;
+    }
+    
+    .game-matchup {
+        display: flex;
+        align-items: center;
+        margin: 0.5rem 0;
+    }
+    
+    .team-logo {
+        max-height: 40px;
+        width: auto;
+        margin-right: 1rem;
+    }
+    
+    .opponent-name {
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+    
+    .game-location {
+        color: var(--uk-silver);
+        font-size: 0.9rem;
+        margin-top: 0.3rem;
+    }
+    
+    .game-time {
+        color: var(--uk-blue);
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-top: 0.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+    
+    .game-time i {
+        font-size: 0.8rem;
+    }
+    
+    .game-result {
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-size: 1rem;
+        margin-left: 1rem;
+        min-width: 90px;
+        text-align: center;
+    }
+    
+    /* Remove the table styles for desktop */
+    .schedule-table {
+        display: none;
+    }
+}
+
+/* Mobile: Keep the table layout */
+@media (max-width: 768px) {
+    .schedule-list {
+        display: flex !important;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .schedule-table {
+        display: none !important;
+    }
+    
+    .game-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        transition: all 0.3s ease;
+        border: 2px solid var(--uk-blue);
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .game-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0, 51, 160, 0.2);
+        border-color: var(--uk-gold);
+    }
+    
+    .game-card.completed {
+        cursor: pointer;
+    }
+    
+    .game-info {
+        width: 100%;
+    }
+    
+    .game-date {
+        font-weight: 600;
+        color: var(--uk-blue);
+        margin: 0 0 0.5rem 0;
+        font-size: 1rem;
+    }
+    
+    .game-matchup {
+        display: flex;
+        align-items: center;
+        margin: 0.5rem 0;
+    }
+    
+    .team-logo {
+        max-height: 35px;
+        width: auto;
+        margin-right: 0.8rem;
+    }
+    
+    .opponent-name {
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    
+    .game-location {
+        color: var(--uk-silver);
+        font-size: 0.9rem;
+        margin-top: 0.3rem;
+    }
+    
+    .game-time {
+        color: var(--uk-blue);
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-top: 0.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+    
+    .game-time i {
+        font-size: 0.8rem;
+    }
+    
+    .game-result {
+        align-self: center;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-size: 1rem;
+        margin-top: 0.8rem;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .navbar {
+        padding: 0.5rem 0;
+    }
+    
+    .bbn-title {
+        font-size: 1.8rem;
+        margin: 0 10px;
+    }
+    
+    .dropdown-toggle {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+    
+.stats-card {
+    border-top: 4px solid var(--uk-blue);
+}

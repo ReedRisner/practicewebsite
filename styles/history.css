@@ -1,0 +1,116 @@
+
+        :root {
+            --uk-blue: #0033A0;
+            --uk-white: #FFFFFF;
+            --uk-silver: #808080;
+        }
+
+        .history-header {
+            background: var(--uk-blue);
+            color: white;
+            padding: 2rem 0;
+            border-bottom: 5px solid var(--uk-silver);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+ 
+        .header-content h1 {
+            flex: 1;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .history-card {
+            background: white;
+            border: 2px solid var(--uk-blue);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+                margin-right: 0.5rem;
+            }
+        }
+
+        .history-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 51, 160, 0.2);
+            background: var(--uk-blue);
+            color: white;
+        }
+
+        .history-card:hover h3 {
+            color: var(--uk-white) !important;
+        }
+
+        .history-card:hover .history-stat {
+            color: var(--uk-silver) !important;
+        }
+
+        .history-stat {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: var(--uk-blue);
+            transition: all 0.3s ease;
+            margin: 1rem 0;
+        }
+
+        .glow-border {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 51, 160, 0);
+            transition: all 0.3s ease;
+        }
+
+        .history-card:hover .glow-border {
+            box-shadow: 0 0 15px rgba(0, 51, 160, 0.4);
+        }
+
+        .history-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--uk-blue);
+            transition: all 0.3s ease;
+        }
+        .bbn-title {
+            color: var(--uk-blue);
+            font-family: 'Arial Black', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 1.5px;
+        }
+
+        .history-card:hover .history-icon {
+            color: var(--uk-white);
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.5rem 0;
+            }
+            
+            .bbn-title {
+                font-size: 1.8rem;
+                margin: 0 10px;
+            }
+            
+            .dropdown-toggle {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.9rem;
+            }
+        }

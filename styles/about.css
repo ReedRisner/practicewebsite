@@ -1,0 +1,57 @@
+
+        :root {
+            --uk-blue: #0033A0;
+            --uk-dark: #001F4F;
+            --uk-light: #F8F9FA;
+        }
+
+        body {
+            background-color: var(--uk-light);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .uk-header {
+            background-color: var(--uk-blue);
+            border-bottom: 4px solid var(--uk-dark);
+        }
+
+        .about-card {
+            background: white;
+            border-radius: 15px;
+            border: 2px solid var(--uk-blue);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .uk-title {
+            color: var(--uk-blue);
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            border-bottom: 3px solid var(--uk-blue);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .lead-text {
+            color: #2C3E50;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .uk-highlight {
+            color: var(--uk-blue);
+            font-weight: 600;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 1.5rem;
+        }
+
+        .feature-list li::before {
+            content: "•";
+            color: var(--uk-blue);
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+            margin-left: -1em;
+        }

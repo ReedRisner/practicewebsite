@@ -1,0 +1,77 @@
+
+        :root {
+            --uk-blue: #0033A0;
+            --uk-white: #FFFFFF;
+            --uk-silver: #808080;
+        }
+
+        .history-header {
+            background: var(--uk-blue);
+            color: white;
+            padding: 2rem 0;
+            border-bottom: 5px solid var(--uk-silver);
+        }
+
+        .coach-card {
+            background: white;
+            border: 2px solid var(--uk-blue);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            height: 100%;
+        }
+
+        .coach-card img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #000;
+            margin-bottom: 1rem;
+        }
+
+        .coach-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 51, 160, 0.2);
+            background: var(--uk-blue);
+            color: white;
+        }
+
+        .coach-card:hover .coach-title {
+            color: var(--uk-white);
+        }
+
+        .coach-title {
+            color: var(--uk-blue);
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .modal-coach-img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #000;
+            margin: 0 auto 1.5rem;
+            display: block;
+        }
+
+        .bbn-title {
+            color: var(--uk-blue);
+            font-family: 'Arial Black', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 1.5px;
+        }
+
+        .modal-header {
+            background: var(--uk-blue);
+            color: white;
+        }
+
+        .btn-close-white {
+            filter: invert(1);
+        }

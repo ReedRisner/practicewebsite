@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBN Stats - Kentucky Basketball Statistics</title>
+    <link rel="icon" type="image/x-icon" href="images/uk-logo/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/index.css">
+    
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-25CW7MFC29"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-25CW7MFC29');
+</script>
+<body>
+    <!-- Line Canvas Background -->
+    <canvas id="line-canvas"></canvas>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-expand-lg py-3 bg-white">
+    <div class="container">
+        <div class="d-flex justify-content-between w-100 align-items-center">
+            <!-- Dropdown Menu -->
+            <div class="dropdown order-1">
+                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    More
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="pages/staff.html">Staff</a></li>
+                    <li><a class="dropdown-item" href="pages/history.html">History</a></li>
+                    <li><a class="dropdown-item" href="pages/news.html">News</a></li>
+                    <li><a class="dropdown-item" href="pages/about.html">About</a></li>
+                </ul>
+            </div>
+
+            <!-- Title - centered -->
+            <div class="order-2 mx-auto text-center">
+                <h1 class="bbn-title mb-0">BBN Stats</h1>
+            </div>
+
+            <!-- Search Button + Back Button Container -->
+            <div class="order-3 d-flex align-items-center gap-2">
+                <!-- Search Button - always visible -->
+                <button class="search-btn" onclick="openSearch()" title="Search (Ctrl+K)">
+                    <i class="fas fa-search"></i>
+                </button>
+                
+               
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="content-container">
+                <div class="text-center">
+                    <h2 class="text-dark mb-2">Kentucky Basketball Statistics</h2>
+                    <p class="subtitle">Click "More" to see Staff, History, and News</p>
+                    
+                    <!-- Navigation Buttons -->
+                    <div class="nav-buttons-container">
+                        <a href="pages/players.html" class="nav-btn">
+                            <i class="fas fa-users"></i>
+                            Players
+                        </a>
+                        <a href="pages/schedule.html" class="nav-btn">
+                            <i class="fas fa-calendar-alt"></i>
+                            Schedule
+                        </a>
+                        <a href="pages/rankings.html" class="nav-btn">
+                            <i class="fas fa-trophy"></i>
+                            Rankings
+                        </a>
+                        <a href="pages/stats.html" class="nav-btn">
+                            <i class="fas fa-chart-bar"></i>
+                            Statistics
+                        </a>
+                        <a href="pages/comparison.html" class="nav-btn">
+                            <i class="fas fa-exchange-alt"></i>
+                            Compare
+                        </a>
+                    </div>
+                    
+                    <!-- Quick Stats Cards -->
+                    <div class="stats-container">
+                        <div class="row g-3 mb-4">
+                            <!-- Record Card -->
+                            <div class="col-md-15 col-lg">
+                                <div class="stat-card p-3 h-100" onclick="window.open('https://ukathletics.com/sports/mbball/schedule/', '_blank')">
+                                    <h5 class="text-muted">Record</h5>
+                                    <h2 id="indexTotalRecord" class="stat-value">-</h2>
+                                    <small class="stat-label">Overall</small>
+                                </div>
+                            </div>
+
+                            <!-- AP Poll Card -->
+                            <div class="col-md-15 col-lg">
+                                <div class="stat-card p-3 h-100" onclick="window.open('https://apnews.com/hub/ap-top-25-college-basketball-poll', '_blank')">
+                                    <h5 class="text-muted">AP Poll</h5>
+                                    <div id="indexAPPoll" class="stat-value">#N/A</div>
+                                    <small class="stat-label">Click for details</small>
+                                </div>
+                            </div>
+
+                            <!-- KenPom Card -->
+                            <div class="col-md-15 col-lg">
+                                <div class="stat-card p-3 h-100" onclick="window.open('https://kenpom.com', '_blank')">
+                                    <h5 class="text-muted">KenPom</h5>
+                                    <div id="indexKenPom" class="stat-value">#N/A</div>
+                                    <small class="stat-label">Click for details</small>
+                                </div>
+                            </div>
+
+                            <!-- Bracketology Card -->
+                            <div class="col-md-15 col-lg">
+                                <div class="stat-card p-3 h-100" onclick="window.open('https://www.espn.com/espn/feature/story/_/page/bracketology/ncaa-bracketology-2026-march-madness-men-field-predictions', '_blank')">
+                                    <h5 class="text-muted">Bracketology</h5>
+                                    <div id="indexBracketology" class="stat-value">3</div>
+                                    <small class="stat-label">Projected Seed</small>
+                                </div>
+                            </div>
+                            <div class="col-md-15 col-lg">
+                                 <div class="stat-card p-3 h-100" onclick="window.location.href='https://www.bbnstats.com/pages/schedule'">
+                                    <h5 class="text-muted">Next Game</h5>
+                                    <div id="nextGame" class="stat-value">-</div>
+                                    <small id="nextGameDate" class="stat-label">-</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container my-4">
+        <div class="content-container">
+            <section class="mb-4">
+                <h3 class="section-title">Season Leaders</h3>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="leader-card text-center p-3">
+                            <h5>Points Per Game</h5>
+                            <div id="ppgLeader" class="leader-content">
+                                <!-- Content will be loaded by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="leader-card text-center p-3">
+                            <h5>Assists Per Game</h5>
+                            <div id="apgLeader" class="leader-content">
+                                <!-- Content will be loaded by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="leader-card text-center p-3">
+                            <h5>Rebounds Per Game</h5>
+                            <div id="rpgLeader" class="leader-content">
+                                <!-- Content will be loaded by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="content-container">
+            <!-- Recent Games Section -->
+            <section class="mb-4">
+                <h3 class="section-title">Recent Games</h3>
+                <div class="table-responsive">
+                    <table class="table schedule-table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Opponent</th>
+                                <th>Result</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-games">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    
+                    <p class="mt-3">© 2025 BBN Stats<br>
+                    Not Affiliated with the University of Kentucky<br>
+                    UK Basketball Statistics Website<br>
+                    Website is updated automatically after every game</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="search-modal">
+        <div class="search-container">
+            <div class="search-header">
+                <h3 style="margin: 0;">Search BBN Stats</h3>
+                <button class="search-close" onclick="closeSearch()">&times;</button>
+            </div>
+            
+            <div class="search-input-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Search players, staff, games, and more..."
+                    autocomplete="off"
+                >
+            </div>
+            
+            <div id="searchResults" class="search-results">
+                <div class="no-results">
+                    Start typing to search for players, staff, games, and more...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/index.js"></script>
+    
+</body>
+
+</html>
+
+

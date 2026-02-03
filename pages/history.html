@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kentucky Basketball History - BBN Stats</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="../images/uk-logo/favicon.png">
+    <link rel="stylesheet" href="../styles/search.css">
+    <link rel="stylesheet" href="../styles/history.css">
+</head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-25CW7MFC29"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-25CW7MFC29');
+</script>
+<body>
+    <nav class="navbar navbar-expand-lg py-3 bg-white">
+        <div class="container">
+            <div class="d-flex justify-content-between w-100 align-items-center">
+                <div class="dropdown order-1">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">More</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../index.html">Home</a></li>
+                        <li><a class="dropdown-item" href="players.html">Players</a></li>
+                        <li><a class="dropdown-item" href="staff.html">Staff</a></li>
+                        <li><a class="dropdown-item" href="schedule.html">Schedule</a></li>
+                        <li><a class="dropdown-item" href="rankings.html">Rankings</a></li>
+                        <li><a class="dropdown-item" href="stats.html">Statistics</a></li>
+                        <li><a class="dropdown-item" href="comparison.html">Compare</a></li>
+                        <li><a class="dropdown-item" href="news.html">News</a></li>
+                    </ul>
+                </div>
+                <div class="order-2 mx-auto text-center">
+                    <h1 class="bbn-title mb-0">BBN Stats</h1>
+                </div>
+                <div class="order-3 d-flex align-items-center gap-2">
+                    <button class="search-btn" onclick="openSearch()" title="Search (Ctrl+K)">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <a href="../index.html" class="btn btn-primary d-none d-lg-inline-flex align-items-center gap-2">
+                        <i class="fas fa-arrow-left"></i> <span>Back to Home</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="searchModal" class="search-modal">
+        <div class="search-container">
+            <div class="search-header">
+                <h3 style="margin: 0;">Search BBN Stats</h3>
+                <button class="search-close" onclick="closeSearch()">&times;</button>
+            </div>
+            <div class="search-input-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search players, staff, games, and more..." autocomplete="off">
+            </div>
+            <div id="searchResults" class="search-results">
+                <div class="no-results">Start typing to search for players, staff, games, and more...</div>
+            </div>
+        </div>
+    </div>
+
+    <header class="history-header text-center mb-5">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-center">
+                <h1 class="display-4 fw-bold mb-0 me-3">Kentucky Basketball History</h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mb-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="history-card">
+                    <div class="glow-border"></div>
+                    <i class="fas fa-trophy history-icon"></i>
+                    <h3 class="text-uk-blue mb-3">National Championships</h3>
+                    <div class="history-stat">8</div>
+                    <p>Kentucky has won 8 NCAA Championships (1948, 1949, 1951, 1958, 1978, 1996, 1998, 2012)</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="history-card">
+                    <div class="glow-border"></div>
+                    <i class="fas fa-basketball-ball history-icon"></i>
+                    <h3 class="text-uk-blue mb-3">Final Fours</h3>
+                    <div class="history-stat">17</div>
+                    <p>The Wildcats have reached the NCAA Final Four 17 times, 4th most in NCAA history</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="history-card">
+                    <div class="glow-border"></div>
+                    <i class="fas fa-flag history-icon"></i>
+                    <h3 class="text-uk-blue mb-3">Elite Eights</h3>
+                    <div class="history-stat">38</div>
+                    <p>Kentucky has reached the Elite Eight 38 times, more than any other program</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="history-card">
+                    <div class="glow-border"></div>
+                    <i class="fas fa-star history-icon"></i>
+                    <h3 class="text-uk-blue mb-3">Sweet Sixteens</h3>
+                    <div class="history-stat">45</div>
+                    <p>The Wildcats have advanced to the Sweet Sixteen 45 times in tournament history</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="history-card">
+                    <div class="glow-border"></div>
+                    <i class="fas fa-clipboard-list history-icon"></i>
+                    <h3 class="text-uk-blue mb-3">Tournament Appearances</h3>
+                    <div class="history-stat">60</div>
+                    <p>Kentucky has made 60 NCAA Tournament appearances, 2nd only to North Carolina</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="history-card">
+                    <div class="glow-border"></div>
+                    <i class="fas fa-basketball-ball history-icon"></i>
+                    <h3 class="text-uk-blue mb-3">Total Wins</h3>
+                    <div class="history-stat" id="total-wins">2,424</div>
+                    <p>Kentucky has the Most wins in College Basketball History</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="history-card">
+                    <div class="glow-border"></div>
+                    <i class="fas fa-basketball-ball history-icon"></i>
+                    <h3 class="text-uk-blue mb-3">Head to Head against Louisville </h3>
+                    <div class="history-stat" id="head-to-head-louisville">40-17</div>
+                    <p>Kentucky leads the series versus Louisville by a large margin all time</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="history-card">
+                    <div class="glow-border"></div>
+                    <i class="fas fa-basketball-ball history-icon"></i>
+                    <h3 class="text-uk-blue mb-3">Head to Head against Tennessee</h3>
+                    <div class="history-stat" id="head-to-head-tennessee">163-79</div>
+                    <p>Kentucky leads the series versus Tennessee by a large margin all time</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="history-card">
+                    <div class="glow-border"></div>
+                    <i class="fas fa-basketball-ball history-icon"></i>
+                    <h3 class="text-uk-blue mb-3">Head to Head against Duke</h3>
+                    <div class="history-stat" id="head-to-head-duke">13-11</div>
+                    <p>Kentucky leads the series versus Duke all time</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 BBN Stats. All rights reserved.<br>
+            University of Kentucky Basketball Statistics</p>
+        </div>
+    </footer>
+
+    <script>
+        async function updateHistoryStats() {
+            try {
+                const schedule2025 = await fetch('../data/2025-schedule.json').then(r => r.json());
+                const baseTotalWins = 2422;
+                const baseLouisvilleRecord = { wins: 40, losses: 17 };
+                const baseTennesseeRecord = { wins: 163, losses: 79 };
+                const baseDukeRecord = { wins: 13, losses: 11 };
+                let wins2025 = 0;
+                const louisvilleRecord2025 = { wins: 0, losses: 0 };
+                const tennesseeRecord2025 = { wins: 0, losses: 0 };
+                const dukeRecord2025 = { wins: 0, losses: 0 };
+
+                schedule2025.forEach(game => {
+                    // Skip exhibition games, games without results, or TBD games
+                    if (game.exh === true || !game.result || game.result === "TBD") return;
+                    
+                    const isWin = game.result.trim().toUpperCase().startsWith('W');
+                    const isLoss = game.result.trim().toUpperCase().startsWith('L');
+                    
+                    if (isWin) {
+                        wins2025++;
+                        if (game.opponent.includes("Louisville")) louisvilleRecord2025.wins++;
+                        else if (game.opponent.includes("Tennessee")) tennesseeRecord2025.wins++;
+                        else if (game.opponent.includes("Duke")) dukeRecord2025.wins++;
+                    } else if (isLoss) {
+                        if (game.opponent.includes("Louisville")) louisvilleRecord2025.losses++;
+                        else if (game.opponent.includes("Tennessee")) tennesseeRecord2025.losses++;
+                        else if (game.opponent.includes("Duke")) dukeRecord2025.losses++;
+                    }
+                });
+
+                document.getElementById('total-wins').textContent = (baseTotalWins + wins2025).toLocaleString();
+                document.getElementById('head-to-head-louisville').textContent = 
+                    `${baseLouisvilleRecord.wins + louisvilleRecord2025.wins}-${baseLouisvilleRecord.losses + louisvilleRecord2025.losses}`;
+                document.getElementById('head-to-head-tennessee').textContent = 
+                    `${baseTennesseeRecord.wins + tennesseeRecord2025.wins}-${baseTennesseeRecord.losses + tennesseeRecord2025.losses}`;
+                document.getElementById('head-to-head-duke').textContent = 
+                    `${baseDukeRecord.wins + dukeRecord2025.wins}-${baseDukeRecord.losses + dukeRecord2025.losses}`;
+            } catch (error) {
+                console.error('Error updating history stats:', error);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', updateHistoryStats);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts/search.js"></script>
+</body>
+
+</html>
+

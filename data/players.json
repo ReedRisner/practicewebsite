@@ -1,0 +1,590 @@
+{
+  "seasons": {
+    "2025": {
+      "players": [
+        {
+          "number": 10,
+          "name": "Brandon Garrison",
+          "grade": "Jr.",
+          "pos": "F",
+          "ht": "6'10",
+          "wt": "245",
+          "x": "brandonGarriso", 
+          "instagram": "brando2wavvyyy", 
+          "bio": "Brandon Garrison was born in Oklahoma City, Oklahoma. He played at Del City High School in Oklahoma and was a highly rated recruit in the 2023 class, ranked as the No. 1 player in Oklahoma and No. 45 nationally by 247 Sports. Coming out of high school he was a 4 star recruit, Mcdonalds All American and committed to Oklahoma State University. After one year playing with OSU he entered the transfer portal ranked as the #20 overall transfer by 247 Sports. He then committed to the University of Kentucky for the 2024-2025 season and played a pivotal role in the rotation. Brandon is returning for the 2025-2026 season to Kentucky providing leadership and experience to the team.",
+          "pastSeasons": [
+          {
+            "year": "2024-2025",
+            "team": "Kentucky",
+            "grade": "So.",
+            "gp": 35,
+            "mpg": 17.3,
+            "ppg": 5.9,
+            "rpg": 3.9,
+            "apg": 1.9,
+            "bpg": 0.6,
+            "spg": 0.9,
+            "fgPct": 0.509,
+            "threePct": 0.300,
+            "ftPct": 0.535
+          },
+          {
+            "year": "2023-2024",
+            "team": "OSU",
+            "grade": "Fr.",
+            "gp": 32,
+            "mpg": 22.6,
+            "ppg": 7.5,
+            "rpg": 5.3,
+            "apg": 1.5,
+            "bpg": 1.5,
+            "spg": 0.8,
+            "fgPct": 0.572,
+            "threePct": 0.000,
+            "ftPct": 0.648
+          }
+          ]
+                     
+        },
+        {
+          "number": 5,
+          "name": "Collin Chandler",
+          "grade": "So.",
+          "pos": "G",
+          "ht": "6'5",
+          "wt": "202",
+          "x": "collinchand13r", 
+          "instagram": "collinxchandler", 
+          "bio": "Collin Chandler is from Farmington, Utah and played at Farmington High School. He was a highly touted recruit from the 2022 class and was ranked as the #33 player in the nation and #1 player in Utah. He was a four-star recruit and originally committed to BYU. In 2023 he went on his two-year mission which means he would start college basketball in the 2024 class. When Mark Pope left BYU to be the Head Coach at Kentucky, Collin Chandler flipped his commitment from BYU to the University of Kentucky. Collin Chandler played his freshman season at Kentucky, playing a varying role throughout the season. Collin is returning for the 2025-2026 season with a lot of growth under his belt.",
+          "pastSeasons": [
+          {
+            "year": "2024-2025",
+            "team": "Kentucky",
+            "grade": "Fr.",
+            "gp": 30,
+            "mpg": 10.4,
+            "ppg": 2.7,
+            "rpg": 1.0,
+            "apg": 0.7,
+            "bpg": 0.1,
+            "spg": 0.7,
+            "fgPct": 0.361,
+            "threePct": 0.347,
+            "ftPct": 0.867
+          }
+          ]
+        },
+        {
+          "number": 9,
+          "name": "Trent Noah",
+          "grade": "So.",
+          "pos": "F",
+          "ht": "6'5",
+          "wt": "220",
+          "bio": "Trent Noah is from Harlan, Kentucky and played high school basketball at Harlan County. Trent was a three-star recruit in the 2024 class coming out of high school and ranked #120 in the nation and #2 in Kentucky by 247 Sports. He was originally committed to the University of South Carolina, however he flipped his commitment to the University of Kentucky when Pope took charge of the program. Trent Noah had an impactful first season playing limited minutes and quickly became a fan favorite due to his homegrown roots. Trent is returning for the 2025-2026 season and is expected to contribute highly as a shooter.",
+          "x": "trentnoah2_", 
+          "instagram": "trentnoah2", 
+          "pastSeasons": [
+          {
+            "year": "2024-2025",
+            "team": "Kentucky",
+            "grade": "Fr.",
+            "gp": 24,
+            "mpg": 11.1	,
+            "ppg": 2.7,
+            "rpg": 1.9,
+            "apg": 0.4,
+            "bpg": 0.0,
+            "spg": 0.1,
+            "fgPct": 0.451,
+            "threePct": 0.333,
+            "ftPct": 0.750
+          }
+          ]
+        },
+        {
+          "number": "33",
+          "name": "Reece Potter",
+          "grade": "Jr.",
+          "pos": "F",
+          "ht": "7'1",
+          "wt": "230",
+          "x": "ReecePotter18", 
+          "instagram": "reece_potter35", 
+          "bio": "Reece Potter is from Lexington, Kentucky. He played high school basketball at Lexington Catholic. Out of high school he was unranked; however, he committed to Miami University (Ohio). He played at Miami for two years, playing a big role for them before entering the transfer portal ahead of his junior season. Reece then committed to Kentucky for the 2025-2026 season, going back to his hometown and expecting to play a minor role this upcoming season.",
+          "pastSeasons": [
+          {
+            "year": "2024-2025",
+            "team": "Miami",
+            "grade": "So.",
+            "gp": 30,
+            "mpg": 17.1,
+            "ppg": 6.5,
+            "rpg": 3.7,
+            "apg": 1.2,
+            "bpg": 0.7,
+            "spg": 0.4,
+            "fgPct": 0.466,
+            "threePct": 0.367,
+            "ftPct": 0.600
+          },
+          {
+            "year": "2023-2024",
+            "team": "Miami",
+            "grade": "Fr.",
+            "gp": 26,
+            "mpg": 14.2,
+            "ppg": 6.0,
+            "rpg": 3.0,
+            "apg": 1.1,
+            "bpg": 0.5,
+            "spg": 0.3,
+            "fgPct": 0.440,
+            "threePct": 0.455,
+            "ftPct": 0.622
+          }
+          ]
+        },
+        {
+          "number": "4",
+          "name": "Andrija Jelavic",
+          "grade": "Fr.",
+          "pos": "F",
+          "ht": "6'11",
+          "wt": "225",
+          "x": "AndrijaJelavic", 
+          "instagram": "jelaviccc",
+          "bio": "Andrija Jelavic is from Zagreb, Croatia. Jelavic joined Mega Superbet, a professional Serbian basketball team, in 2023. He has played two seasons of European professional basketball while playing a major role on his team. Andrija was known as one of the top European prospects and he decided to commit to the University of Kentucky to make his move to college basketball. Andrija is expected to bring a unique skill set to the Wildcats for the 2025-2026 season.",
+          "pastSeasons": [
+            
+          ]
+        },
+        {
+          "number": "1",
+          "name": "Denzel Aberdeen",
+          "grade": "Sr.",
+          "pos": "G",
+          "ht": "6'5",
+          "wt": "195",
+          "x": "DenzelAberdeen", 
+          "instagram": "1wayzel",
+          "bio": "Denzel Aberdeen is from Orlando, Florida. He played high school basketball at Dr. Phillips High School. Denzel was a three-star recruit in the 2022 class coming out of high school and ranked #150 in the nation per 247 Sports. He committed to the University of Florida and had limited playing time his Freshman and Sophomore years. Denzel was a key contributor to Florida's 2025 national championship team and SEC championship team, averaging 20 minutes a game. Denzel then entered the transfer portal going into his senior season, being ranked as the #54 overall transfer by 247 Sports. Denzel committed to the University of Kentucky for the 2025-2026 season. He will provide championship experience and leadership this year for the Wildcats.",
+          "pastSeasons": [
+          {
+            "year": "2024-2025",
+            "team": "Florida",
+            "grade": "Jr.",
+            "gp": 39,
+            "mpg": 19.7,
+            "ppg": 7.7,
+            "rpg": 1.7,
+            "apg": 1.4,
+            "bpg": 0.0,
+            "spg": 0.5,
+            "fgPct": 0.418,
+            "threePct": 0.350,
+            "ftPct": 0.708
+          },
+          {
+            "year": "2023-2024",
+            "team": "Florida",
+            "grade": "So.",
+            "gp": 32,
+            "mpg": 9.7,
+            "ppg": 3.3,
+            "rpg": 0.9,
+            "apg": 0.7,
+            "bpg": 0.1,
+            "spg": 0.4,
+            "fgPct": 0.404,
+            "threePct": 0.353,
+            "ftPct": 0.636
+          },
+          {
+            "year": "2022-2023",
+            "team": "Florida",
+            "grade": "Fr.",
+            "gp": 17,
+            "mpg": 3.4,
+            "ppg": 1.6,
+            "rpg": 0.3,
+            "apg": 0.2,
+            "bpg": 0.0,
+            "spg": 0.0,
+            "fgPct": 0.438,
+            "threePct": 0.000,
+            "ftPct": 0.556
+          }
+          ]
+        },
+        {
+          "number": "21",
+          "name": "Jayden Quaintance",
+          "grade": "So.",
+          "pos": "F",
+          "ht": "6'11",
+          "wt": "255",
+          "x": "qjayhoops", 
+          "instagram": "qjay_21",
+          "bio": "Jayden Quaintance is from Raleigh, North Carolina. He attended Word Of God Christian Academy for high school and was an extremely highly rated recruit in the 2024 class, a consensus five-star and McDonald's All American. Jayden was the #9 overall player and #1 player from North Carolina according to 247 Sports. Jayden was originally committed to the University of Kentucky; however, when Coach Cal left, Jayden flipped his commitment to Arizona State University. Since Jayden reclassed from 2025 to 2024 in high school, he was 16 years old his first year in college and therefore was not eligible to enter the NBA draft until after his second year in college. During Jayden's first year at ASU, he earned Big 12 All-Freshman Team, Big 12 All-Defensive Team, and National Defensive Player of the Year Watchlist. Since Jayden was too young to enter the draft, Jayden entered the transfer portal after his first year at ASU. He was ranked as the #10 overall player and #1 center according to 247 Sports in the portal. Jayden committed to the University of Kentucky for the 2025-2026 season and is expected to make a huge defensive impact for the upcoming season.",
+          "pastSeasons": [
+          {
+            "year": "2024-2025",
+            "team": "ASU",
+            "grade": "Fr.",
+            "gp": 24,
+            "mpg": 29.7,
+            "ppg": 9.4,
+            "rpg": 7.9,
+            "apg": 1.5,
+            "bpg": 2.6,
+            "spg": 1.1,
+            "fgPct": 0.525,
+            "threePct": 0.188,
+            "ftPct": 0.479
+          }
+          ]
+        },
+        {
+          "number": "23",
+          "name": "Mouhamed Dioubate",
+          "grade": "Jr.",
+          "pos": "F",
+          "ht": "6'7",
+          "wt": "220",
+          "x": "MoDioubate", 
+          "instagram": "onewayup_mo",
+          "bio": "Mouhamed Dioubate is from Putnam, Connecticut. He attended Putnam Science Academy in high school and was a four-star recruit and was ranked #109 in the nation by 247 Sports for the class of 2023. Mouhamed committed to the University of Alabama and appeared in 70 games his two years while contributing to their Final Four and Elite Eight runs. Mouhamed entered the transfer portal ahead of his junior season. He was ranked as the #62 player in the portal and eventually committed to the University of Kentucky. He is expected to greatly improve the Wildcats' defense and athleticism for the 2025-2026 season.",
+          "pastSeasons": [
+          {
+            "year": "2024-2025",
+            "team": "Alabama",
+            "grade": "So.",
+            "gp": 37,
+            "mpg": 16.0,
+            "ppg": 7.2,
+            "rpg": 5.9,
+            "apg": 1.1,
+            "bpg": 0.7,
+            "spg": 0.9,
+            "fgPct": 0.617,
+            "threePct": 0.462,
+            "ftPct": 0.609
+          },
+          {
+            "year": "2023-2024",
+            "team": "Alabama",
+            "grade": "Fr.",
+            "gp": 33,
+            "mpg": 7.7,
+            "ppg": 2.9,
+            "rpg": 2.4,
+            "apg": 0.4,
+            "bpg": 0.5,
+            "spg": 0.3,
+            "fgPct": 0.474,
+            "threePct": 0.091,
+            "ftPct": 0.471
+          }
+          ]
+        },
+        {
+          "number": "15",
+          "name": "Jaland Lowe",
+          "grade": "Jr.",
+          "pos": "G",
+          "ht": "6'3",
+          "wt": "170",
+          "x": "jalandlowe", 
+          "instagram": "j15lowe",
+          "bio": "Jaland Lowe is from Missouri City, Texas and attended Fort Bend Marshall High School. He was a highly rated recruit coming out of high school; he was the #89 player in the nation and a four-star in the class of 2023 according to 247 Sports. He committed to the University of Pittsburgh and played a huge role for them in his freshman and sophomore seasons. Jaland earned All-ACC Third Team his sophomore season and decided to enter the transfer portal ahead of his junior season. He was ranked as the #39 overall player in the portal according to 247 Sports. Jaland committed to the University of Kentucky and is expected to bring a lot of skill and leadership going into the 2025-2026 season.",
+          "pastSeasons": [
+          {
+            "year": "2024-2025",
+            "team": "Pitt",
+            "grade": "So.",
+            "gp": 31,
+            "mpg": 35.5,
+            "ppg": 16.8,
+            "rpg": 4.2,
+            "apg": 5.5,
+            "bpg": 0.2,
+            "spg": 1.8,
+            "fgPct": 0.376,
+            "threePct": 0.268,
+            "ftPct": 0.886
+          },
+          {
+            "year": "2023-2024",
+            "team": "Pitt",
+            "grade": "Fr.",
+            "gp": 33,
+            "mpg": 26.5,
+            "ppg": 9.6,
+            "rpg": 2.8,
+            "apg": 3.3,
+            "bpg": 0.1,
+            "spg": 0.8,
+            "fgPct": 0.388,
+            "threePct": 0.352,
+            "ftPct": 0.855
+          }
+          ]
+        },
+        {
+          "number": "3",
+          "name": "Kam Williams",
+          "grade": "So.",
+          "pos": "F",
+          "ht": "6'8",
+          "wt": "205",
+          "x": "KamWilliams_3", 
+          "instagram": "kammie1k",
+          "bio": "Kam Williams is from Lafayette, Louisiana and attended Lafayette Christian Academy. Kam was a three-star recruit in the 2024 class and ranked #178 nationally according to 247 Sports. Kam committed to Tulane University and had a productive freshman season with them. He entered the transfer portal ahead of his sophomore season and was ranked as the #42 player in the portal according to 247 Sports. Kam committed to the University of Kentucky and is expected to make a unique impact for the 2025-2026 season.", 
+          "pastSeasons": [
+          {
+            "year": "2024-2025",
+            "team": "Tulane",
+            "grade": "Fr.",
+            "gp": 33,
+            "mpg": 32.3,
+            "ppg": 9.3,
+            "rpg": 4.5,
+            "apg": 1.3,
+            "bpg": 1.1,
+            "spg": 1.4,
+            "fgPct": 0.485,
+            "threePct": 0.412,
+            "ftPct": 0.760
+          }
+          ]
+        },
+        {
+          "number": "2",
+          "name": "Jasper Johnson",
+          "grade": "Fr.",
+          "pos": "G",
+          "ht": "6'5",
+          "wt": "180",
+          "x": "BruhJasperJ", 
+          "instagram": "bruhjasperj",
+          "bio": "Jasper Johnson is from Lexington, Kentucky. Jasper played in the Overtime Elite league in high school and also won a gold medal for Team USA at the 2025 FIBA U19 Men's World Cup. Jasper was an extremely highly rated recruit; he was a five-star and ranked #24 player in the nation in the class of 2025 according to 247 Sports. Jasper decided to stick to his home roots and committed to the University of Kentucky. Jasper is expected to bring a lot of skill and swagger to the Wildcats for the 2025-2026 season.",
+          "pastSeasons": [
+          
+          ]
+        },
+        {
+          "number": "24",
+          "name": "Malachi Moreno",
+          "grade": "Fr.",
+          "pos": "F",
+          "ht": "7'0",
+          "wt": "250",
+          "x": "malachimoreno24", 
+          "instagram": "malachi.moreno",
+          "bio": "Malachi Moreno is from Georgetown, Kentucky and attended Great Crossing High School. Malachi was a McDonald's All American, Mr. Kentucky Basketball, and won the Kentucky State Championship his senior season. Malachi was a five-star and ranked #27 nationally and #1 in Kentucky in the class of 2025 according to 247 Sports. Malachi committed to the University of Kentucky, sticking to his homegrown roots. He is expected to bring a lot of size to the Wildcats for the 2025-2026 season.",
+          "pastSeasons": [
+          
+          ]
+        },
+        {
+          "number": "00",
+          "name": "Otega Oweh",
+          "grade": "Sr.",
+          "pos": "G",
+          "ht": "6'4",
+          "wt": "220",
+          "x": "OtegaOweh", 
+          "instagram": "otegaoweh",
+          "bio": "Otega Oweh is from Newark, New Jersey and attended Blair Academy for highschool. Otega was a four star prospect and ranked #91 nationally in the class of 2022. Otega committed to the University of Oklahoma and played a key role for them in his Freshman and Sophomore seasons. Oweh entered the transfer portal ahead of his junior season. He was ranked #31 overall in the portal by 247 sports. Otega committed to the University of Kentucky for the 2024 - 2025 season and played a major role. He was the teams leading scorer and was named All-SEC second team. Otega declared for the draft and ended up withdrawing and returning to Kentucky for his senior season. He is expected to be a key player and bring leadership for the 2025 - 2026 season.",
+          "pastSeasons": [
+          {
+            "year": "2024-2025",
+            "team": "Kentucky",
+            "grade": "Jr.",
+            "gp": 36,
+            "mpg": 28.3,
+            "ppg": 16.2,
+            "rpg": 4.7,
+            "apg": 1.7,
+            "bpg": 0.5,
+            "spg": 1.6,
+            "fgPct": 0.492,
+            "threePct": 0.355,
+            "ftPct": 0.776
+          },
+          {
+            "year": "2023-2024",
+            "team": "Oklahoma",
+            "grade": "So.",
+            "gp": 32,
+            "mpg": 24.8,
+            "ppg": 11.4,
+            "rpg": 3.8,
+            "apg": 1.0,
+            "bpg": 0.4,
+            "spg": 1.5,
+            "fgPct": 0.493,
+            "threePct": 0.377,
+            "ftPct": 0.643
+          },
+          {
+            "year": "2022-2023",
+            "team": "Oklahoma",
+            "grade": "Fr.",
+            "gp": 28,
+            "mpg": 13.3,
+            "ppg": 4.8,
+            "rpg": 2.1,
+            "apg": 0.2,
+            "bpg": 0.2,
+            "spg": 1.2,
+            "fgPct": 0.443,
+            "threePct": 0.250,
+            "ftPct": 0.650
+          }
+          ]
+        },
+        {
+          "number": 22,
+          "name": "Braydon Hawthorne",
+          "grade": "Fr.",
+          "pos": "F",
+          "ht": "6'8",
+          "wt": "190",
+          "x": "BraydonH20", 
+          "instagram": "braydonhawthorne",
+          "bio": "Braydon Hawthorne is from Beckley West Virginia and attended Huntington Prep for highschool. Braydon's rank rose a lot through his high school career and he ended up being a consensus 4 star recruit and the #33 overall prospect in the nation and #1 player in West Virginia for the class of 2025 according to 247 sports. Braydon was originally committed to the University of West Virginia, however he flipped his commitment to the University of Kentucky. Braydon is expected to bring a unique skillset for his size to the wildcats for the 2025 - 2026 season.",
+          "pastSeasons": [
+         
+          ]           
+        }
+      ]
+    },
+    "2024": {
+      "players": [
+        {
+          "number": 7,
+          "name": "Andrew Carr",
+          "grade": "Sr.",
+          "pos": "F",
+          "ht": "6'11",
+          "wt": "235",
+          "x": "apc_andrew", 
+          "instagram": "andrewpcarr"          
+        },
+        {
+          "number": 22,
+          "name": "Amari Williams",
+          "grade": "Sr.",
+          "pos": "F",
+          "ht": "7'0",
+          "wt": "262",
+          "x": "amxriwillixms", 
+          "instagram": "amariwillixms"
+        },
+        {
+          "number": "00",
+          "name": "Otega Oweh",
+          "grade": "Jr.",
+          "pos": "G",
+          "ht": "6'4",
+          "wt": "215",
+          "x": "OtegaOweh", 
+          "instagram": "otegaoweh"
+        },
+        {
+          "number": 1,
+          "name": "Lamont Butler",
+          "grade": "Sr.",
+          "pos": "G",
+          "ht": "6'2",
+          "wt": "208",
+          "x": "lamont_butler1", 
+          "instagram": "lamont.butler1"
+        },
+        {
+          "number": 2,
+          "name": "Jaxson Robinson",
+          "grade": "Sr.",
+          "pos": "G",
+          "ht": "6'6",
+          "wt": "192",
+          "x": "Robinsonjaxx", 
+          "instagram": "j4xsonn"
+        },
+        {
+          "number": 4,
+          "name": "Koby Brea",
+          "grade": "Sr.",
+          "pos": "G",
+          "ht": "6'7",
+          "wt": "215",
+          "x": "kobybrea", 
+          "instagram": "kobybrea"
+        },
+        {
+          "number": 10,
+          "name": "Brandon Garrison",
+          "grade": "So.",
+          "pos": "F",
+          "ht": "6'10",
+          "wt": "250",
+          "x": "brandonGarriso", 
+          "instagram": "brando2wavvyyy"
+        },
+        {
+          "number": 15,
+          "name": "Ansley Almonor",
+          "grade": "Sr.",
+          "pos": "F",
+          "ht": "6'7",
+          "wt": "244",
+          "x": "ansleyalmonor", 
+          "instagram": "ansleyalmonor"
+        },
+        {
+          "number": 77,
+          "name": "Kerr Krissa",
+          "grade": "Sr.",
+          "pos": "G",
+          "ht": "6'3",
+          "wt": "185",
+          "x": "KerrKriisa", 
+          "instagram": "kkriisa"
+        },
+        {
+          "number": 5,
+          "name": "Collin Chandler",
+          "grade": "Fr.",
+          "pos": "G",
+          "ht": "6'5",
+          "wt": "202",
+          "x": "collinchand13r", 
+          "instagram": "collinxchandler"
+        },
+        {
+          "number": 11,
+          "name": "Travis Perry",
+          "grade": "Fr.",
+          "pos": "G",
+          "ht": "6'1",
+          "wt": "188",
+          "x": "Travis_Perry11", 
+          "instagram": "tjp_11"
+        },
+        {
+          "number": 9,
+          "name": "Trent Noah",
+          "grade": "Fr.",
+          "pos": "F",
+          "ht": "6'5",
+          "wt": "220",
+          "x": "trentnoah2_", 
+          "instagram": "trentnoah2"
+        }
+      ]
+    }
+  }
+
+}
