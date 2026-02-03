@@ -9,8 +9,10 @@
  * 
  * Usage:
  * - Run manually: node update-basketball-data.js
- * - Schedule with cron: 0 */6 * * * /path/to/update-basketball-data.js
  */
+
+ // - Schedule with cron: 0 */6 * * * /path/to/update-basketball-data.js
+ 
 
 const https = require('https');
 const fs = require('fs');
