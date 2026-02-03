@@ -20,7 +20,7 @@ const path = require('path');
 const CONFIG = {
   apiKey: '0/5PdgRvOqvcUo9VqUAcXFUEYqXxU3T26cGqt9c6FFArBcyqE4BD3njMuwOnQz+3',
   apiBaseUrl: 'api.collegebasketballdata.com',
-  kentuckyTeamId: 'KENT', // You may need to verify this ID
+  kentuckyTeamId: '135', // You may need to verify this ID
   dataDir: path.join(__dirname, 'data'),
   updateJsonPath: path.join(__dirname, 'data', 'update.json'),
   scheduleJsonPath: path.join(__dirname, 'data', '2025-schedule.json'),
