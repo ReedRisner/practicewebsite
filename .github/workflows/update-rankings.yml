@@ -3,7 +3,7 @@ name: Update AP Rankings
 on:
   # Run every Monday at 2 PM EST (AP Poll is typically released Monday mornings)
   schedule:
-    - cron: '0 20 * * 1'  # 8 PM UTC = 3 PM EST
+    - cron: '0 19 * * 1'  # 7 PM UTC = 2 PM EST
   
   # Allow manual trigger
   workflow_dispatch:
@@ -23,6 +23,11 @@ jobs:
         with:
           node-version: '18'
       
+      - name: Fetch rankings to JSON (for website)
+        run: |
+          cd scripts
+          node fetch-rankings-to-json.js
+      
       - name: Run ranking update script
         run: |
           cd scripts
@@ -38,7 +43,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add data/2025-schedule.json data/update.json
+          git add data/2025-schedule.json data/update.json data/ap-rankings.json
           git commit -m "🏀 Auto-update: AP Rankings for $(date +'%B %d, %Y')"
           git push
       
