@@ -208,11 +208,7 @@ async function loadSchedule(season) {
                     '<div class="game-non-conference">Non-Conference</div>';
             }
 
-            // Format ranking display with indicator for live rankings
-            let rankDisplay = '';
-            if (game.opponentRank && game.opponentRank <= 25) {
-                rankDisplay = `<span class="opponent-rank">#${game.opponentRank}</span>${rankIndicator} `
-            }
+
 
             // Populate row - INCLUDING TIME
             row.innerHTML = `
@@ -329,6 +325,7 @@ document.getElementById('seasonSelect').addEventListener('change', function() {
     window.history.replaceState({}, '', url);
     loadSchedule(season);
 });
+
 
 
 
