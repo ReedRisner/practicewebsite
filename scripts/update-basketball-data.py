@@ -24,7 +24,7 @@ from cbbd.rest import ApiException
 API_KEY = os.environ.get('BASKETBALL_API_KEY', '')
 KENTUCKY_TEAM = 'Kentucky'
 SEASON = 2026  # 2025-2026 season
-CONFERENCE_ID = 24  # SEC Conference
+CONFERENCE_ID = '24'  # SEC Conference (must be string)
 
 # File paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -233,14 +233,14 @@ def main():
     # Fetch conference standings
     standings_data = fetch_conference_standings()
     if not standings_data:
-        print("⚠️  Warning: Could not fetch conference standings")
-        success = False
+        print("⚠️  Warning: Could not fetch conference standings (will retry next time)")
+        # Don't fail the whole script just because standings failed
     
     print()
     
-    # Update the JSON file
-    if record_data or standings_data:
-        if not update_json_file(record_data or {}, standings_data or {}):
+    # Update the JSON file (even if we only have record data)
+    if record_data:
+        if not update_json_file(record_data, standings_data or {}):
             success = False
     else:
         print("✗ No data to update")
@@ -259,6 +259,8 @@ def main():
             print(f"  • Conference Record: {record_data['conference_record']}")
         if standings_data:
             print(f"  • Conference Standing: #{standings_data['conference_rank']} in SEC")
+        else:
+            print(f"  • Conference Standing: Not available (check manually)")
         print()
         print("You can manually update:")
         print("  • KenPom Rankings")
