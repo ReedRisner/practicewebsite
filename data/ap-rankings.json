@@ -1,0 +1,131 @@
+{
+  "lastUpdated": "2026-02-03T22:03:15.904Z",
+  "apPollDate": "Through Games JAN. 25, 2026",
+  "teams": {
+    "arizona": {
+      "rank": 1,
+      "school": "Arizona",
+      "points": "1475"
+    },
+    "michigan": {
+      "rank": 2,
+      "school": "Michigan",
+      "points": "1388"
+    },
+    "uconn": {
+      "rank": 3,
+      "school": "UConn",
+      "points": "1367"
+    },
+    "duke": {
+      "rank": 4,
+      "school": "Duke",
+      "points": "1314"
+    },
+    "illinois": {
+      "rank": 5,
+      "school": "Illinois",
+      "points": "1172"
+    },
+    "gonzaga": {
+      "rank": 6,
+      "school": "Gonzaga",
+      "points": "1167"
+    },
+    "iowa state": {
+      "rank": 7,
+      "school": "Iowa State",
+      "points": "1130"
+    },
+    "houston": {
+      "rank": 8,
+      "school": "Houston",
+      "points": "1067"
+    },
+    "nebraska": {
+      "rank": 9,
+      "school": "Nebraska",
+      "points": "1036"
+    },
+    "michigan state": {
+      "rank": 10,
+      "school": "Michigan State",
+      "points": "950"
+    },
+    "kansas": {
+      "rank": 11,
+      "school": "Kansas",
+      "points": "847"
+    },
+    "purdue": {
+      "rank": 12,
+      "school": "Purdue",
+      "points": "697"
+    },
+    "texas tech": {
+      "rank": 13,
+      "school": "Texas Tech",
+      "points": "638"
+    },
+    "north carolina": {
+      "rank": 14,
+      "school": "North Carolina",
+      "points": "633"
+    },
+    "vanderbilt": {
+      "rank": 15,
+      "school": "Vanderbilt",
+      "points": "627"
+    },
+    "byu": {
+      "rank": 16,
+      "school": "BYU",
+      "points": "622"
+    },
+    "florida": {
+      "rank": 17,
+      "school": "Florida",
+      "points": "618"
+    },
+    "virginia": {
+      "rank": 18,
+      "school": "Virginia",
+      "points": "578"
+    },
+    "saint louis": {
+      "rank": 19,
+      "school": "Saint Louis",
+      "points": "353"
+    },
+    "clemson": {
+      "rank": 20,
+      "school": "Clemson",
+      "points": "284"
+    },
+    "arkansas": {
+      "rank": 21,
+      "school": "Arkansas",
+      "points": "276"
+    },
+    "st. john's": {
+      "rank": 22,
+      "school": "St. John's",
+      "points": "199"
+    },
+    "miami (oh)": {
+      "rank": 23,
+      "school": "Miami (OH)",
+      "points": "170"
+    },
+    "louisville": {
+      "rank": 24,
+      "school": "Louisville",
+      "points": "148"
+    },
+    "tennessee": {
+      "rank": 25,
+      "school": "Tennessee",
+      "points": "134"
+    }
+  }
+}
