@@ -146,8 +146,19 @@ def fetch_and_calculate_stats():
         print("\nFetching all teams stats...")
         try:
             all_stats_list = stats_api.get_team_season_stats(season=SEASON)
-            all_stats = [team.to_dict() for team in all_stats_list]
-            print(f"  ✓ Found {len(all_stats)} teams")
+            all_stats_raw = [team.to_dict() for team in all_stats_list]
+            
+            # Filter to unique teams by teamId and current season
+            seen_teams = set()
+            all_stats = []
+            for team in all_stats_raw:
+                team_id = team.get('teamId')
+                team_season = team.get('season')
+                if team_season == SEASON and team_id not in seen_teams:
+                    all_stats.append(team)
+                    seen_teams.add(team_id)
+            
+            print(f"  ✓ Found {len(all_stats_raw)} total entries, {len(all_stats)} unique teams for season {SEASON}")
         except Exception as e:
             print(f"  ✗ Error: {e}")
             all_stats = []
@@ -194,12 +205,17 @@ def fetch_and_calculate_stats():
         print(f"    Rebounds/game: {uk_reb:.1f}")
         print(f"    Steals/game: {uk_stl:.1f}")
         print(f"    Blocks/game: {uk_blk:.1f}")
-        print(f"    3P%: {uk_fg3_pct:.1f}")
-        print(f"    2P%: {uk_fg2_pct:.1f}")
-        print(f"    FT%: {uk_ft_pct:.1f}")
-        print(f"    Opp 3P%: {uk_opp_fg3_pct:.1f}")
-        print(f"    Opp 2P%: {uk_opp_fg2_pct:.1f}")
-        print(f"    Opp FT%: {uk_opp_ft_pct:.1f}")
+        print(f"    3P%: {uk_fg3_pct:.1f}%")
+        print(f"    2P%: {uk_fg2_pct:.1f}%")
+        print(f"    FT%: {uk_ft_pct:.1f}%")
+        print(f"    Opp 3P%: {uk_opp_fg3_pct:.1f}%")
+        print(f"    Opp 2P%: {uk_opp_fg2_pct:.1f}%")
+        print(f"    Opp FT%: {uk_opp_ft_pct:.1f}%")
+        
+        print(f"\n  Ranking sample sizes:")
+        print(f"    Teams for efficiency rankings: {len(all_eff)}")
+        print(f"    Teams for stat rankings: {len(all_stats)}")
+        print(f"    3P% values collected: {len([x for x in all_fg3_pcts if x > 0])}")
         
         # Collect all values for ranking
         all_off_ratings = [safe_get(t, 'offensiveRating') for t in all_eff]
