@@ -151,7 +151,7 @@ async function loadSchedule(season) {
 
         // Initialize stats variables
         let totalWins = 0, totalLosses = 0, confWins = 0, confLosses = 0;
-        let apWins = 0, apLosses = 0, quad1Wins = 0, quad1Losses = 0;
+        let apWins = 0, apLosses = 0, currentStreak = 0, streakType = '';
         let homeWins = 0, homeLosses = 0;
         let awayWins = 0, awayLosses = 0;
 
@@ -172,8 +172,24 @@ async function loadSchedule(season) {
 
             // Update stats - EXCLUDE EXHIBITION GAMES
             if (game.result && game.result !== 'TBD' && !game.exh) {
+                const isWin = game.result.startsWith('W');
+                
                 // Update total record
-                game.result.startsWith('W') ? totalWins++ : totalLosses++;
+                isWin ? totalWins++ : totalLosses++;
+                
+                // Update streak
+                if (streakType === '') {
+                    // First game
+                    streakType = isWin ? 'W' : 'L';
+                    currentStreak = 1;
+                } else if ((streakType === 'W' && isWin) || (streakType === 'L' && !isWin)) {
+                    // Continue current streak
+                    currentStreak++;
+                } else {
+                    // Streak broken, start new streak
+                    streakType = isWin ? 'W' : 'L';
+                    currentStreak = 1;
+                }
                 
                 // Update conference record
                 if (game.conference) {
@@ -183,11 +199,6 @@ async function loadSchedule(season) {
                 // Update AP Top 25 record
                 if (game.opponentRank && game.opponentRank <= 25) {
                     game.result.startsWith('W') ? apWins++ : apLosses++;
-                }
-                
-                // Update Quad 1 record
-                if (game.quad === 1) {
-                    game.result.startsWith('W') ? quad1Wins++ : quad1Losses++;
                 }
                 
                 // Update venue records
@@ -287,7 +298,11 @@ async function loadSchedule(season) {
         document.getElementById('winningPercentage').textContent = 
             totalGames > 0 ? `${(totalWins/totalGames*100).toFixed(1)}%` : '-';
         document.getElementById('apTop25Wins').textContent = `${apWins}-${apLosses}`;
-        document.getElementById('quad1Wins').textContent = `${quad1Wins}-${quad1Losses}`;
+        
+        // Update streak display
+        const streakDisplay = currentStreak > 0 ? `${currentStreak}${streakType}` : '-';
+        document.getElementById('currentStreak').textContent = streakDisplay;
+        
         document.getElementById('tournamentFinish').textContent = 
             season === "2024" ? "Sweet 16" : "-";
         
@@ -328,9 +343,3 @@ document.getElementById('seasonSelect').addEventListener('change', function() {
     window.history.replaceState({}, '', url);
     loadSchedule(season);
 });
-
-
-
-
-
-
