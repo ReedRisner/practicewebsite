@@ -48,9 +48,45 @@ def get_api_configuration():
     return configuration
 
 
-def fetch_kentucky_stats():
-    """Fetch Kentucky's team statistics from the API."""
-    print("Fetching Kentucky team statistics...")
+def fetch_kentucky_efficiency():
+    """Fetch Kentucky's adjusted efficiency (offensive/defensive ratings)."""
+    print("Fetching Kentucky efficiency ratings...")
+    
+    try:
+        configuration = get_api_configuration()
+        
+        with cbbd.ApiClient(configuration) as api_client:
+            ratings_api = cbbd.RatingsApi(api_client)
+            
+            try:
+                # Get Kentucky efficiency ratings
+                efficiency = ratings_api.get_adjusted_efficiency(
+                    season=SEASON,
+                    team=KENTUCKY_TEAM
+                )
+                
+                if efficiency and len(efficiency) > 0:
+                    uk_efficiency = efficiency[0]
+                    print(f"  ✓ Found efficiency for {uk_efficiency.team}")
+                    return uk_efficiency
+                else:
+                    print("  ⚠️  No efficiency data found for Kentucky")
+                    return None
+                
+            except ApiException as e:
+                print(f"  ✗ Ratings API error: {e}")
+                return None
+                
+    except Exception as e:
+        print(f"  ✗ Error fetching efficiency: {e}")
+        import traceback
+        traceback.print_exc()
+        return None
+
+
+def fetch_kentucky_shooting():
+    """Fetch Kentucky's shooting statistics."""
+    print("Fetching Kentucky shooting statistics...")
     
     try:
         configuration = get_api_configuration()
@@ -59,18 +95,18 @@ def fetch_kentucky_stats():
             stats_api = cbbd.StatsApi(api_client)
             
             try:
-                # Get Kentucky stats
-                stats = stats_api.get_team_season_stats(
+                # Get Kentucky shooting stats
+                stats = stats_api.get_team_season_shooting_stats(
                     season=SEASON,
                     team=KENTUCKY_TEAM
                 )
                 
                 if stats and len(stats) > 0:
                     uk_stats = stats[0]
-                    print(f"  ✓ Found stats for {uk_stats.team}")
+                    print(f"  ✓ Found shooting stats for {uk_stats.team}")
                     return uk_stats
                 else:
-                    print("  ⚠️  No stats found for Kentucky")
+                    print("  ⚠️  No shooting stats found for Kentucky")
                     return None
                 
             except ApiException as e:
@@ -78,15 +114,45 @@ def fetch_kentucky_stats():
                 return None
                 
     except Exception as e:
-        print(f"  ✗ Error fetching stats: {e}")
+        print(f"  ✗ Error fetching shooting stats: {e}")
         import traceback
         traceback.print_exc()
         return None
 
 
-def fetch_all_teams_stats():
-    """Fetch all D1 team statistics for ranking purposes."""
-    print("Fetching all D1 team statistics for rankings...")
+def fetch_all_efficiency():
+    """Fetch all D1 team efficiency ratings for ranking purposes."""
+    print("Fetching all D1 team efficiency ratings for rankings...")
+    
+    try:
+        configuration = get_api_configuration()
+        
+        with cbbd.ApiClient(configuration) as api_client:
+            ratings_api = cbbd.RatingsApi(api_client)
+            
+            try:
+                # Get all teams
+                all_efficiency = ratings_api.get_adjusted_efficiency(season=SEASON)
+                
+                if all_efficiency:
+                    print(f"  ✓ Found efficiency for {len(all_efficiency)} teams")
+                    return all_efficiency
+                else:
+                    print("  ⚠️  No efficiency data found")
+                    return []
+                
+            except ApiException as e:
+                print(f"  ✗ Ratings API error: {e}")
+                return []
+                
+    except Exception as e:
+        print(f"  ✗ Error fetching all efficiency: {e}")
+        return []
+
+
+def fetch_all_shooting():
+    """Fetch all D1 team shooting stats for ranking purposes."""
+    print("Fetching all D1 team shooting stats for rankings...")
     
     try:
         configuration = get_api_configuration()
@@ -96,13 +162,13 @@ def fetch_all_teams_stats():
             
             try:
                 # Get all teams
-                all_stats = stats_api.get_team_season_stats(season=SEASON)
+                all_stats = stats_api.get_team_season_shooting_stats(season=SEASON)
                 
                 if all_stats:
-                    print(f"  ✓ Found stats for {len(all_stats)} teams")
+                    print(f"  ✓ Found shooting stats for {len(all_stats)} teams")
                     return all_stats
                 else:
-                    print("  ⚠️  No team stats found")
+                    print("  ⚠️  No shooting stats found")
                     return []
                 
             except ApiException as e:
@@ -110,59 +176,68 @@ def fetch_all_teams_stats():
                 return []
                 
     except Exception as e:
-        print(f"  ✗ Error fetching all stats: {e}")
+        print(f"  ✗ Error fetching all shooting stats: {e}")
         return []
 
 
 def calculate_rank(value: float, all_values: List[float], higher_is_better: bool = True) -> int:
     """Calculate rank based on value compared to all teams."""
+    if value is None or value == 0:
+        return 0
+    
+    # Filter out None and 0 values
+    valid_values = [v for v in all_values if v is not None and v != 0]
+    
+    if not valid_values:
+        return 0
+    
     if higher_is_better:
-        sorted_values = sorted(all_values, reverse=True)
+        sorted_values = sorted(valid_values, reverse=True)
     else:
-        sorted_values = sorted(all_values)
+        sorted_values = sorted(valid_values)
     
     try:
         rank = sorted_values.index(value) + 1
         return rank
     except ValueError:
-        return 0
+        # Value not in list, find closest position
+        for i, v in enumerate(sorted_values):
+            if (higher_is_better and value >= v) or (not higher_is_better and value <= v):
+                return i + 1
+        return len(sorted_values) + 1
 
 
-def extract_stat_value(stats_obj, attr_path: str, default=0.0):
-    """Safely extract nested attribute from stats object."""
+def safe_get(obj, attr, default=0.0):
+    """Safely get attribute value."""
     try:
-        obj = stats_obj
-        for attr in attr_path.split('.'):
-            obj = getattr(obj, attr, None)
-            if obj is None:
-                return default
-        return float(obj) if obj is not None else default
-    except:
+        value = getattr(obj, attr, None)
+        if value is None:
+            return default
+        return float(value)
+    except (TypeError, ValueError, AttributeError):
         return default
 
 
-def calculate_team_stats(uk_stats, all_stats):
+def calculate_team_stats(uk_efficiency, uk_shooting, all_efficiency, all_shooting):
     """Calculate Kentucky's stats and rankings."""
     print("\nCalculating statistics and rankings...")
     
     stats = {}
     
-    # Extract Kentucky values
-    uk_off_rating = extract_stat_value(uk_stats, 'rating')
-    uk_def_rating = extract_stat_value(uk_stats, 'opponent_rating')
-    uk_pace = extract_stat_value(uk_stats, 'pace')
-    uk_tov_pct = extract_stat_value(uk_stats, 'turnover_ratio')
-    uk_def_tov_pct = extract_stat_value(uk_stats, 'opponent_turnover_ratio')
+    # Extract Kentucky efficiency values
+    uk_off_rating = safe_get(uk_efficiency, 'offense')
+    uk_def_rating = safe_get(uk_efficiency, 'defense')
+    uk_pace = safe_get(uk_efficiency, 'pace')
+    uk_tov_pct = safe_get(uk_efficiency, 'turnover_pct')
+    uk_def_tov_pct = safe_get(uk_efficiency, 'opponent_turnover_pct')
     
-    # Shooting percentages
-    uk_fg3_pct = extract_stat_value(uk_stats, 'three_point_field_goal.pct')
-    uk_fg2_pct = extract_stat_value(uk_stats, 'two_point_field_goal.pct')
-    uk_ft_pct = extract_stat_value(uk_stats, 'free_throw.pct')
-    
-    # Defensive shooting percentages
-    uk_def_fg3_pct = extract_stat_value(uk_stats, 'opponent_three_point_field_goal.pct')
-    uk_def_fg2_pct = extract_stat_value(uk_stats, 'opponent_two_point_field_goal.pct')
-    uk_def_ft_pct = extract_stat_value(uk_stats, 'opponent_free_throw.pct')
+    # Extract Kentucky shooting values
+    uk_fg3_pct = safe_get(uk_shooting, 'three_point_pct') * 100 if uk_shooting else 0
+    uk_fg2_pct = safe_get(uk_shooting, 'two_point_pct') * 100 if uk_shooting else 0
+    uk_ft_pct = safe_get(uk_shooting, 'free_throw_pct') * 100 if uk_shooting else 0
+    uk_def_fg3_pct = safe_get(uk_shooting, 'opponent_three_point_pct') * 100 if uk_shooting else 0
+    uk_def_fg2_pct = safe_get(uk_shooting, 'opponent_two_point_pct') * 100 if uk_shooting else 0
+    uk_def_ft_pct = safe_get(uk_shooting, 'opponent_free_throw_pct') * 100 if uk_shooting else 0
     
     # Calculate Net Rating
     uk_net_rating = uk_off_rating - uk_def_rating if uk_off_rating and uk_def_rating else 0
@@ -174,16 +249,13 @@ def calculate_team_stats(uk_stats, all_stats):
     all_paces = []
     all_tov_pcts = []
     all_def_tov_pcts = []
-    all_fg3_pcts = []
-    all_fg2_pcts = []
-    all_ft_pcts = []
-    all_def_fg3_pcts = []
-    all_def_fg2_pcts = []
-    all_def_ft_pcts = []
     
-    for team in all_stats:
-        off_r = extract_stat_value(team, 'rating')
-        def_r = extract_stat_value(team, 'opponent_rating')
+    for team in all_efficiency:
+        off_r = safe_get(team, 'offense')
+        def_r = safe_get(team, 'defense')
+        pace = safe_get(team, 'pace')
+        tov = safe_get(team, 'turnover_pct')
+        def_tov = safe_get(team, 'opponent_turnover_pct')
         
         if off_r > 0:
             all_off_ratings.append(off_r)
@@ -191,40 +263,39 @@ def calculate_team_stats(uk_stats, all_stats):
             all_def_ratings.append(def_r)
         if off_r > 0 and def_r > 0:
             all_net_ratings.append(off_r - def_r)
-        
-        pace = extract_stat_value(team, 'pace')
         if pace > 0:
             all_paces.append(pace)
-        
-        tov = extract_stat_value(team, 'turnover_ratio')
         if tov > 0:
             all_tov_pcts.append(tov)
-        
-        def_tov = extract_stat_value(team, 'opponent_turnover_ratio')
         if def_tov > 0:
             all_def_tov_pcts.append(def_tov)
+    
+    # Collect all shooting values
+    all_fg3_pcts = []
+    all_fg2_pcts = []
+    all_ft_pcts = []
+    all_def_fg3_pcts = []
+    all_def_fg2_pcts = []
+    all_def_ft_pcts = []
+    
+    for team in all_shooting:
+        fg3 = safe_get(team, 'three_point_pct') * 100
+        fg2 = safe_get(team, 'two_point_pct') * 100
+        ft = safe_get(team, 'free_throw_pct') * 100
+        def_fg3 = safe_get(team, 'opponent_three_point_pct') * 100
+        def_fg2 = safe_get(team, 'opponent_two_point_pct') * 100
+        def_ft = safe_get(team, 'opponent_free_throw_pct') * 100
         
-        fg3 = extract_stat_value(team, 'three_point_field_goal.pct')
         if fg3 > 0:
             all_fg3_pcts.append(fg3)
-        
-        fg2 = extract_stat_value(team, 'two_point_field_goal.pct')
         if fg2 > 0:
             all_fg2_pcts.append(fg2)
-        
-        ft = extract_stat_value(team, 'free_throw.pct')
         if ft > 0:
             all_ft_pcts.append(ft)
-        
-        def_fg3 = extract_stat_value(team, 'opponent_three_point_field_goal.pct')
         if def_fg3 > 0:
             all_def_fg3_pcts.append(def_fg3)
-        
-        def_fg2 = extract_stat_value(team, 'opponent_two_point_field_goal.pct')
         if def_fg2 > 0:
             all_def_fg2_pcts.append(def_fg2)
-        
-        def_ft = extract_stat_value(team, 'opponent_free_throw.pct')
         if def_ft > 0:
             all_def_ft_pcts.append(def_ft)
     
@@ -344,22 +415,37 @@ def main():
     # Ensure data directory exists
     os.makedirs(DATA_DIR, exist_ok=True)
     
-    # Fetch Kentucky stats
-    uk_stats = fetch_kentucky_stats()
-    if not uk_stats:
-        print("\n✗ Failed to fetch Kentucky stats")
+    # Fetch Kentucky efficiency
+    uk_efficiency = fetch_kentucky_efficiency()
+    if not uk_efficiency:
+        print("\n✗ Failed to fetch Kentucky efficiency")
         return 1
     
     print()
     
+    # Fetch Kentucky shooting
+    uk_shooting = fetch_kentucky_shooting()
+    if not uk_shooting:
+        print("\n⚠️  Warning: Failed to fetch Kentucky shooting stats")
+        # Continue anyway, shooting stats are optional
+    
+    print()
+    
     # Fetch all teams for rankings
-    all_stats = fetch_all_teams_stats()
-    if not all_stats:
-        print("\n⚠️  Could not fetch all teams - rankings may be inaccurate")
+    all_efficiency = fetch_all_efficiency()
+    if not all_efficiency:
+        print("\n⚠️  Could not fetch all teams efficiency - rankings may be inaccurate")
         return 1
     
+    print()
+    
+    all_shooting = fetch_all_shooting()
+    if not all_shooting:
+        print("\n⚠️  Could not fetch all teams shooting - shooting rankings may be inaccurate")
+        # Continue anyway
+    
     # Calculate stats and rankings
-    stats = calculate_team_stats(uk_stats, all_stats)
+    stats = calculate_team_stats(uk_efficiency, uk_shooting, all_efficiency, all_shooting)
     
     # Display stats summary
     print("\n" + "=" * 80)
