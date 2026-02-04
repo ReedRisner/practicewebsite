@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-Kentucky Basketball Schedule Result Auto-Updater
+Kentucky Basketball Schedule Result Auto-Updater (Enhanced Version)
 
 This script updates game results in the 2025-schedule.json file by:
 1. Fetching completed Kentucky games from the CBBD API
 2. Matching them to games in the schedule
-3. Updating the "result" field with actual scores (W/L and score)
+3. Updating the "result" field with actual scores (OVERWRITES existing scores)
+4. Shows detailed console output of all matches and next game
 
 Usage:
     python update-schedule-results.py
@@ -168,7 +169,9 @@ def match_game_by_opponent_and_date(schedule_game: Dict, api_games: List[Dict]) 
 
 def update_schedule_file(api_games: List[Dict]) -> bool:
     """Update the schedule JSON file with results from API games."""
-    print("Updating schedule file...")
+    print("\n" + "=" * 80)
+    print("UPDATING SCHEDULE FILE")
+    print("=" * 80)
     
     try:
         # Read existing schedule
@@ -176,6 +179,9 @@ def update_schedule_file(api_games: List[Dict]) -> bool:
             schedule = json.load(f)
         
         updates_made = 0
+        matches_found = 0
+        next_game = None
+        completed_games = []
         
         # Update each game in the schedule
         for game in schedule:
@@ -183,29 +189,84 @@ def update_schedule_file(api_games: List[Dict]) -> bool:
             if game.get('exh', False):
                 continue
             
-            # Skip games that already have results (unless it's TBD)
-            current_result = game.get('result', 'TBD')
-            if current_result != 'TBD':
-                continue
-            
             # Try to match this game to an API game
             matched_game = match_game_by_opponent_and_date(game, api_games)
             
-            if matched_game and matched_game['result'] != 'TBD':
-                old_result = game['result']
-                game['result'] = matched_game['result']
-                print(f"  ✓ Updated {game['opponent']}: {old_result} → {matched_game['result']}")
-                updates_made += 1
+            if matched_game:
+                matches_found += 1
+                current_result = game.get('result', 'TBD')
+                
+                # Check if it's a completed game
+                if matched_game['result'] != 'TBD':
+                    # OVERRIDE: Update even if already has a result
+                    if current_result != matched_game['result']:
+                        print(f"  ✓ UPDATED: {game['date']:20s} {game['opponent']:25s}")
+                        print(f"            Old: {current_result:15s} → New: {matched_game['result']}")
+                        game['result'] = matched_game['result']
+                        updates_made += 1
+                    else:
+                        print(f"  ✓ MATCHED: {game['date']:20s} {game['opponent']:25s} → {matched_game['result']}")
+                    
+                    completed_games.append({
+                        'date': game['date'],
+                        'opponent': game['opponent'],
+                        'result': matched_game['result']
+                    })
+                else:
+                    # This is the next game (matched but not completed)
+                    if next_game is None:
+                        next_game = {
+                            'date': game['date'],
+                            'opponent': game['opponent'],
+                            'status': matched_game['status']
+                        }
         
         # Write updated schedule back to file
         if updates_made > 0:
             with open(SCHEDULE_JSON_PATH, 'w') as f:
                 json.dump(schedule, f, indent=4)
-            print(f"  ✓ Successfully updated {updates_made} game(s)")
-            return True
+            print(f"\n  ✓ Successfully updated {updates_made} game(s)")
         else:
-            print("  ℹ️  No updates needed - all completed games already have results")
-            return True
+            print(f"\n  ℹ️  No updates needed - all {matches_found} matched games are current")
+        
+        # Show summary
+        print("\n" + "=" * 80)
+        print("SUMMARY")
+        print("=" * 80)
+        print(f"Total games matched: {matches_found}")
+        print(f"Completed games: {len(completed_games)}")
+        print(f"Games updated: {updates_made}")
+        
+        # Show completed games
+        if completed_games:
+            print("\n" + "-" * 80)
+            print("COMPLETED GAMES:")
+            print("-" * 80)
+            for i, g in enumerate(completed_games, 1):
+                print(f"  {i:2d}. {g['date']:20s} {g['opponent']:25s} {g['result']}")
+        
+        # Show next game
+        if next_game:
+            print("\n" + "-" * 80)
+            print("NEXT GAME:")
+            print("-" * 80)
+            print(f"  Date: {next_game['date']}")
+            print(f"  Opponent: {next_game['opponent']}")
+            print(f"  Status: {next_game['status']}")
+        else:
+            # Find next TBD game in schedule
+            for game in schedule:
+                if game.get('result', 'TBD') == 'TBD' and not game.get('exh', False):
+                    print("\n" + "-" * 80)
+                    print("NEXT GAME (Not yet in API):")
+                    print("-" * 80)
+                    print(f"  Date: {game['date']}")
+                    print(f"  Opponent: {game['opponent']}")
+                    break
+        
+        print("=" * 80)
+        
+        return True
         
     except FileNotFoundError:
         print(f"  ✗ Error: Schedule file not found: {SCHEDULE_JSON_PATH}")
@@ -222,11 +283,11 @@ def update_schedule_file(api_games: List[Dict]) -> bool:
 
 def main():
     """Main execution function."""
-    print("=" * 70)
-    print("Kentucky Basketball Schedule Result Auto-Updater")
+    print("=" * 80)
+    print("Kentucky Basketball Schedule Auto-Updater (Enhanced)")
     print(f"Season: 2025-2026 (API season {SEASON})")
     print(f"Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("=" * 70)
+    print("=" * 80)
     print()
     
     # Ensure data directory exists
@@ -237,7 +298,7 @@ def main():
     
     if not api_games:
         print("✗ Failed to fetch games from API")
-        print("=" * 70)
+        print("=" * 80)
         return 1
     
     print()
@@ -246,7 +307,6 @@ def main():
     success = update_schedule_file(api_games)
     
     print()
-    print("=" * 70)
     print(f"Finished at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     if success:
@@ -254,7 +314,7 @@ def main():
     else:
         print("Status: FAILED ✗")
     
-    print("=" * 70)
+    print("=" * 80)
     return 0 if success else 1
 
 
