@@ -4,9 +4,8 @@ Kentucky Basketball Data Auto-Updater (Simplified)
 
 This script updates:
 1. Total season record (W-L) for 2025-2026 season
-2. Conference standings/rankings (SEC - Conference ID 24)
 
-You will manually update: KenPom, NET Rankings, Bracketology
+You will manually update: Conference standings, KenPom, NET Rankings, Bracketology
 
 Usage:
     python update-basketball-data.py
@@ -16,7 +15,7 @@ import json
 import os
 import sys
 from datetime import datetime
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 import cbbd
 from cbbd.rest import ApiException
 
@@ -24,7 +23,6 @@ from cbbd.rest import ApiException
 API_KEY = os.environ.get('BASKETBALL_API_KEY', '')
 KENTUCKY_TEAM = 'Kentucky'
 SEASON = 2026  # 2025-2026 season
-CONFERENCE_ID = '24'  # SEC Conference (must be string)
 
 # File paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -66,19 +64,13 @@ def fetch_team_record() -> Optional[Dict]:
                     stat = stats_response[0]
                     wins = getattr(stat, 'wins', 0)
                     losses = getattr(stat, 'losses', 0)
-                    conf_wins = getattr(stat, 'conference_wins', 0)
-                    conf_losses = getattr(stat, 'conference_losses', 0)
                     
                     print(f"  ✓ Overall Record: {wins}-{losses}")
-                    print(f"  ✓ Conference Record: {conf_wins}-{conf_losses}")
                     
                     return {
                         'overall_record': f"{wins}-{losses}",
-                        'conference_record': f"{conf_wins}-{conf_losses}",
                         'wins': wins,
-                        'losses': losses,
-                        'conf_wins': conf_wins,
-                        'conf_losses': conf_losses
+                        'losses': losses
                     }
                 else:
                     print("  ⚠️  No stats found for current season")
@@ -93,73 +85,8 @@ def fetch_team_record() -> Optional[Dict]:
         return None
 
 
-def fetch_conference_standings() -> Optional[Dict]:
-    """Fetch SEC conference standings to find Kentucky's ranking."""
-    print("Fetching SEC conference standings...")
-    
-    try:
-        configuration = get_api_configuration()
-        
-        with cbbd.ApiClient(configuration) as api_client:
-            stats_api = cbbd.StatsApi(api_client)
-            
-            try:
-                # Get all SEC teams' stats
-                standings_response = stats_api.get_team_season_stats(
-                    season=SEASON,
-                    conference=CONFERENCE_ID
-                )
-                
-                if standings_response:
-                    # Sort by conference record (wins desc, losses asc)
-                    teams = []
-                    for team_stat in standings_response:
-                        team_name = getattr(team_stat, 'team', '')
-                        conf_wins = getattr(team_stat, 'conference_wins', 0)
-                        conf_losses = getattr(team_stat, 'conference_losses', 0)
-                        
-                        teams.append({
-                            'team': team_name,
-                            'conf_wins': conf_wins,
-                            'conf_losses': conf_losses,
-                            'win_pct': conf_wins / (conf_wins + conf_losses) if (conf_wins + conf_losses) > 0 else 0
-                        })
-                    
-                    # Sort by conference win percentage
-                    teams.sort(key=lambda x: (-x['win_pct'], x['conf_losses']))
-                    
-                    # Find Kentucky's position
-                    kentucky_rank = None
-                    for i, team in enumerate(teams, 1):
-                        if team['team'] == KENTUCKY_TEAM:
-                            kentucky_rank = i
-                            print(f"  ✓ Kentucky is #{i} in SEC standings")
-                            print(f"    Conference Record: {team['conf_wins']}-{team['conf_losses']}")
-                            break
-                    
-                    if kentucky_rank:
-                        return {
-                            'conference_rank': kentucky_rank,
-                            'total_teams': len(teams)
-                        }
-                    else:
-                        print("  ⚠️  Kentucky not found in SEC standings")
-                        return None
-                else:
-                    print("  ⚠️  No conference standings found")
-                    return None
-                
-            except ApiException as e:
-                print(f"  ✗ Standings API error: {e}")
-                return None
-                
-    except Exception as e:
-        print(f"  ✗ Error fetching conference standings: {e}")
-        return None
-
-
-def update_json_file(record_data: Dict, standings_data: Dict) -> bool:
-    """Update the update.json file with record and conference ranking."""
+def update_json_file(record_data: Dict) -> bool:
+    """Update the update.json file with record only."""
     print("Updating update.json file...")
     
     try:
@@ -175,17 +102,6 @@ def update_json_file(record_data: Dict, standings_data: Dict) -> bool:
         if record_data:
             existing_data['2025']['rankings']['Overall Record'] = record_data['overall_record']
             print(f"  ✓ Updated Overall Record: {record_data['overall_record']}")
-            
-            # Also update conference record if you want to track it
-            if 'conference_record' in record_data:
-                existing_data['2025']['rankings']['Conference Record'] = record_data['conference_record']
-                print(f"  ✓ Updated Conference Record: {record_data['conference_record']}")
-        
-        # Update conference standing
-        if standings_data:
-            conference_standing = f"#{standings_data['conference_rank']} in SEC"
-            existing_data['2025']['rankings']['Conference Standing'] = conference_standing
-            print(f"  ✓ Updated Conference Standing: {conference_standing}")
         
         # Write updated data back
         with open(UPDATE_JSON_PATH, 'w') as f:
@@ -230,17 +146,9 @@ def main():
     
     print()
     
-    # Fetch conference standings
-    standings_data = fetch_conference_standings()
-    if not standings_data:
-        print("⚠️  Warning: Could not fetch conference standings (will retry next time)")
-        # Don't fail the whole script just because standings failed
-    
-    print()
-    
-    # Update the JSON file (even if we only have record data)
+    # Update the JSON file
     if record_data:
-        if not update_json_file(record_data, standings_data or {}):
+        if not update_json_file(record_data):
             success = False
     else:
         print("✗ No data to update")
@@ -256,13 +164,9 @@ def main():
         print("Updated:")
         if record_data:
             print(f"  • Overall Record: {record_data['overall_record']}")
-            print(f"  • Conference Record: {record_data['conference_record']}")
-        if standings_data:
-            print(f"  • Conference Standing: #{standings_data['conference_rank']} in SEC")
-        else:
-            print(f"  • Conference Standing: Not available (check manually)")
         print()
         print("You can manually update:")
+        print("  • Conference Standing")
         print("  • KenPom Rankings")
         print("  • NET Rankings")
         print("  • Bracketology")
