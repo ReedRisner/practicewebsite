@@ -2,12 +2,6 @@
 """
 Kentucky Basketball Team Statistics Auto-Updater
 
-This script updates team statistics in update.json by:
-1. Fetching Kentucky's season stats from CBBD API
-2. Calculating derived stats (Net Rating, percentages)
-3. Getting rankings by comparing to all D1 teams
-4. Updating the stats section of update.json
-
 Usage:
     python update-team-stats.py
 """
@@ -16,7 +10,7 @@ import json
 import os
 import sys
 from datetime import datetime
-from typing import Dict, List, Optional
+from typing import Dict, List
 import cbbd
 from cbbd.rest import ApiException
 
@@ -45,124 +39,14 @@ def get_api_configuration():
     return configuration
 
 
-def fetch_kentucky_efficiency():
-    """Fetch Kentucky's adjusted efficiency ratings."""
-    print("Fetching Kentucky efficiency ratings...")
-    
+def safe_get(data_dict, key, default=0.0):
+    """Safely get value from dictionary."""
     try:
-        configuration = get_api_configuration()
-        
-        with cbbd.ApiClient(configuration) as api_client:
-            ratings_api = cbbd.RatingsApi(api_client)
-            
-            efficiency = ratings_api.get_adjusted_efficiency(
-                season=SEASON,
-                team=KENTUCKY_TEAM
-            )
-            
-            if efficiency and len(efficiency) > 0:
-                print(f"  ✓ Found efficiency for {efficiency[0].team}")
-                return efficiency[0]
-            else:
-                print("  ⚠️  No efficiency data found")
-                return None
-                
-    except ApiException as e:
-        print(f"  ✗ API error: {e}")
-        return None
-    except Exception as e:
-        print(f"  ✗ Error: {e}")
-        import traceback
-        traceback.print_exc()
-        return None
-
-
-def fetch_kentucky_stats():
-    """Fetch Kentucky's team season stats."""
-    print("Fetching Kentucky team stats...")
-    
-    try:
-        configuration = get_api_configuration()
-        
-        with cbbd.ApiClient(configuration) as api_client:
-            stats_api = cbbd.StatsApi(api_client)
-            
-            stats = stats_api.get_team_season_stats(
-                season=SEASON,
-                team=KENTUCKY_TEAM
-            )
-            
-            if stats and len(stats) > 0:
-                print(f"  ✓ Found stats for {stats[0].team}")
-                return stats[0]
-            else:
-                print("  ⚠️  No stats found")
-                return None
-                
-    except ApiException as e:
-        print(f"  ✗ API error: {e}")
-        return None
-    except Exception as e:
-        print(f"  ✗ Error: {e}")
-        import traceback
-        traceback.print_exc()
-        return None
-
-
-def fetch_all_efficiency():
-    """Fetch all teams' efficiency for rankings."""
-    print("Fetching all teams efficiency...")
-    
-    try:
-        configuration = get_api_configuration()
-        
-        with cbbd.ApiClient(configuration) as api_client:
-            ratings_api = cbbd.RatingsApi(api_client)
-            
-            all_eff = ratings_api.get_adjusted_efficiency(season=SEASON)
-            
-            if all_eff:
-                print(f"  ✓ Found {len(all_eff)} teams")
-                return all_eff
-            return []
-                
-    except Exception as e:
-        print(f"  ✗ Error: {e}")
-        return []
-
-
-def fetch_all_stats():
-    """Fetch all teams' stats for rankings."""
-    print("Fetching all teams stats...")
-    
-    try:
-        configuration = get_api_configuration()
-        
-        with cbbd.ApiClient(configuration) as api_client:
-            stats_api = cbbd.StatsApi(api_client)
-            
-            all_stats = stats_api.get_team_season_stats(season=SEASON)
-            
-            if all_stats:
-                print(f"  ✓ Found {len(all_stats)} teams")
-                return all_stats
-            return []
-                
-    except Exception as e:
-        print(f"  ✗ Error: {e}")
-        return []
-
-
-def safe_get(obj, attr, default=0.0):
-    """Safely get attribute value."""
-    if obj is None:
-        return default
-    try:
-        value = getattr(obj, attr, None)
+        value = data_dict.get(key, default)
         if value is None:
             return default
         return float(value)
-    except (TypeError, ValueError, AttributeError):
+    except (TypeError, ValueError):
         return default
 
 
@@ -191,202 +75,218 @@ def calculate_rank(value: float, all_values: List[float], higher_is_better: bool
         return len(sorted_values) + 1
 
 
-def calculate_team_stats(uk_eff, uk_stats, all_eff, all_stats):
-    """Calculate Kentucky's stats and rankings."""
-    print("\nCalculating statistics and rankings...")
+def fetch_and_calculate_stats():
+    """Fetch all data and calculate stats."""
+    print("=" * 80)
+    print("Kentucky Basketball Team Statistics Auto-Updater")
+    print(f"Season: 2025-2026 (API season {SEASON})")
+    print(f"Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("=" * 80)
+    print()
     
-    if not uk_eff or not uk_stats:
-        print("  ✗ Missing required data")
-        return None
+    configuration = get_api_configuration()
     
-    stats = {}
-    
-    # Extract Kentucky efficiency values
-    uk_off_rating = safe_get(uk_eff, 'offense')
-    uk_def_rating = safe_get(uk_eff, 'defense')
-    uk_pace = safe_get(uk_eff, 'tempo')
-    uk_net_rating = uk_off_rating - uk_def_rating if uk_off_rating and uk_def_rating else 0
-    
-    # Extract Kentucky stats - per game averages
-    uk_games = safe_get(uk_stats, 'games', 1)  # Avoid division by zero
-    
-    # Turnovers per game
-    uk_to_total = safe_get(uk_stats, 'turnovers')
-    uk_to_pg = uk_to_total / uk_games if uk_games > 0 else 0
-    
-    # Assists per game
-    uk_ast_total = safe_get(uk_stats, 'assists')
-    uk_ast_pg = uk_ast_total / uk_games if uk_games > 0 else 0
-    
-    # Rebounds per game
-    uk_reb_total = safe_get(uk_stats, 'total_rebounds')
-    uk_reb_pg = uk_reb_total / uk_games if uk_games > 0 else 0
-    
-    # Steals per game
-    uk_stl_total = safe_get(uk_stats, 'steals')
-    uk_stl_pg = uk_stl_total / uk_games if uk_games > 0 else 0
-    
-    # Blocks per game
-    uk_blk_total = safe_get(uk_stats, 'blocks')
-    uk_blk_pg = uk_blk_total / uk_games if uk_games > 0 else 0
-    
-    # Shooting percentages (already in percentage form or decimal)
-    uk_fg3_pct = safe_get(uk_stats, 'three_point_field_goal_pct')
-    if uk_fg3_pct < 1:  # If it's a decimal, convert to percentage
-        uk_fg3_pct *= 100
-    
-    uk_fg2_pct = safe_get(uk_stats, 'two_point_field_goal_pct')
-    if uk_fg2_pct < 1:
-        uk_fg2_pct *= 100
-    
-    uk_ft_pct = safe_get(uk_stats, 'free_throw_pct')
-    if uk_ft_pct < 1:
-        uk_ft_pct *= 100
-    
-    print(f"\n  UK Values:")
-    print(f"    Offensive Rating: {uk_off_rating:.1f}")
-    print(f"    Defensive Rating: {uk_def_rating:.1f}")
-    print(f"    Net Rating: {uk_net_rating:.2f}")
-    print(f"    Pace: {uk_pace:.1f}")
-    print(f"    TO per game: {uk_to_pg:.1f}")
-    print(f"    Assists per game: {uk_ast_pg:.1f}")
-    print(f"    Rebounds per game: {uk_reb_pg:.1f}")
-    print(f"    Steals per game: {uk_stl_pg:.1f}")
-    print(f"    Blocks per game: {uk_blk_pg:.1f}")
-    print(f"    3P%: {uk_fg3_pct:.1f}")
-    print(f"    2P%: {uk_fg2_pct:.1f}")
-    print(f"    FT%: {uk_ft_pct:.1f}")
-    
-    # Collect all values for rankings
-    all_off_ratings = []
-    all_def_ratings = []
-    all_net_ratings = []
-    all_paces = []
-    
-    for team in all_eff:
-        off_r = safe_get(team, 'offense')
-        def_r = safe_get(team, 'defense')
-        pace = safe_get(team, 'tempo')
+    with cbbd.ApiClient(configuration) as api_client:
+        ratings_api = cbbd.RatingsApi(api_client)
+        stats_api = cbbd.StatsApi(api_client)
         
-        if off_r > 0:
-            all_off_ratings.append(off_r)
-        if def_r > 0:
-            all_def_ratings.append(def_r)
-        if off_r > 0 and def_r > 0:
-            all_net_ratings.append(off_r - def_r)
-        if pace > 0:
-            all_paces.append(pace)
-    
-    all_to_pgs = []
-    all_ast_pgs = []
-    all_reb_pgs = []
-    all_stl_pgs = []
-    all_blk_pgs = []
-    all_fg3_pcts = []
-    all_fg2_pcts = []
-    all_ft_pcts = []
-    
-    for team in all_stats:
-        games = safe_get(team, 'games', 1)
+        # Fetch Kentucky efficiency
+        print("Fetching Kentucky efficiency...")
+        try:
+            uk_eff_list = ratings_api.get_adjusted_efficiency(
+                season=SEASON,
+                team=KENTUCKY_TEAM
+            )
+            if not uk_eff_list:
+                print("  ✗ No efficiency data")
+                return None
+            
+            uk_eff = uk_eff_list[0].to_dict()
+            print(f"  ✓ Found: {uk_eff.get('team', 'Unknown')}")
+            print(f"\n  Kentucky Efficiency Data:")
+            for key, value in uk_eff.items():
+                print(f"    {key}: {value}")
+                
+        except ApiException as e:
+            print(f"  ✗ API Error: {e}")
+            return None
         
-        to_pg = safe_get(team, 'turnovers') / games if games > 0 else 0
-        ast_pg = safe_get(team, 'assists') / games if games > 0 else 0
-        reb_pg = safe_get(team, 'total_rebounds') / games if games > 0 else 0
-        stl_pg = safe_get(team, 'steals') / games if games > 0 else 0
-        blk_pg = safe_get(team, 'blocks') / games if games > 0 else 0
+        # Fetch Kentucky stats
+        print("\nFetching Kentucky stats...")
+        try:
+            uk_stats_list = stats_api.get_team_season_stats(
+                season=SEASON,
+                team=KENTUCKY_TEAM
+            )
+            if not uk_stats_list:
+                print("  ✗ No stats data")
+                return None
+            
+            uk_stats = uk_stats_list[0].to_dict()
+            print(f"  ✓ Found: {uk_stats.get('team', 'Unknown')}")
+            print(f"\n  Kentucky Stats Data:")
+            for key, value in uk_stats.items():
+                if not callable(value) and not key.startswith('_'):
+                    print(f"    {key}: {value}")
+                
+        except ApiException as e:
+            print(f"  ✗ API Error: {e}")
+            return None
         
-        fg3_pct = safe_get(team, 'three_point_field_goal_pct')
-        if fg3_pct < 1:
-            fg3_pct *= 100
+        # Fetch all teams for rankings
+        print("\nFetching all teams efficiency...")
+        try:
+            all_eff_list = ratings_api.get_adjusted_efficiency(season=SEASON)
+            all_eff = [team.to_dict() for team in all_eff_list]
+            print(f"  ✓ Found {len(all_eff)} teams")
+        except Exception as e:
+            print(f"  ✗ Error: {e}")
+            all_eff = []
         
-        fg2_pct = safe_get(team, 'two_point_field_goal_pct')
-        if fg2_pct < 1:
-            fg2_pct *= 100
+        print("\nFetching all teams stats...")
+        try:
+            all_stats_list = stats_api.get_team_season_stats(season=SEASON)
+            all_stats = [team.to_dict() for team in all_stats_list]
+            print(f"  ✓ Found {len(all_stats)} teams")
+        except Exception as e:
+            print(f"  ✗ Error: {e}")
+            all_stats = []
         
-        ft_pct = safe_get(team, 'free_throw_pct')
-        if ft_pct < 1:
-            ft_pct *= 100
+        # Calculate stats
+        print("\nCalculating statistics...")
         
-        if to_pg > 0:
-            all_to_pgs.append(to_pg)
-        if ast_pg > 0:
-            all_ast_pgs.append(ast_pg)
-        if reb_pg > 0:
-            all_reb_pgs.append(reb_pg)
-        if stl_pg > 0:
-            all_stl_pgs.append(stl_pg)
-        if blk_pg > 0:
-            all_blk_pgs.append(blk_pg)
-        if fg3_pct > 0:
-            all_fg3_pcts.append(fg3_pct)
-        if fg2_pct > 0:
-            all_fg2_pcts.append(fg2_pct)
-        if ft_pct > 0:
-            all_ft_pcts.append(ft_pct)
-    
-    # Build stats dictionary
-    stats["Offensive Rating"] = {
-        "value": f"{uk_off_rating:.1f}",
-        "rank": str(calculate_rank(uk_off_rating, all_off_ratings, higher_is_better=True))
-    }
-    
-    stats["Defensive Rating"] = {
-        "value": f"{uk_def_rating:.1f}",
-        "rank": str(calculate_rank(uk_def_rating, all_def_ratings, higher_is_better=False))
-    }
-    
-    stats["Net Rating"] = {
-        "value": f"+{uk_net_rating:.2f}" if uk_net_rating >= 0 else f"{uk_net_rating:.2f}",
-        "rank": str(calculate_rank(uk_net_rating, all_net_ratings, higher_is_better=True))
-    }
-    
-    stats["Pace"] = {
-        "value": f"{uk_pace:.1f}",
-        "rank": str(calculate_rank(uk_pace, all_paces, higher_is_better=True))
-    }
-    
-    stats["Turnovers"] = {
-        "value": f"{uk_to_pg:.1f}",
-        "rank": str(calculate_rank(uk_to_pg, all_to_pgs, higher_is_better=False))
-    }
-    
-    stats["Assists"] = {
-        "value": f"{uk_ast_pg:.1f}",
-        "rank": str(calculate_rank(uk_ast_pg, all_ast_pgs, higher_is_better=True))
-    }
-    
-    stats["Rebounds"] = {
-        "value": f"{uk_reb_pg:.1f}",
-        "rank": str(calculate_rank(uk_reb_pg, all_reb_pgs, higher_is_better=True))
-    }
-    
-    stats["Steals"] = {
-        "value": f"{uk_stl_pg:.1f}",
-        "rank": str(calculate_rank(uk_stl_pg, all_stl_pgs, higher_is_better=True))
-    }
-    
-    stats["Blocks"] = {
-        "value": f"{uk_blk_pg:.1f}",
-        "rank": str(calculate_rank(uk_blk_pg, all_blk_pgs, higher_is_better=True))
-    }
-    
-    stats["3P%"] = {
-        "value": f"{uk_fg3_pct:.1f}",
-        "rank": str(calculate_rank(uk_fg3_pct, all_fg3_pcts, higher_is_better=True))
-    }
-    
-    stats["2P%"] = {
-        "value": f"{uk_fg2_pct:.1f}",
-        "rank": str(calculate_rank(uk_fg2_pct, all_fg2_pcts, higher_is_better=True))
-    }
-    
-    stats["FT%"] = {
-        "value": f"{uk_ft_pct:.1f}",
-        "rank": str(calculate_rank(uk_ft_pct, all_ft_pcts, higher_is_better=True))
-    }
-    
-    print("  ✓ Statistics calculated")
-    return stats
+        # Get Kentucky values from dictionaries
+        uk_off_rating = safe_get(uk_eff, 'offense')
+        uk_def_rating = safe_get(uk_eff, 'defense')
+        uk_pace = safe_get(uk_eff, 'tempo')
+        uk_net_rating = uk_off_rating - uk_def_rating if uk_off_rating and uk_def_rating else 0
+        
+        uk_games = safe_get(uk_stats, 'games', 1)
+        uk_to = safe_get(uk_stats, 'turnovers') / uk_games if uk_games > 0 else 0
+        uk_ast = safe_get(uk_stats, 'assists') / uk_games if uk_games > 0 else 0
+        uk_reb = safe_get(uk_stats, 'total_rebounds') / uk_games if uk_games > 0 else 0
+        uk_stl = safe_get(uk_stats, 'steals') / uk_games if uk_games > 0 else 0
+        uk_blk = safe_get(uk_stats, 'blocks') / uk_games if uk_games > 0 else 0
+        
+        # Shooting percentages
+        uk_fg3_pct = safe_get(uk_stats, 'three_point_field_goal_pct')
+        if uk_fg3_pct < 1:
+            uk_fg3_pct *= 100
+        
+        uk_fg2_pct = safe_get(uk_stats, 'two_point_field_goal_pct')
+        if uk_fg2_pct < 1:
+            uk_fg2_pct *= 100
+        
+        uk_ft_pct = safe_get(uk_stats, 'free_throw_pct')
+        if uk_ft_pct < 1:
+            uk_ft_pct *= 100
+        
+        print(f"\n  Extracted Values:")
+        print(f"    Offensive Rating: {uk_off_rating:.1f}")
+        print(f"    Defensive Rating: {uk_def_rating:.1f}")
+        print(f"    Net Rating: {uk_net_rating:.2f}")
+        print(f"    Pace: {uk_pace:.1f}")
+        print(f"    Turnovers/game: {uk_to:.1f}")
+        print(f"    Assists/game: {uk_ast:.1f}")
+        print(f"    Rebounds/game: {uk_reb:.1f}")
+        print(f"    Steals/game: {uk_stl:.1f}")
+        print(f"    Blocks/game: {uk_blk:.1f}")
+        print(f"    3P%: {uk_fg3_pct:.1f}")
+        print(f"    2P%: {uk_fg2_pct:.1f}")
+        print(f"    FT%: {uk_ft_pct:.1f}")
+        
+        # Collect all values for ranking
+        all_off_ratings = [safe_get(t, 'offense') for t in all_eff]
+        all_def_ratings = [safe_get(t, 'defense') for t in all_eff]
+        all_paces = [safe_get(t, 'tempo') for t in all_eff]
+        all_net_ratings = [safe_get(t, 'offense') - safe_get(t, 'defense') for t in all_eff]
+        
+        all_to_pgs = []
+        all_ast_pgs = []
+        all_reb_pgs = []
+        all_stl_pgs = []
+        all_blk_pgs = []
+        all_fg3_pcts = []
+        all_fg2_pcts = []
+        all_ft_pcts = []
+        
+        for team in all_stats:
+            games = safe_get(team, 'games', 1)
+            if games > 0:
+                all_to_pgs.append(safe_get(team, 'turnovers') / games)
+                all_ast_pgs.append(safe_get(team, 'assists') / games)
+                all_reb_pgs.append(safe_get(team, 'total_rebounds') / games)
+                all_stl_pgs.append(safe_get(team, 'steals') / games)
+                all_blk_pgs.append(safe_get(team, 'blocks') / games)
+            
+            fg3 = safe_get(team, 'three_point_field_goal_pct')
+            if fg3 < 1:
+                fg3 *= 100
+            all_fg3_pcts.append(fg3)
+            
+            fg2 = safe_get(team, 'two_point_field_goal_pct')
+            if fg2 < 1:
+                fg2 *= 100
+            all_fg2_pcts.append(fg2)
+            
+            ft = safe_get(team, 'free_throw_pct')
+            if ft < 1:
+                ft *= 100
+            all_ft_pcts.append(ft)
+        
+        # Build stats dictionary
+        stats = {
+            "Offensive Rating": {
+                "value": f"{uk_off_rating:.1f}",
+                "rank": str(calculate_rank(uk_off_rating, all_off_ratings, higher_is_better=True))
+            },
+            "Defensive Rating": {
+                "value": f"{uk_def_rating:.1f}",
+                "rank": str(calculate_rank(uk_def_rating, all_def_ratings, higher_is_better=False))
+            },
+            "Net Rating": {
+                "value": f"+{uk_net_rating:.2f}" if uk_net_rating >= 0 else f"{uk_net_rating:.2f}",
+                "rank": str(calculate_rank(uk_net_rating, all_net_ratings, higher_is_better=True))
+            },
+            "Pace": {
+                "value": f"{uk_pace:.1f}",
+                "rank": str(calculate_rank(uk_pace, all_paces, higher_is_better=True))
+            },
+            "Turnovers": {
+                "value": f"{uk_to:.1f}",
+                "rank": str(calculate_rank(uk_to, all_to_pgs, higher_is_better=False))
+            },
+            "Assists": {
+                "value": f"{uk_ast:.1f}",
+                "rank": str(calculate_rank(uk_ast, all_ast_pgs, higher_is_better=True))
+            },
+            "Rebounds": {
+                "value": f"{uk_reb:.1f}",
+                "rank": str(calculate_rank(uk_reb, all_reb_pgs, higher_is_better=True))
+            },
+            "Steals": {
+                "value": f"{uk_stl:.1f}",
+                "rank": str(calculate_rank(uk_stl, all_stl_pgs, higher_is_better=True))
+            },
+            "Blocks": {
+                "value": f"{uk_blk:.1f}",
+                "rank": str(calculate_rank(uk_blk, all_blk_pgs, higher_is_better=True))
+            },
+            "3P%": {
+                "value": f"{uk_fg3_pct:.1f}",
+                "rank": str(calculate_rank(uk_fg3_pct, all_fg3_pcts, higher_is_better=True))
+            },
+            "2P%": {
+                "value": f"{uk_fg2_pct:.1f}",
+                "rank": str(calculate_rank(uk_fg2_pct, all_fg2_pcts, higher_is_better=True))
+            },
+            "FT%": {
+                "value": f"{uk_ft_pct:.1f}",
+                "rank": str(calculate_rank(uk_ft_pct, all_ft_pcts, higher_is_better=True))
+            }
+        }
+        
+        return stats
 
 
 def update_json_file(stats: Dict) -> bool:
@@ -394,6 +294,8 @@ def update_json_file(stats: Dict) -> bool:
     print("\nUpdating update.json file...")
     
     try:
+        os.makedirs(DATA_DIR, exist_ok=True)
+        
         with open(UPDATE_JSON_PATH, 'r') as f:
             data = json.load(f)
         
@@ -420,34 +322,7 @@ def update_json_file(stats: Dict) -> bool:
 
 def main():
     """Main execution function."""
-    print("=" * 80)
-    print("Kentucky Basketball Team Statistics Auto-Updater")
-    print(f"Season: 2025-2026 (API season {SEASON})")
-    print(f"Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("=" * 80)
-    print()
-    
-    os.makedirs(DATA_DIR, exist_ok=True)
-    
-    # Fetch Kentucky data
-    uk_eff = fetch_kentucky_efficiency()
-    uk_stats = fetch_kentucky_stats()
-    
-    if not uk_eff or not uk_stats:
-        print("\n✗ Failed to fetch Kentucky data")
-        return 1
-    
-    print()
-    
-    # Fetch all teams data
-    all_eff = fetch_all_efficiency()
-    all_stats = fetch_all_stats()
-    
-    if not all_eff or not all_stats:
-        print("\n⚠️  Warning: Could not fetch all teams data")
-    
-    # Calculate stats
-    stats = calculate_team_stats(uk_eff, uk_stats, all_eff, all_stats)
+    stats = fetch_and_calculate_stats()
     
     if not stats:
         print("\n✗ Failed to calculate stats")
