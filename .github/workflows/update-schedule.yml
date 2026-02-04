@@ -1,21 +1,10 @@
 name: Update Kentucky Basketball Schedule
 
 on:
-  # Run daily at 6 AM EST (11 AM UTC)
   schedule:
+    # Run daily at 6 AM EST (11 AM UTC) during basketball season
     - cron: '0 11 * * *'
-  
-  # Allow manual trigger
-  workflow_dispatch:
-  
-  # Run on push to main (for testing)
-  push:
-    branches:
-      - main
-    paths:
-      - '.github/workflows/update-schedule.yml'
-      - 'scripts/fetch_schedule.py'
-      - 'scripts/fetch_rankings.py'
+  workflow_dispatch: # Allow manual trigger
 
 jobs:
   update-schedule:
@@ -27,7 +16,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -38,12 +27,12 @@ jobs:
           pip install requests
       
       - name: Fetch AP Rankings
-        run: |
-          python scripts/fetch_rankings.py
+        run: python scripts/fetch_rankings.py
       
       - name: Fetch Schedule Data
-        run: |
-          python scripts/fetch_schedule.py
+        env:
+          BASKETBALL_API_KEY: ${{ secrets.BASKETBALL_API_KEY }}
+        run: python scripts/fetch_schedule.py
       
       - name: Check for changes
         id: check_changes
@@ -62,10 +51,10 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git commit -m "Auto-update: Schedule and Rankings ($(date +'%Y-%m-%d %H:%M:%S'))"
+          git commit -m "Auto-update: Schedule and Rankings - $(date '+%Y-%m-%d %H:%M:%S')"
           git push
       
       - name: No changes notification
         if: steps.check_changes.outputs.changes == 'false'
         run: |
-          echo "Schedule and rankings are up to date. No changes committed."
+          echo "✓ Schedule and rankings are up to date. No changes committed."
