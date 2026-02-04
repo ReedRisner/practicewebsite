@@ -82,64 +82,64 @@
         },
         "stats": {
             "Offensive Rating": {
-                "value": "0.0",
-                "rank": "0"
+                "value": "118.5",
+                "rank": "41"
             },
             "Defensive Rating": {
-                "value": "0.0",
-                "rank": "0"
+                "value": "98.2",
+                "rank": "25"
             },
             "Net Rating": {
-                "value": "+0.00",
-                "rank": "0"
+                "value": "+20.30",
+                "rank": "30"
             },
             "Pace": {
-                "value": "0.0",
-                "rank": "0"
+                "value": "69.1",
+                "rank": "393"
             },
             "Turnovers": {
-                "value": "0.0",
-                "rank": "0"
+                "value": "10.3",
+                "rank": "87"
             },
             "Assists": {
-                "value": "0.0",
-                "rank": "0"
+                "value": "16.1",
+                "rank": "90"
             },
             "Rebounds": {
-                "value": "0.0",
-                "rank": "0"
+                "value": "38.1",
+                "rank": "92"
             },
             "Steals": {
-                "value": "0.0",
-                "rank": "0"
+                "value": "7.3",
+                "rank": "267"
             },
             "Blocks": {
-                "value": "0.0",
-                "rank": "0"
+                "value": "4.9",
+                "rank": "56"
             },
             "3P%": {
-                "value": "0.0",
-                "rank": "0"
+                "value": "34.2",
+                "rank": "252"
             },
             "2P%": {
-                "value": "0.0",
-                "rank": "0"
+                "value": "55.2",
+                "rank": "105"
             },
             "FT%": {
-                "value": "0.0",
-                "rank": "0"
+                "value": "72.5",
+                "rank": "288"
             },
             "Opp 3P%": {
-                "value": "0.0",
-                "rank": "0"
+                "value": "30.4",
+                "rank": "129"
             },
             "Opp 2P%": {
-                "value": "0.0",
-                "rank": "0"
+                "value": "49.1",
+                "rank": "121"
             },
             "Opp FT%": {
-                "value": "0.0",
-                "rank": "0"
+                "value": "73.6",
+                "rank": "488"
             }
         }
     }
