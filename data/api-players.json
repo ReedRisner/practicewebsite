@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-02-04T06:00:00Z",
+  "lastUpdated": "2026-02-04T07:11:44.077686",
   "season": 2026,
   "seasonLabel": "2025-2026",
   "team": "Kentucky",
@@ -11,59 +11,59 @@
       "teamId": 135,
       "team": "Kentucky",
       "conference": "SEC",
-      "athleteId": 562,
-      "athleteSourceId": "5106270",
-      "name": "Otega Oweh",
-      "position": "G",
-      "games": 22,
-      "starts": 22,
-      "minutes": 662,
-      "points": 366,
-      "turnovers": 39,
-      "fouls": 52,
-      "assists": 56,
-      "steals": 41,
-      "blocks": 7,
-      "offensiveRating": 117.5,
-      "defensiveRating": 101.4,
-      "netRating": 16.1,
-      "PORPAG": 3.9,
-      "usage": 26.9,
-      "assistsTurnoverRatio": 1.44,
-      "offensiveReboundPct": 22.4,
-      "freeThrowRate": 48.5,
-      "effectiveFieldGoalPct": 51.7,
-      "trueShootingPct": 0.571,
+      "athleteId": 88,
+      "athleteSourceId": "4895780",
+      "name": "Mouhamed Dioubate",
+      "position": "F",
+      "games": 17,
+      "starts": 10,
+      "minutes": 365,
+      "points": 148,
+      "turnovers": 15,
+      "fouls": 38,
+      "assists": 13,
+      "steals": 16,
+      "blocks": 20,
+      "usage": 19.2,
+      "offensiveRating": 120.9,
+      "defensiveRating": 101.9,
+      "netRating": 19,
+      "PORPAG": 2.2,
+      "effectiveFieldGoalPct": 55,
+      "trueShootingPct": 0.585,
+      "assistsTurnoverRatio": 0.87,
+      "freeThrowRate": 60,
+      "offensiveReboundPct": 41.7,
       "fieldGoals": {
-        "made": 124,
-        "attempted": 264,
-        "pct": 47
+        "pct": 54,
+        "attempted": 100,
+        "made": 54
       },
       "twoPointFieldGoals": {
-        "made": 99,
-        "attempted": 188,
-        "pct": 52.7
+        "pct": 63.4,
+        "attempted": 82,
+        "made": 52
       },
       "threePointFieldGoals": {
-        "made": 25,
-        "attempted": 76,
-        "pct": 32.9
+        "pct": 11.1,
+        "attempted": 18,
+        "made": 2
       },
       "freeThrows": {
-        "made": 93,
-        "attempted": 128,
-        "pct": 72.7
+        "pct": 63.3,
+        "attempted": 60,
+        "made": 38
       },
       "rebounds": {
-        "offensive": 22,
-        "defensive": 76,
-        "total": 98
+        "total": 96,
+        "defensive": 56,
+        "offensive": 40
       },
       "winShares": {
-        "offensive": 2,
-        "defensive": 1,
-        "total": 3,
-        "totalPer40": 0.181
+        "totalPer40": 0.164,
+        "total": 1.5,
+        "defensive": 0.6,
+        "offensive": 0.9
       }
     },
     {
@@ -85,290 +85,46 @@
       "assists": 68,
       "steals": 17,
       "blocks": 3,
+      "usage": 20.9,
       "offensiveRating": 122.7,
       "defensiveRating": 108.4,
       "netRating": 14.3,
       "PORPAG": 3.4,
-      "usage": 20.9,
-      "assistsTurnoverRatio": 2.34,
-      "offensiveReboundPct": 25,
-      "freeThrowRate": 34.8,
       "effectiveFieldGoalPct": 53.2,
       "trueShootingPct": 0.582,
+      "assistsTurnoverRatio": 2.34,
+      "freeThrowRate": 34.8,
+      "offensiveReboundPct": 25,
       "fieldGoals": {
-        "made": 91,
+        "pct": 45.3,
         "attempted": 201,
-        "pct": 45.3
+        "made": 91
       },
       "twoPointFieldGoals": {
-        "made": 59,
+        "pct": 50,
         "attempted": 118,
-        "pct": 50
+        "made": 59
       },
       "threePointFieldGoals": {
-        "made": 32,
+        "pct": 38.6,
         "attempted": 83,
-        "pct": 38.6
+        "made": 32
       },
       "freeThrows": {
-        "made": 56,
+        "pct": 80,
         "attempted": 70,
-        "pct": 80
+        "made": 56
       },
       "rebounds": {
-        "offensive": 14,
+        "total": 56,
         "defensive": 42,
-        "total": 56
+        "offensive": 14
       },
       "winShares": {
-        "offensive": 1.8,
-        "defensive": 0.6,
+        "totalPer40": 0.155,
         "total": 2.4,
-        "totalPer40": 0.155
-      }
-    },
-    {
-      "season": 2026,
-      "seasonLabel": "20252026",
-      "teamId": 135,
-      "team": "Kentucky",
-      "conference": "SEC",
-      "athleteId": 199963,
-      "athleteSourceId": "5101849",
-      "name": "Malachi Moreno",
-      "position": "C",
-      "games": 22,
-      "starts": 16,
-      "minutes": 497,
-      "points": 189,
-      "turnovers": 21,
-      "fouls": 45,
-      "assists": 39,
-      "steals": 16,
-      "blocks": 35,
-      "offensiveRating": 130.7,
-      "defensiveRating": 99.2,
-      "netRating": 31.5,
-      "PORPAG": 2.7,
-      "usage": 17,
-      "assistsTurnoverRatio": 1.86,
-      "offensiveReboundPct": 40.6,
-      "freeThrowRate": 68.7,
-      "effectiveFieldGoalPct": 59.1,
-      "trueShootingPct": 0.631,
-      "fieldGoals": {
-        "made": 68,
-        "attempted": 115,
-        "pct": 59.1
-      },
-      "twoPointFieldGoals": {
-        "made": 68,
-        "attempted": 113,
-        "pct": 60.2
-      },
-      "threePointFieldGoals": {
-        "made": 0,
-        "attempted": 2,
-        "pct": 0
-      },
-      "freeThrows": {
-        "made": 53,
-        "attempted": 79,
-        "pct": 67.1
-      },
-      "rebounds": {
-        "offensive": 58,
-        "defensive": 85,
-        "total": 143
-      },
-      "winShares": {
-        "offensive": 1.6,
-        "defensive": 0.9,
-        "total": 2.5,
-        "totalPer40": 0.201
-      }
-    },
-    {
-      "season": 2026,
-      "seasonLabel": "20252026",
-      "teamId": 135,
-      "team": "Kentucky",
-      "conference": "SEC",
-      "athleteId": 568,
-      "athleteSourceId": "5238207",
-      "name": "Collin Chandler",
-      "position": "G",
-      "games": 22,
-      "starts": 17,
-      "minutes": 522,
-      "points": 198,
-      "turnovers": 18,
-      "fouls": 47,
-      "assists": 46,
-      "steals": 25,
-      "blocks": 8,
-      "offensiveRating": 125.8,
-      "defensiveRating": 103.1,
-      "netRating": 22.7,
-      "PORPAG": 2.6,
-      "usage": 17.6,
-      "assistsTurnoverRatio": 2.56,
-      "offensiveReboundPct": 14.9,
-      "freeThrowRate": 26.7,
-      "effectiveFieldGoalPct": 54.7,
-      "trueShootingPct": 0.591,
-      "fieldGoals": {
-        "made": 63,
-        "attempted": 150,
-        "pct": 42
-      },
-      "twoPointFieldGoals": {
-        "made": 25,
-        "attempted": 54,
-        "pct": 46.3
-      },
-      "threePointFieldGoals": {
-        "made": 38,
-        "attempted": 96,
-        "pct": 39.6
-      },
-      "freeThrows": {
-        "made": 34,
-        "attempted": 40,
-        "pct": 85
-      },
-      "rebounds": {
-        "offensive": 10,
-        "defensive": 57,
-        "total": 67
-      },
-      "winShares": {
-        "offensive": 1.4,
-        "defensive": 0.7,
-        "total": 2.1,
-        "totalPer40": 0.161
-      }
-    },
-    {
-      "season": 2026,
-      "seasonLabel": "20252026",
-      "teamId": 135,
-      "team": "Kentucky",
-      "conference": "SEC",
-      "athleteId": 3904,
-      "athleteSourceId": "4873183",
-      "name": "Kam Williams",
-      "position": "G",
-      "games": 19,
-      "starts": 7,
-      "minutes": 379,
-      "points": 131,
-      "turnovers": 12,
-      "fouls": 38,
-      "assists": 19,
-      "steals": 11,
-      "blocks": 7,
-      "offensiveRating": 126.7,
-      "defensiveRating": 105.6,
-      "netRating": 21.1,
-      "PORPAG": 2,
-      "usage": 15.5,
-      "assistsTurnoverRatio": 1.58,
-      "offensiveReboundPct": 33.3,
-      "freeThrowRate": 20.4,
-      "effectiveFieldGoalPct": 57.1,
-      "trueShootingPct": 0.613,
-      "fieldGoals": {
-        "made": 44,
-        "attempted": 98,
-        "pct": 44.9
-      },
-      "twoPointFieldGoals": {
-        "made": 20,
-        "attempted": 29,
-        "pct": 69
-      },
-      "threePointFieldGoals": {
-        "made": 24,
-        "attempted": 69,
-        "pct": 34.8
-      },
-      "freeThrows": {
-        "made": 19,
-        "attempted": 20,
-        "pct": 95
-      },
-      "rebounds": {
-        "offensive": 16,
-        "defensive": 32,
-        "total": 48
-      },
-      "winShares": {
-        "offensive": 0.9,
-        "defensive": 0.4,
-        "total": 1.3,
-        "totalPer40": 0.137
-      }
-    },
-    {
-      "season": 2026,
-      "seasonLabel": "20252026",
-      "teamId": 135,
-      "team": "Kentucky",
-      "conference": "SEC",
-      "athleteId": 88,
-      "athleteSourceId": "4895780",
-      "name": "Mouhamed Dioubate",
-      "position": "F",
-      "games": 17,
-      "starts": 10,
-      "minutes": 365,
-      "points": 148,
-      "turnovers": 15,
-      "fouls": 38,
-      "assists": 13,
-      "steals": 16,
-      "blocks": 20,
-      "offensiveRating": 120.9,
-      "defensiveRating": 101.9,
-      "netRating": 19,
-      "PORPAG": 2.2,
-      "usage": 19.2,
-      "assistsTurnoverRatio": 0.87,
-      "offensiveReboundPct": 41.7,
-      "freeThrowRate": 60,
-      "effectiveFieldGoalPct": 55,
-      "trueShootingPct": 0.585,
-      "fieldGoals": {
-        "made": 54,
-        "attempted": 100,
-        "pct": 54
-      },
-      "twoPointFieldGoals": {
-        "made": 52,
-        "attempted": 82,
-        "pct": 63.4
-      },
-      "threePointFieldGoals": {
-        "made": 2,
-        "attempted": 18,
-        "pct": 11.1
-      },
-      "freeThrows": {
-        "made": 38,
-        "attempted": 60,
-        "pct": 63.3
-      },
-      "rebounds": {
-        "offensive": 40,
-        "defensive": 56,
-        "total": 96
-      },
-      "winShares": {
-        "offensive": 0.9,
         "defensive": 0.6,
-        "total": 1.5,
-        "totalPer40": 0.164
+        "offensive": 1.8
       }
     },
     {
@@ -377,181 +133,59 @@
       "teamId": 135,
       "team": "Kentucky",
       "conference": "SEC",
-      "athleteId": 567,
-      "athleteSourceId": "4711306",
-      "name": "Brandon Garrison",
-      "position": "F",
-      "games": 22,
-      "starts": 5,
-      "minutes": 332,
-      "points": 86,
-      "turnovers": 20,
-      "fouls": 46,
-      "assists": 26,
-      "steals": 8,
-      "blocks": 12,
-      "offensiveRating": 107.8,
-      "defensiveRating": 102.6,
-      "netRating": 5.2,
-      "PORPAG": 0.7,
-      "usage": 14.4,
-      "assistsTurnoverRatio": 1.3,
-      "offensiveReboundPct": 31.6,
-      "freeThrowRate": 24.6,
-      "effectiveFieldGoalPct": 55.1,
-      "trueShootingPct": 0.562,
-      "fieldGoals": {
-        "made": 37,
-        "attempted": 69,
-        "pct": 53.6
-      },
-      "twoPointFieldGoals": {
-        "made": 35,
-        "attempted": 58,
-        "pct": 60.3
-      },
-      "threePointFieldGoals": {
-        "made": 2,
-        "attempted": 11,
-        "pct": 18.2
-      },
-      "freeThrows": {
-        "made": 10,
-        "attempted": 17,
-        "pct": 58.8
-      },
-      "rebounds": {
-        "offensive": 24,
-        "defensive": 52,
-        "total": 76
-      },
-      "winShares": {
-        "offensive": 0.4,
-        "defensive": 0.5,
-        "total": 0.9,
-        "totalPer40": 0.108
-      }
-    },
-    {
-      "season": 2026,
-      "seasonLabel": "20252026",
-      "teamId": 135,
-      "team": "Kentucky",
-      "conference": "SEC",
-      "athleteId": 199961,
-      "athleteSourceId": "5095153",
-      "name": "Jasper Johnson",
+      "athleteId": 562,
+      "athleteSourceId": "5106270",
+      "name": "Otega Oweh",
       "position": "G",
-      "games": 21,
-      "starts": 0,
-      "minutes": 291,
-      "points": 134,
-      "turnovers": 24,
-      "fouls": 23,
-      "assists": 43,
-      "steals": 2,
-      "blocks": 2,
-      "offensiveRating": 113.1,
-      "defensiveRating": 110.2,
-      "netRating": 2.9,
-      "PORPAG": 1.4,
-      "usage": 24.3,
-      "assistsTurnoverRatio": 1.79,
-      "offensiveReboundPct": 20.7,
-      "freeThrowRate": 19.1,
-      "effectiveFieldGoalPct": 52.3,
-      "trueShootingPct": 0.562,
-      "fieldGoals": {
-        "made": 46,
-        "attempted": 110,
-        "pct": 41.8
-      },
-      "twoPointFieldGoals": {
-        "made": 23,
-        "attempted": 48,
-        "pct": 47.9
-      },
-      "threePointFieldGoals": {
-        "made": 23,
-        "attempted": 62,
-        "pct": 37.1
-      },
-      "freeThrows": {
-        "made": 19,
-        "attempted": 21,
-        "pct": 90.5
-      },
-      "rebounds": {
-        "offensive": 6,
-        "defensive": 23,
-        "total": 29
-      },
-      "winShares": {
-        "offensive": 0.7,
-        "defensive": 0.2,
-        "total": 0.9,
-        "totalPer40": 0.124
-      }
-    },
-    {
-      "season": 2026,
-      "seasonLabel": "20252026",
-      "teamId": 135,
-      "team": "Kentucky",
-      "conference": "SEC",
-      "athleteId": 199960,
-      "athleteSourceId": "5281347",
-      "name": "Andrija Jelavić",
-      "position": "F",
-      "games": 18,
-      "starts": 6,
-      "minutes": 276,
-      "points": 100,
-      "turnovers": 13,
-      "fouls": 23,
-      "assists": 10,
-      "steals": 7,
+      "games": 22,
+      "starts": 22,
+      "minutes": 662,
+      "points": 366,
+      "turnovers": 39,
+      "fouls": 52,
+      "assists": 56,
+      "steals": 41,
       "blocks": 7,
-      "offensiveRating": 110.4,
-      "defensiveRating": 101.8,
-      "netRating": 8.6,
-      "PORPAG": 1.1,
-      "usage": 18.6,
-      "assistsTurnoverRatio": 0.77,
-      "offensiveReboundPct": 31.9,
-      "freeThrowRate": 9.2,
-      "effectiveFieldGoalPct": 55.2,
-      "trueShootingPct": 0.552,
+      "usage": 26.9,
+      "offensiveRating": 117.5,
+      "defensiveRating": 101.4,
+      "netRating": 16.1,
+      "PORPAG": 3.9,
+      "effectiveFieldGoalPct": 51.7,
+      "trueShootingPct": 0.571,
+      "assistsTurnoverRatio": 1.44,
+      "freeThrowRate": 48.5,
+      "offensiveReboundPct": 22.4,
       "fieldGoals": {
-        "made": 42,
-        "attempted": 87,
-        "pct": 48.3
+        "pct": 47,
+        "attempted": 264,
+        "made": 124
       },
       "twoPointFieldGoals": {
-        "made": 30,
-        "attempted": 46,
-        "pct": 65.2
+        "pct": 52.7,
+        "attempted": 188,
+        "made": 99
       },
       "threePointFieldGoals": {
-        "made": 12,
-        "attempted": 41,
-        "pct": 29.3
+        "pct": 32.9,
+        "attempted": 76,
+        "made": 25
       },
       "freeThrows": {
-        "made": 4,
-        "attempted": 8,
-        "pct": 50
+        "pct": 72.7,
+        "attempted": 128,
+        "made": 93
       },
       "rebounds": {
-        "offensive": 23,
-        "defensive": 49,
-        "total": 72
+        "total": 98,
+        "defensive": 76,
+        "offensive": 22
       },
       "winShares": {
-        "offensive": 0.4,
-        "defensive": 0.4,
-        "total": 0.8,
-        "totalPer40": 0.116
+        "totalPer40": 0.181,
+        "total": 3,
+        "defensive": 1,
+        "offensive": 2
       }
     },
     {
@@ -573,46 +207,656 @@
       "assists": 10,
       "steals": 10,
       "blocks": 2,
+      "usage": 14.2,
       "offensiveRating": 132.9,
       "defensiveRating": 99,
       "netRating": 33.9,
       "PORPAG": 1.3,
-      "usage": 14.2,
-      "assistsTurnoverRatio": 1.67,
-      "offensiveReboundPct": 14.6,
-      "freeThrowRate": 37,
       "effectiveFieldGoalPct": 59.8,
       "trueShootingPct": 0.645,
+      "assistsTurnoverRatio": 1.67,
+      "freeThrowRate": 37,
+      "offensiveReboundPct": 14.6,
       "fieldGoals": {
-        "made": 20,
+        "pct": 43.5,
         "attempted": 46,
-        "pct": 43.5
+        "made": 20
       },
       "twoPointFieldGoals": {
-        "made": 5,
+        "pct": 55.6,
         "attempted": 9,
-        "pct": 55.6
+        "made": 5
       },
       "threePointFieldGoals": {
-        "made": 15,
+        "pct": 40.5,
         "attempted": 37,
-        "pct": 40.5
+        "made": 15
       },
       "freeThrows": {
-        "made": 14,
+        "pct": 82.4,
         "attempted": 17,
-        "pct": 82.4
+        "made": 14
       },
       "rebounds": {
-        "offensive": 6,
+        "total": 41,
         "defensive": 35,
-        "total": 41
+        "offensive": 6
       },
       "winShares": {
-        "offensive": 0.5,
-        "defensive": 0.4,
+        "totalPer40": 0.173,
         "total": 0.9,
-        "totalPer40": 0.173
+        "defensive": 0.4,
+        "offensive": 0.5
+      }
+    },
+    {
+      "season": 2026,
+      "seasonLabel": "20252026",
+      "teamId": 135,
+      "team": "Kentucky",
+      "conference": "SEC",
+      "athleteId": 567,
+      "athleteSourceId": "4711306",
+      "name": "Brandon Garrison",
+      "position": "F",
+      "games": 22,
+      "starts": 5,
+      "minutes": 332,
+      "points": 86,
+      "turnovers": 20,
+      "fouls": 46,
+      "assists": 26,
+      "steals": 8,
+      "blocks": 12,
+      "usage": 14.4,
+      "offensiveRating": 107.8,
+      "defensiveRating": 102.6,
+      "netRating": 5.2,
+      "PORPAG": 0.7,
+      "effectiveFieldGoalPct": 55.1,
+      "trueShootingPct": 0.562,
+      "assistsTurnoverRatio": 1.3,
+      "freeThrowRate": 24.6,
+      "offensiveReboundPct": 31.6,
+      "fieldGoals": {
+        "pct": 53.6,
+        "attempted": 69,
+        "made": 37
+      },
+      "twoPointFieldGoals": {
+        "pct": 60.3,
+        "attempted": 58,
+        "made": 35
+      },
+      "threePointFieldGoals": {
+        "pct": 18.2,
+        "attempted": 11,
+        "made": 2
+      },
+      "freeThrows": {
+        "pct": 58.8,
+        "attempted": 17,
+        "made": 10
+      },
+      "rebounds": {
+        "total": 76,
+        "defensive": 52,
+        "offensive": 24
+      },
+      "winShares": {
+        "totalPer40": 0.108,
+        "total": 0.9,
+        "defensive": 0.5,
+        "offensive": 0.4
+      }
+    },
+    {
+      "season": 2026,
+      "seasonLabel": "20252026",
+      "teamId": 135,
+      "team": "Kentucky",
+      "conference": "SEC",
+      "athleteId": 568,
+      "athleteSourceId": "5238207",
+      "name": "Collin Chandler",
+      "position": "G",
+      "games": 22,
+      "starts": 17,
+      "minutes": 522,
+      "points": 198,
+      "turnovers": 18,
+      "fouls": 47,
+      "assists": 46,
+      "steals": 25,
+      "blocks": 8,
+      "usage": 17.6,
+      "offensiveRating": 125.8,
+      "defensiveRating": 103.1,
+      "netRating": 22.7,
+      "PORPAG": 2.6,
+      "effectiveFieldGoalPct": 54.7,
+      "trueShootingPct": 0.591,
+      "assistsTurnoverRatio": 2.56,
+      "freeThrowRate": 26.7,
+      "offensiveReboundPct": 14.9,
+      "fieldGoals": {
+        "pct": 42,
+        "attempted": 150,
+        "made": 63
+      },
+      "twoPointFieldGoals": {
+        "pct": 46.3,
+        "attempted": 54,
+        "made": 25
+      },
+      "threePointFieldGoals": {
+        "pct": 39.6,
+        "attempted": 96,
+        "made": 38
+      },
+      "freeThrows": {
+        "pct": 85,
+        "attempted": 40,
+        "made": 34
+      },
+      "rebounds": {
+        "total": 67,
+        "defensive": 57,
+        "offensive": 10
+      },
+      "winShares": {
+        "totalPer40": 0.161,
+        "total": 2.1,
+        "defensive": 0.7,
+        "offensive": 1.4
+      }
+    },
+    {
+      "season": 2026,
+      "seasonLabel": "20252026",
+      "teamId": 135,
+      "team": "Kentucky",
+      "conference": "SEC",
+      "athleteId": 569,
+      "athleteSourceId": "5105283",
+      "name": "Walker Horn",
+      "position": "G",
+      "games": 7,
+      "starts": 0,
+      "minutes": 9,
+      "points": 3,
+      "turnovers": 2,
+      "fouls": 0,
+      "assists": 1,
+      "steals": 0,
+      "blocks": 0,
+      "usage": 42.5,
+      "offensiveRating": 53.1,
+      "defensiveRating": 89.3,
+      "netRating": -36.2,
+      "PORPAG": -0.3,
+      "effectiveFieldGoalPct": 25,
+      "trueShootingPct": 0.25,
+      "assistsTurnoverRatio": 0.5,
+      "freeThrowRate": 0,
+      "offensiveReboundPct": 0,
+      "fieldGoals": {
+        "pct": 16.7,
+        "attempted": 6,
+        "made": 1
+      },
+      "twoPointFieldGoals": {
+        "pct": 0,
+        "attempted": 0,
+        "made": 0
+      },
+      "threePointFieldGoals": {
+        "pct": 16.7,
+        "attempted": 6,
+        "made": 1
+      },
+      "freeThrows": {
+        "pct": 0,
+        "attempted": 0,
+        "made": 0
+      },
+      "rebounds": {
+        "total": 1,
+        "defensive": 1,
+        "offensive": 0
+      },
+      "winShares": {
+        "totalPer40": -0.444,
+        "total": -0.1,
+        "defensive": 0,
+        "offensive": -0.1
+      }
+    },
+    {
+      "season": 2026,
+      "seasonLabel": "20252026",
+      "teamId": 135,
+      "team": "Kentucky",
+      "conference": "SEC",
+      "athleteId": 3044,
+      "athleteSourceId": "4684270",
+      "name": "Jaland Lowe",
+      "position": "G",
+      "games": 9,
+      "starts": 2,
+      "minutes": 167,
+      "points": 72,
+      "turnovers": 8,
+      "fouls": 12,
+      "assists": 22,
+      "steals": 6,
+      "blocks": 2,
+      "usage": 25.2,
+      "offensiveRating": 104.6,
+      "defensiveRating": 108.1,
+      "netRating": -3.5,
+      "PORPAG": 1.3,
+      "effectiveFieldGoalPct": 39.6,
+      "trueShootingPct": 0.456,
+      "assistsTurnoverRatio": 2.75,
+      "freeThrowRate": 40.3,
+      "offensiveReboundPct": 15.8,
+      "fieldGoals": {
+        "pct": 35.8,
+        "attempted": 67,
+        "made": 24
+      },
+      "twoPointFieldGoals": {
+        "pct": 44.2,
+        "attempted": 43,
+        "made": 19
+      },
+      "threePointFieldGoals": {
+        "pct": 20.8,
+        "attempted": 24,
+        "made": 5
+      },
+      "freeThrows": {
+        "pct": 70.4,
+        "attempted": 27,
+        "made": 19
+      },
+      "rebounds": {
+        "total": 19,
+        "defensive": 16,
+        "offensive": 3
+      },
+      "winShares": {
+        "totalPer40": 0.096,
+        "total": 0.4,
+        "defensive": 0.2,
+        "offensive": 0.2
+      }
+    },
+    {
+      "season": 2026,
+      "seasonLabel": "20252026",
+      "teamId": 135,
+      "team": "Kentucky",
+      "conference": "SEC",
+      "athleteId": 3904,
+      "athleteSourceId": "4873183",
+      "name": "Kam Williams",
+      "position": "G",
+      "games": 19,
+      "starts": 7,
+      "minutes": 379,
+      "points": 131,
+      "turnovers": 12,
+      "fouls": 38,
+      "assists": 19,
+      "steals": 11,
+      "blocks": 7,
+      "usage": 15.5,
+      "offensiveRating": 126.7,
+      "defensiveRating": 105.6,
+      "netRating": 21.1,
+      "PORPAG": 2,
+      "effectiveFieldGoalPct": 57.1,
+      "trueShootingPct": 0.613,
+      "assistsTurnoverRatio": 1.58,
+      "freeThrowRate": 20.4,
+      "offensiveReboundPct": 33.3,
+      "fieldGoals": {
+        "pct": 44.9,
+        "attempted": 98,
+        "made": 44
+      },
+      "twoPointFieldGoals": {
+        "pct": 69,
+        "attempted": 29,
+        "made": 20
+      },
+      "threePointFieldGoals": {
+        "pct": 34.8,
+        "attempted": 69,
+        "made": 24
+      },
+      "freeThrows": {
+        "pct": 95,
+        "attempted": 20,
+        "made": 19
+      },
+      "rebounds": {
+        "total": 48,
+        "defensive": 32,
+        "offensive": 16
+      },
+      "winShares": {
+        "totalPer40": 0.137,
+        "total": 1.3,
+        "defensive": 0.4,
+        "offensive": 0.9
+      }
+    },
+    {
+      "season": 2026,
+      "seasonLabel": "20252026",
+      "teamId": 135,
+      "team": "Kentucky",
+      "conference": "SEC",
+      "athleteId": 7639,
+      "athleteSourceId": "5101845",
+      "name": "Jayden Quaintance",
+      "position": "F",
+      "games": 4,
+      "starts": 1,
+      "minutes": 66,
+      "points": 20,
+      "turnovers": 6,
+      "fouls": 5,
+      "assists": 2,
+      "steals": 2,
+      "blocks": 3,
+      "usage": 19.4,
+      "offensiveRating": 88.3,
+      "defensiveRating": 111.3,
+      "netRating": -23,
+      "PORPAG": 0,
+      "effectiveFieldGoalPct": 57.1,
+      "trueShootingPct": 0.507,
+      "assistsTurnoverRatio": 0.33,
+      "freeThrowRate": 92.9,
+      "offensiveReboundPct": 40,
+      "fieldGoals": {
+        "pct": 57.1,
+        "attempted": 14,
+        "made": 8
+      },
+      "twoPointFieldGoals": {
+        "pct": 57.1,
+        "attempted": 14,
+        "made": 8
+      },
+      "threePointFieldGoals": {
+        "pct": 0,
+        "attempted": 0,
+        "made": 0
+      },
+      "freeThrows": {
+        "pct": 30.8,
+        "attempted": 13,
+        "made": 4
+      },
+      "rebounds": {
+        "total": 20,
+        "defensive": 12,
+        "offensive": 8
+      },
+      "winShares": {
+        "totalPer40": 0,
+        "total": 0,
+        "defensive": 0,
+        "offensive": 0
+      }
+    },
+    {
+      "season": 2026,
+      "seasonLabel": "20252026",
+      "teamId": 135,
+      "team": "Kentucky",
+      "conference": "SEC",
+      "athleteId": 9942,
+      "athleteSourceId": "5252266",
+      "name": "Zach Tow",
+      "position": "F",
+      "games": 7,
+      "starts": 0,
+      "minutes": 7,
+      "points": 4,
+      "turnovers": 0,
+      "fouls": 1,
+      "assists": 0,
+      "steals": 0,
+      "blocks": 0,
+      "usage": 12.8,
+      "offensiveRating": 183.4,
+      "defensiveRating": 92.7,
+      "netRating": 90.7,
+      "PORPAG": 0.2,
+      "effectiveFieldGoalPct": 150,
+      "trueShootingPct": 1.064,
+      "freeThrowRate": 200,
+      "fieldGoals": {
+        "pct": 100,
+        "attempted": 1,
+        "made": 1
+      },
+      "twoPointFieldGoals": {
+        "pct": 0,
+        "attempted": 0,
+        "made": 0
+      },
+      "threePointFieldGoals": {
+        "pct": 100,
+        "attempted": 1,
+        "made": 1
+      },
+      "freeThrows": {
+        "pct": 50,
+        "attempted": 2,
+        "made": 1
+      },
+      "rebounds": {
+        "total": 0,
+        "defensive": 0,
+        "offensive": 0
+      },
+      "winShares": {
+        "totalPer40": 0,
+        "total": 0,
+        "defensive": 0,
+        "offensive": 0
+      },
+      "assistsTurnoverRatio": null,
+      "offensiveReboundPct": null
+    },
+    {
+      "season": 2026,
+      "seasonLabel": "20252026",
+      "teamId": 135,
+      "team": "Kentucky",
+      "conference": "SEC",
+      "athleteId": 199960,
+      "athleteSourceId": "5281347",
+      "name": "Andrija Jelavi\u0107",
+      "position": "F",
+      "games": 18,
+      "starts": 6,
+      "minutes": 276,
+      "points": 100,
+      "turnovers": 13,
+      "fouls": 23,
+      "assists": 10,
+      "steals": 7,
+      "blocks": 7,
+      "usage": 18.6,
+      "offensiveRating": 110.4,
+      "defensiveRating": 101.8,
+      "netRating": 8.6,
+      "PORPAG": 1.1,
+      "effectiveFieldGoalPct": 55.2,
+      "trueShootingPct": 0.552,
+      "assistsTurnoverRatio": 0.77,
+      "freeThrowRate": 9.2,
+      "offensiveReboundPct": 31.9,
+      "fieldGoals": {
+        "pct": 48.3,
+        "attempted": 87,
+        "made": 42
+      },
+      "twoPointFieldGoals": {
+        "pct": 65.2,
+        "attempted": 46,
+        "made": 30
+      },
+      "threePointFieldGoals": {
+        "pct": 29.3,
+        "attempted": 41,
+        "made": 12
+      },
+      "freeThrows": {
+        "pct": 50,
+        "attempted": 8,
+        "made": 4
+      },
+      "rebounds": {
+        "total": 72,
+        "defensive": 49,
+        "offensive": 23
+      },
+      "winShares": {
+        "totalPer40": 0.116,
+        "total": 0.8,
+        "defensive": 0.4,
+        "offensive": 0.4
+      }
+    },
+    {
+      "season": 2026,
+      "seasonLabel": "20252026",
+      "teamId": 135,
+      "team": "Kentucky",
+      "conference": "SEC",
+      "athleteId": 199961,
+      "athleteSourceId": "5095153",
+      "name": "Jasper Johnson",
+      "position": "G",
+      "games": 21,
+      "starts": 0,
+      "minutes": 291,
+      "points": 134,
+      "turnovers": 24,
+      "fouls": 23,
+      "assists": 43,
+      "steals": 2,
+      "blocks": 2,
+      "usage": 24.3,
+      "offensiveRating": 113.1,
+      "defensiveRating": 110.2,
+      "netRating": 2.9,
+      "PORPAG": 1.4,
+      "effectiveFieldGoalPct": 52.3,
+      "trueShootingPct": 0.562,
+      "assistsTurnoverRatio": 1.79,
+      "freeThrowRate": 19.1,
+      "offensiveReboundPct": 20.7,
+      "fieldGoals": {
+        "pct": 41.8,
+        "attempted": 110,
+        "made": 46
+      },
+      "twoPointFieldGoals": {
+        "pct": 47.9,
+        "attempted": 48,
+        "made": 23
+      },
+      "threePointFieldGoals": {
+        "pct": 37.1,
+        "attempted": 62,
+        "made": 23
+      },
+      "freeThrows": {
+        "pct": 90.5,
+        "attempted": 21,
+        "made": 19
+      },
+      "rebounds": {
+        "total": 29,
+        "defensive": 23,
+        "offensive": 6
+      },
+      "winShares": {
+        "totalPer40": 0.124,
+        "total": 0.9,
+        "defensive": 0.2,
+        "offensive": 0.7
+      }
+    },
+    {
+      "season": 2026,
+      "seasonLabel": "20252026",
+      "teamId": 135,
+      "team": "Kentucky",
+      "conference": "SEC",
+      "athleteId": 199963,
+      "athleteSourceId": "5101849",
+      "name": "Malachi Moreno",
+      "position": "C",
+      "games": 22,
+      "starts": 16,
+      "minutes": 497,
+      "points": 189,
+      "turnovers": 21,
+      "fouls": 45,
+      "assists": 39,
+      "steals": 16,
+      "blocks": 35,
+      "usage": 17,
+      "offensiveRating": 130.7,
+      "defensiveRating": 99.2,
+      "netRating": 31.5,
+      "PORPAG": 2.7,
+      "effectiveFieldGoalPct": 59.1,
+      "trueShootingPct": 0.631,
+      "assistsTurnoverRatio": 1.86,
+      "freeThrowRate": 68.7,
+      "offensiveReboundPct": 40.6,
+      "fieldGoals": {
+        "pct": 59.1,
+        "attempted": 115,
+        "made": 68
+      },
+      "twoPointFieldGoals": {
+        "pct": 60.2,
+        "attempted": 113,
+        "made": 68
+      },
+      "threePointFieldGoals": {
+        "pct": 0,
+        "attempted": 2,
+        "made": 0
+      },
+      "freeThrows": {
+        "pct": 67.1,
+        "attempted": 79,
+        "made": 53
+      },
+      "rebounds": {
+        "total": 143,
+        "defensive": 85,
+        "offensive": 58
+      },
+      "winShares": {
+        "totalPer40": 0.201,
+        "total": 2.5,
+        "defensive": 0.9,
+        "offensive": 1.6
       }
     }
   ]
