@@ -41,7 +41,7 @@ async function loadPlayers() {
         
     } catch (error) {
         console.error('Error loading players:', error);
-        showError('Failed to load players from API. Please check your connection and try again.');
+        alert('Failed to load players from API. Please check your connection and try again.');
         hideLoading();
     }
 }
@@ -76,19 +76,13 @@ function populatePlayerSelects() {
 function setupEventListeners() {
     const player1Select = document.getElementById('player1Select');
     const player2Select = document.getElementById('player2Select');
-    const player1Season = document.getElementById('player1Season');
-    const player2Season = document.getElementById('player2Season');
-    const player1Filter = document.getElementById('player1Filter');
-    const player2Filter = document.getElementById('player2Filter');
     const per30Toggle = document.getElementById('per30Toggle');
     
     player1Select.addEventListener('change', handlePlayerSelection);
     player2Select.addEventListener('change', handlePlayerSelection);
-    player1Season.addEventListener('change', handlePlayerSelection);
-    player2Season.addEventListener('change', handlePlayerSelection);
-    player1Filter.addEventListener('change', handlePlayerSelection);
-    player2Filter.addEventListener('change', handlePlayerSelection);
-    per30Toggle.addEventListener('change', handlePlayerSelection);
+    if (per30Toggle) {
+        per30Toggle.addEventListener('change', handlePlayerSelection);
+    }
 }
 
 // Handle player selection
@@ -104,193 +98,177 @@ async function handlePlayerSelection() {
         if (player1Data && player2Data) {
             displayComparison();
             document.getElementById('downloadBtn').style.display = 'block';
+            document.querySelector('.comparison-box').style.display = 'block';
         }
     } else {
         // Clear comparison if not both selected
         document.getElementById('player1Card').innerHTML = '';
         document.getElementById('player2Card').innerHTML = '';
         document.getElementById('downloadBtn').style.display = 'none';
+        document.querySelector('.comparison-box').style.display = 'none';
         destroyCharts();
     }
 }
 
 // Display player comparison
 function displayComparison() {
-    const per30 = document.getElementById('per30Toggle').checked;
+    const per30 = document.getElementById('per30Toggle')?.checked || false;
     
-    renderPlayerCard('player1Card', player1Data, per30);
-    renderPlayerCard('player2Card', player2Data, per30);
+    renderPlayerCard('player1Card', player1Data, player2Data, per30);
+    renderPlayerCard('player2Card', player2Data, player1Data, per30);
     renderCharts(player1Data, player2Data, per30);
 }
 
 // Render individual player card
-function renderPlayerCard(cardId, playerData, per30 = false) {
+function renderPlayerCard(cardId, playerData, comparisonPlayer, per30 = false) {
     const card = document.getElementById(cardId);
     
-    const multiplier = per30 ? (30 / playerData.minutes * playerData.games) : 1;
+    const gp = playerData.games;
+    const mpg = playerData.minutes / gp;
+    
+    // Calculate per-30 multiplier if needed
+    const multiplier = per30 ? (30 / mpg) : 1;
     
     card.innerHTML = `
-        <div class="card h-100">
-            <div class="card-header bg-primary text-white">
-                <h3 class="mb-0">${playerData.name}</h3>
-                <p class="mb-0">${playerData.position} | #${playerData.athleteSourceId}</p>
-            </div>
-            <div class="card-body">
-                <div class="stats-grid">
-                    <div class="stat-category">
-                        <h5>Season Overview</h5>
-                        <div class="stat-row">
-                            <span class="stat-label">Games Played</span>
-                            <span class="stat-value">${playerData.games}</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Starts</span>
-                            <span class="stat-value">${playerData.starts}</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Minutes</span>
-                            <span class="stat-value">${playerData.minutes}</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Minutes/Game</span>
-                            <span class="stat-value">${(playerData.minutes / playerData.games).toFixed(1)}</span>
-                        </div>
-                    </div>
-
-                    <div class="stat-category">
-                        <h5>Scoring ${per30 ? '(Per 30 min)' : '(Total)'}</h5>
-                        <div class="stat-row ${getHighlightClass('points', playerData, player1Data === playerData ? player2Data : player1Data)}">
-                            <span class="stat-label">Points</span>
-                            <span class="stat-value">${per30 ? (playerData.points * multiplier).toFixed(1) : playerData.points}</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Points/Game</span>
-                            <span class="stat-value">${(playerData.points / playerData.games).toFixed(1)}</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">FG%</span>
-                            <span class="stat-value">${playerData.fieldGoals.pct.toFixed(1)}%</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">3P%</span>
-                            <span class="stat-value">${playerData.threePointFieldGoals.pct.toFixed(1)}%</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">FT%</span>
-                            <span class="stat-value">${playerData.freeThrows.pct.toFixed(1)}%</span>
-                        </div>
-                    </div>
-
-                    <div class="stat-category">
-                        <h5>Per Game Averages</h5>
-                        <div class="stat-row ${getHighlightClass('rebounds', playerData, player1Data === playerData ? player2Data : player1Data)}">
-                            <span class="stat-label">Rebounds</span>
-                            <span class="stat-value">${(playerData.rebounds.total / playerData.games).toFixed(1)}</span>
-                        </div>
-                        <div class="stat-row ${getHighlightClass('assists', playerData, player1Data === playerData ? player2Data : player1Data)}">
-                            <span class="stat-label">Assists</span>
-                            <span class="stat-value">${(playerData.assists / playerData.games).toFixed(1)}</span>
-                        </div>
-                        <div class="stat-row ${getHighlightClass('steals', playerData, player1Data === playerData ? player2Data : player1Data)}">
-                            <span class="stat-label">Steals</span>
-                            <span class="stat-value">${(playerData.steals / playerData.games).toFixed(1)}</span>
-                        </div>
-                        <div class="stat-row ${getHighlightClass('blocks', playerData, player1Data === playerData ? player2Data : player1Data)}">
-                            <span class="stat-label">Blocks</span>
-                            <span class="stat-value">${(playerData.blocks / playerData.games).toFixed(1)}</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Turnovers</span>
-                            <span class="stat-value">${(playerData.turnovers / playerData.games).toFixed(1)}</span>
-                        </div>
-                    </div>
-
-                    <div class="stat-category">
-                        <h5>Advanced Stats</h5>
-                        <div class="stat-row ${getHighlightClass('offensiveRating', playerData, player1Data === playerData ? player2Data : player1Data)}">
-                            <span class="stat-label">Offensive Rating</span>
-                            <span class="stat-value">${playerData.offensiveRating.toFixed(1)}</span>
-                        </div>
-                        <div class="stat-row ${getHighlightClass('defensiveRating', playerData, player1Data === playerData ? player2Data : player1Data, true)}">
-                            <span class="stat-label">Defensive Rating</span>
-                            <span class="stat-value">${playerData.defensiveRating.toFixed(1)}</span>
-                        </div>
-                        <div class="stat-row ${getHighlightClass('netRating', playerData, player1Data === playerData ? player2Data : player1Data)}">
-                            <span class="stat-label">Net Rating</span>
-                            <span class="stat-value">${playerData.netRating > 0 ? '+' : ''}${playerData.netRating.toFixed(1)}</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Usage Rate</span>
-                            <span class="stat-value">${playerData.usage.toFixed(1)}%</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">True Shooting%</span>
-                            <span class="stat-value">${(playerData.trueShootingPct * 100).toFixed(1)}%</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Assist/TO Ratio</span>
-                            <span class="stat-value">${playerData.assistsTurnoverRatio.toFixed(2)}</span>
-                        </div>
-                        <div class="stat-row ${getHighlightClass('winShares', playerData, player1Data === playerData ? player2Data : player1Data)}">
-                            <span class="stat-label">Win Shares</span>
-                            <span class="stat-value">${playerData.winShares.total.toFixed(1)}</span>
-                        </div>
-                    </div>
-                </div>
+        <div class="text-center">
+            <h3 class="text-uk-blue mt-3 mb-1">${playerData.name}</h3>
+            <div class="text-muted mb-3">${playerData.position} | #${playerData.athleteSourceId}</div>
+            <div class="text-muted mb-1">${playerData.seasonLabel} Season</div>
+            <div class="text-muted mb-3"><small>${gp} games, ${playerData.starts} starts</small></div>
+            <div class="stats-box">
+                ${generateStatsList(playerData, comparisonPlayer, per30, multiplier)}
             </div>
         </div>
     `;
 }
 
-// Get highlight class for better player (green) or worse player (none)
-function getHighlightClass(stat, player1, player2, lowerIsBetter = false) {
-    let val1, val2;
+// Generate stats list for a player
+function generateStatsList(player, comparisonPlayer, per30, multiplier) {
+    const gp = player.games;
+    const mpg = player.minutes / gp;
     
-    switch(stat) {
-        case 'points':
-            val1 = player1.points / player1.games;
-            val2 = player2.points / player2.games;
-            break;
-        case 'rebounds':
-            val1 = player1.rebounds.total / player1.games;
-            val2 = player2.rebounds.total / player2.games;
-            break;
-        case 'assists':
-            val1 = player1.assists / player1.games;
-            val2 = player2.assists / player2.games;
-            break;
-        case 'steals':
-            val1 = player1.steals / player1.games;
-            val2 = player2.steals / player2.games;
-            break;
-        case 'blocks':
-            val1 = player1.blocks / player1.games;
-            val2 = player2.blocks / player2.games;
-            break;
-        case 'offensiveRating':
-            val1 = player1.offensiveRating;
-            val2 = player2.offensiveRating;
-            break;
-        case 'defensiveRating':
-            val1 = player1.defensiveRating;
-            val2 = player2.defensiveRating;
-            break;
-        case 'netRating':
-            val1 = player1.netRating;
-            val2 = player2.netRating;
-            break;
-        case 'winShares':
-            val1 = player1.winShares.total;
-            val2 = player2.winShares.total;
-            break;
-        default:
-            return '';
-    }
+    const stats = [
+        { 
+            label: per30 ? 'MIN (norm)' : 'MPG', 
+            value: per30 ? 30 : mpg.toFixed(1),
+            compValue: comparisonPlayer ? (per30 ? 30 : (comparisonPlayer.minutes / comparisonPlayer.games).toFixed(1)) : null,
+            higherBetter: true
+        },
+        { 
+            label: per30 ? 'PPer30' : 'PPG', 
+            value: ((player.points / gp) * multiplier).toFixed(1),
+            compValue: comparisonPlayer ? ((comparisonPlayer.points / comparisonPlayer.games) * (per30 ? (30 / (comparisonPlayer.minutes / comparisonPlayer.games)) : 1)).toFixed(1) : null,
+            higherBetter: true
+        },
+        { 
+            label: per30 ? 'RPer30' : 'RPG', 
+            value: ((player.rebounds.total / gp) * multiplier).toFixed(1),
+            compValue: comparisonPlayer ? ((comparisonPlayer.rebounds.total / comparisonPlayer.games) * (per30 ? (30 / (comparisonPlayer.minutes / comparisonPlayer.games)) : 1)).toFixed(1) : null,
+            higherBetter: true
+        },
+        { 
+            label: per30 ? 'APer30' : 'APG', 
+            value: ((player.assists / gp) * multiplier).toFixed(1),
+            compValue: comparisonPlayer ? ((comparisonPlayer.assists / comparisonPlayer.games) * (per30 ? (30 / (comparisonPlayer.minutes / comparisonPlayer.games)) : 1)).toFixed(1) : null,
+            higherBetter: true
+        },
+        { 
+            label: per30 ? 'TOPer30' : 'TOPG', 
+            value: ((player.turnovers / gp) * multiplier).toFixed(1),
+            compValue: comparisonPlayer ? ((comparisonPlayer.turnovers / comparisonPlayer.games) * (per30 ? (30 / (comparisonPlayer.minutes / comparisonPlayer.games)) : 1)).toFixed(1) : null,
+            higherBetter: false
+        },
+        { 
+            label: 'FG%', 
+            value: player.fieldGoals.pct.toFixed(1) + '%',
+            compValue: comparisonPlayer ? comparisonPlayer.fieldGoals.pct.toFixed(1) + '%' : null,
+            higherBetter: true
+        },
+        { 
+            label: '3P%', 
+            value: player.threePointFieldGoals.pct.toFixed(1) + '%',
+            compValue: comparisonPlayer ? comparisonPlayer.threePointFieldGoals.pct.toFixed(1) + '%' : null,
+            higherBetter: true
+        },
+        { 
+            label: 'FT%', 
+            value: player.freeThrows.pct.toFixed(1) + '%',
+            compValue: comparisonPlayer ? comparisonPlayer.freeThrows.pct.toFixed(1) + '%' : null,
+            higherBetter: true
+        },
+        { 
+            label: 'TS%', 
+            value: (player.trueShootingPct * 100).toFixed(1) + '%',
+            compValue: comparisonPlayer ? (comparisonPlayer.trueShootingPct * 100).toFixed(1) + '%' : null,
+            higherBetter: true
+        },
+        { 
+            label: per30 ? 'BPer30' : 'BPG', 
+            value: ((player.blocks / gp) * multiplier).toFixed(1),
+            compValue: comparisonPlayer ? ((comparisonPlayer.blocks / comparisonPlayer.games) * (per30 ? (30 / (comparisonPlayer.minutes / comparisonPlayer.games)) : 1)).toFixed(1) : null,
+            higherBetter: true
+        },
+        { 
+            label: per30 ? 'SPer30' : 'SPG', 
+            value: ((player.steals / gp) * multiplier).toFixed(1),
+            compValue: comparisonPlayer ? ((comparisonPlayer.steals / comparisonPlayer.games) * (per30 ? (30 / (comparisonPlayer.minutes / comparisonPlayer.games)) : 1)).toFixed(1) : null,
+            higherBetter: true
+        },
+        { 
+            label: 'ORTG', 
+            value: player.offensiveRating.toFixed(1),
+            compValue: comparisonPlayer ? comparisonPlayer.offensiveRating.toFixed(1) : null,
+            higherBetter: true
+        },
+        { 
+            label: 'DRTG', 
+            value: player.defensiveRating.toFixed(1),
+            compValue: comparisonPlayer ? comparisonPlayer.defensiveRating.toFixed(1) : null,
+            higherBetter: false
+        },
+        { 
+            label: 'NET', 
+            value: player.netRating > 0 ? '+' + player.netRating.toFixed(1) : player.netRating.toFixed(1),
+            compValue: comparisonPlayer ? (comparisonPlayer.netRating > 0 ? '+' + comparisonPlayer.netRating.toFixed(1) : comparisonPlayer.netRating.toFixed(1)) : null,
+            higherBetter: true
+        },
+        { 
+            label: 'USG%', 
+            value: player.usage.toFixed(1) + '%',
+            compValue: comparisonPlayer ? comparisonPlayer.usage.toFixed(1) + '%' : null,
+            higherBetter: true
+        },
+        { 
+            label: 'WS', 
+            value: player.winShares.total.toFixed(1),
+            compValue: comparisonPlayer ? comparisonPlayer.winShares.total.toFixed(1) : null,
+            higherBetter: true
+        }
+    ];
     
-    if (lowerIsBetter) {
-        return val1 < val2 ? 'highlight-better' : '';
+    return stats.map(stat => {
+        const isHigher = stat.compValue ? isStatHigher(stat.value, stat.compValue, stat.higherBetter) : false;
+        
+        return `
+            <div class="stat-row">
+                <div class="stat-label">${stat.label}</div>
+                <div class="stat-value ${isHigher ? 'higher-stat highlight-better' : ''}">${stat.value}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+// Check if stat is higher (better)
+function isStatHigher(value, comparisonValue, higherBetter) {
+    const cleanValue = parseFloat(value.toString().replace(/[%+]/g, ''));
+    const cleanCompValue = parseFloat(comparisonValue.toString().replace(/[%+]/g, ''));
+    
+    if (isNaN(cleanValue) || isNaN(cleanCompValue)) return false;
+    
+    if (higherBetter) {
+        return cleanValue > cleanCompValue;
     } else {
-        return val1 > val2 ? 'highlight-better' : '';
+        return cleanValue < cleanCompValue;
     }
 }
 
@@ -301,244 +279,227 @@ function renderCharts(player1, player2, per30 = false) {
     const p1Games = player1.games;
     const p2Games = player2.games;
     
-    const p1Mult = per30 ? (30 / player1.minutes * p1Games) : 1;
-    const p2Mult = per30 ? (30 / player2.minutes * p2Games) : 1;
+    const p1Mpg = player1.minutes / p1Games;
+    const p2Mpg = player2.minutes / p2Games;
     
-    // Averages Chart (Points, Rebounds, Assists)
-    const ctx1 = document.getElementById('averagesChart').getContext('2d');
-    averagesChart = new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: ['Points/G', 'Rebounds/G', 'Assists/G', 'Steals/G', 'Blocks/G'],
-            datasets: [{
-                label: player1.name,
-                data: [
-                    player1.points / p1Games,
-                    player1.rebounds.total / p1Games,
-                    player1.assists / p1Games,
-                    player1.steals / p1Games,
-                    player1.blocks / p1Games
-                ],
-                backgroundColor: 'rgba(0, 51, 160, 0.8)',
-                borderColor: 'rgba(0, 51, 160, 1)',
-                borderWidth: 2
-            }, {
-                label: player2.name,
-                data: [
-                    player2.points / p2Games,
-                    player2.rebounds.total / p2Games,
-                    player2.assists / p2Games,
-                    player2.steals / p2Games,
-                    player2.blocks / p2Games
-                ],
-                backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                borderColor: 'rgba(0, 51, 160, 1)',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Per Game Averages',
-                    font: { size: 16, weight: 'bold' }
-                },
-                legend: {
-                    display: true,
-                    position: 'top'
-                }
+    const p1Mult = per30 ? (30 / p1Mpg) : 1;
+    const p2Mult = per30 ? (30 / p2Mpg) : 1;
+    
+    // Averages Chart
+    const ctx1 = document.getElementById('averagesChart')?.getContext('2d');
+    if (ctx1) {
+        averagesChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Points', 'Rebounds', 'Assists', 'Steals', 'Blocks'],
+                datasets: [{
+                    label: player1.name,
+                    data: [
+                        (player1.points / p1Games) * p1Mult,
+                        (player1.rebounds.total / p1Games) * p1Mult,
+                        (player1.assists / p1Games) * p1Mult,
+                        (player1.steals / p1Games) * p1Mult,
+                        (player1.blocks / p1Games) * p1Mult
+                    ],
+                    backgroundColor: 'rgba(0, 51, 160, 0.8)',
+                    borderColor: 'rgba(0, 51, 160, 1)',
+                    borderWidth: 2
+                }, {
+                    label: player2.name,
+                    data: [
+                        (player2.points / p2Games) * p2Mult,
+                        (player2.rebounds.total / p2Games) * p2Mult,
+                        (player2.assists / p2Games) * p2Mult,
+                        (player2.steals / p2Games) * p2Mult,
+                        (player2.blocks / p2Games) * p2Mult
+                    ],
+                    backgroundColor: 'rgba(128, 128, 128, 0.8)',
+                    borderColor: 'rgba(128, 128, 128, 1)',
+                    borderWidth: 2
+                }]
             },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        font: { size: 12 }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: per30 ? 'Per-30-Minute Averages' : 'Per Game Averages',
+                        font: { size: 16, weight: 'bold' }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'top'
                     }
                 },
-                x: {
-                    ticks: {
-                        font: { size: 11 }
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
                 }
             }
-        }
-    });
+        });
+    }
     
     // Shooting Chart
-    const ctx2 = document.getElementById('shootingChart').getContext('2d');
-    shootingChart = new Chart(ctx2, {
-        type: 'radar',
-        data: {
-            labels: ['FG%', '2P%', '3P%', 'FT%', 'eFG%'],
-            datasets: [{
-                label: player1.name,
-                data: [
-                    player1.fieldGoals.pct,
-                    player1.twoPointFieldGoals.pct,
-                    player1.threePointFieldGoals.pct,
-                    player1.freeThrows.pct,
-                    player1.effectiveFieldGoalPct
-                ],
-                backgroundColor: 'rgba(0, 51, 160, 0.2)',
-                borderColor: 'rgba(0, 51, 160, 1)',
-                borderWidth: 2,
-                pointBackgroundColor: 'rgba(0, 51, 160, 1)'
-            }, {
-                label: player2.name,
-                data: [
-                    player2.fieldGoals.pct,
-                    player2.twoPointFieldGoals.pct,
-                    player2.threePointFieldGoals.pct,
-                    player2.freeThrows.pct,
-                    player2.effectiveFieldGoalPct
-                ],
-                backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                borderColor: 'rgba(0, 51, 160, 1)',
-                borderWidth: 2,
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
-                pointBorderColor: 'rgba(0, 51, 160, 1)'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Shooting Percentages',
-                    font: { size: 16, weight: 'bold' }
-                },
-                legend: {
-                    display: true,
-                    position: 'top'
-                }
+    const ctx2 = document.getElementById('shootingChart')?.getContext('2d');
+    if (ctx2) {
+        shootingChart = new Chart(ctx2, {
+            type: 'radar',
+            data: {
+                labels: ['FG%', '2P%', '3P%', 'FT%', 'eFG%'],
+                datasets: [{
+                    label: player1.name,
+                    data: [
+                        player1.fieldGoals.pct,
+                        player1.twoPointFieldGoals.pct,
+                        player1.threePointFieldGoals.pct,
+                        player1.freeThrows.pct,
+                        player1.effectiveFieldGoalPct
+                    ],
+                    backgroundColor: 'rgba(0, 51, 160, 0.2)',
+                    borderColor: 'rgba(0, 51, 160, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(0, 51, 160, 1)'
+                }, {
+                    label: player2.name,
+                    data: [
+                        player2.fieldGoals.pct,
+                        player2.twoPointFieldGoals.pct,
+                        player2.threePointFieldGoals.pct,
+                        player2.freeThrows.pct,
+                        player2.effectiveFieldGoalPct
+                    ],
+                    backgroundColor: 'rgba(128, 128, 128, 0.2)',
+                    borderColor: 'rgba(128, 128, 128, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(128, 128, 128, 1)'
+                }]
             },
-            scales: {
-                r: {
-                    beginAtZero: true,
-                    max: 100,
-                    ticks: {
-                        stepSize: 20,
-                        font: { size: 11 }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Shooting Percentages',
+                        font: { size: 16, weight: 'bold' }
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            stepSize: 20
+                        }
                     }
                 }
             }
-        }
-    });
+        });
+    }
     
     // Playing Time Chart
-    const ctx3 = document.getElementById('playingTimeChart').getContext('2d');
-    playingTimeChart = new Chart(ctx3, {
-        type: 'bar',
-        data: {
-            labels: ['Games', 'Starts', 'Total Minutes', 'Minutes/Game'],
-            datasets: [{
-                label: player1.name,
-                data: [
-                    player1.games,
-                    player1.starts,
-                    player1.minutes,
-                    player1.minutes / player1.games
-                ],
-                backgroundColor: 'rgba(0, 51, 160, 0.8)',
-                borderColor: 'rgba(0, 51, 160, 1)',
-                borderWidth: 2
-            }, {
-                label: player2.name,
-                data: [
-                    player2.games,
-                    player2.starts,
-                    player2.minutes,
-                    player2.minutes / player2.games
-                ],
-                backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                borderColor: 'rgba(0, 51, 160, 1)',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Playing Time',
-                    font: { size: 16, weight: 'bold' }
-                },
-                legend: {
-                    display: true,
-                    position: 'top'
-                }
+    const ctx3 = document.getElementById('playingTimeChart')?.getContext('2d');
+    if (ctx3) {
+        playingTimeChart = new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['Games', 'Starts', 'Total Minutes', 'Min/Game'],
+                datasets: [{
+                    label: player1.name,
+                    data: [
+                        player1.games,
+                        player1.starts,
+                        player1.minutes,
+                        player1.minutes / player1.games
+                    ],
+                    backgroundColor: 'rgba(0, 51, 160, 0.8)',
+                    borderColor: 'rgba(0, 51, 160, 1)',
+                    borderWidth: 2
+                }, {
+                    label: player2.name,
+                    data: [
+                        player2.games,
+                        player2.starts,
+                        player2.minutes,
+                        player2.minutes / player2.games
+                    ],
+                    backgroundColor: 'rgba(128, 128, 128, 0.8)',
+                    borderColor: 'rgba(128, 128, 128, 1)',
+                    borderWidth: 2
+                }]
             },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        font: { size: 12 }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Playing Time',
+                        font: { size: 16, weight: 'bold' }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
                 }
             }
-        }
-    });
+        });
+    }
     
     // Advanced Stats Chart
-    const ctx4 = document.getElementById('advancedChart').getContext('2d');
-    advancedChart = new Chart(ctx4, {
-        type: 'bar',
-        data: {
-            labels: ['Off Rating', 'Net Rating', 'Usage%', 'TS%', 'Win Shares'],
-            datasets: [{
-                label: player1.name,
-                data: [
-                    player1.offensiveRating,
-                    player1.netRating,
-                    player1.usage,
-                    player1.trueShootingPct * 100,
-                    player1.winShares.total
-                ],
-                backgroundColor: 'rgba(0, 51, 160, 0.8)',
-                borderColor: 'rgba(0, 51, 160, 1)',
-                borderWidth: 2
-            }, {
-                label: player2.name,
-                data: [
-                    player2.offensiveRating,
-                    player2.netRating,
-                    player2.usage,
-                    player2.trueShootingPct * 100,
-                    player2.winShares.total
-                ],
-                backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                borderColor: 'rgba(0, 51, 160, 1)',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Advanced Statistics',
-                    font: { size: 16, weight: 'bold' }
-                },
-                legend: {
-                    display: true,
-                    position: 'top'
-                }
+    const ctx4 = document.getElementById('advancedChart')?.getContext('2d');
+    if (ctx4) {
+        advancedChart = new Chart(ctx4, {
+            type: 'bar',
+            data: {
+                labels: ['Off Rating', 'Net Rating', 'Usage%', 'TS%', 'Win Shares'],
+                datasets: [{
+                    label: player1.name,
+                    data: [
+                        player1.offensiveRating,
+                        player1.netRating,
+                        player1.usage,
+                        player1.trueShootingPct * 100,
+                        player1.winShares.total
+                    ],
+                    backgroundColor: 'rgba(0, 51, 160, 0.8)',
+                    borderColor: 'rgba(0, 51, 160, 1)',
+                    borderWidth: 2
+                }, {
+                    label: player2.name,
+                    data: [
+                        player2.offensiveRating,
+                        player2.netRating,
+                        player2.usage,
+                        player2.trueShootingPct * 100,
+                        player2.winShares.total
+                    ],
+                    backgroundColor: 'rgba(128, 128, 128, 0.8)',
+                    borderColor: 'rgba(128, 128, 128, 1)',
+                    borderWidth: 2
+                }]
             },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        font: { size: 12 }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Advanced Statistics',
+                        font: { size: 16, weight: 'bold' }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
                 }
             }
-        }
-    });
+        });
+    }
 }
 
 // Destroy existing charts
@@ -561,31 +522,17 @@ function destroyCharts() {
     }
 }
 
-// Download comparison as image/PDF
+// Download comparison as PDF
 function downloadComparison() {
-    // Simple implementation: open print dialog
     window.print();
 }
 
 // Show loading indicator
 function showLoading(message = 'Loading...') {
-    // Create or show loading overlay
     let overlay = document.getElementById('loadingOverlay');
     if (!overlay) {
         overlay = document.createElement('div');
         overlay.id = 'loadingOverlay';
-        overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        `;
         overlay.innerHTML = `
             <div style="background: white; padding: 30px; border-radius: 10px; text-align: center;">
                 <div class="spinner-border text-primary" role="status">
@@ -607,9 +554,4 @@ function hideLoading() {
     if (overlay) {
         overlay.style.display = 'none';
     }
-}
-
-// Show error message
-function showError(message) {
-    alert(message);
 }
