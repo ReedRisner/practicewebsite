@@ -3,7 +3,7 @@ name: Update Schedule Results
 on:
   schedule:
     # Run every 2 hours during basketball season
-    - cron: '0 */2 * * *'
+    - cron: '0 */6 * * *'
   workflow_dispatch: # Allow manual trigger
 
 jobs:
