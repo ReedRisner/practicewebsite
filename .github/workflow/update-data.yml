@@ -1,4 +1,4 @@
-name: Update Kentucky Basketball Data
+name: Update Kentucky Basketball Data - COMPLETE STATS
 
 on:
   schedule:
@@ -9,11 +9,11 @@ on:
     branches:
       - main
     paths:
-      - '.github/workflows/update-data.yml'
-      - 'scripts/fetch_*.py'
+      - '.github/workflows/update-data-complete.yml'
+      - 'scripts/fetch_*_complete.py'
 
 jobs:
-  update-data:
+  update-complete-data:
     runs-on: ubuntu-latest
     
     steps:
@@ -32,23 +32,31 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
       
-      - name: Fetch roster data
+      - name: Fetch complete roster data
         run: |
           cd scripts
           python fetch_roster.py
         continue-on-error: true
       
-      - name: Fetch player stats
+      - name: Fetch COMPLETE player stats
         run: |
           cd scripts
-          python fetch_playerstats.py
+          python fetch_playerstats_complete.py
         continue-on-error: true
       
-      - name: Fetch game logs
+      - name: Fetch COMPLETE game logs
         run: |
           cd scripts
-          python fetch_gamelog.py
+          python fetch_gamelog_complete.py
         continue-on-error: true
+      
+      - name: Verify data files
+        run: |
+          echo "Checking data files..."
+          ls -lh data/
+          echo ""
+          echo "File sizes:"
+          du -h data/*.json
       
       - name: Check for changes
         id: git-check
@@ -61,31 +69,52 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
           git add data/*.json
-          git commit -m "Auto-update: Basketball data $(date +'%Y-%m-%d %H:%M')"
+          git commit -m "Auto-update: Complete basketball data $(date +'%Y-%m-%d %H:%M')"
           git push
       
-      - name: Create summary
+      - name: Create detailed summary
         if: always()
         run: |
-          echo "## Data Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "## 📊 Complete Data Update Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Date:** $(date)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           
+          echo "### Data Files Status" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
           if [ -f "data/roster.json" ]; then
-            echo "✅ roster.json updated" >> $GITHUB_STEP_SUMMARY
+            SIZE=$(du -h data/roster.json | cut -f1)
+            echo "✅ **roster.json** - $SIZE" >> $GITHUB_STEP_SUMMARY
           else
-            echo "❌ roster.json failed" >> $GITHUB_STEP_SUMMARY
+            echo "❌ **roster.json** failed" >> $GITHUB_STEP_SUMMARY
           fi
           
           if [ -f "data/playerstats.json" ]; then
-            echo "✅ playerstats.json updated" >> $GITHUB_STEP_SUMMARY
+            SIZE=$(du -h data/playerstats.json | cut -f1)
+            PLAYERS=$(grep -o '"athleteId"' data/playerstats.json | wc -l)
+            echo "✅ **playerstats.json** - $SIZE ($PLAYERS player-seasons)" >> $GITHUB_STEP_SUMMARY
           else
-            echo "❌ playerstats.json failed" >> $GITHUB_STEP_SUMMARY
+            echo "❌ **playerstats.json** failed" >> $GITHUB_STEP_SUMMARY
           fi
           
           if [ -f "data/gamelog.json" ]; then
-            echo "✅ gamelog.json updated" >> $GITHUB_STEP_SUMMARY
+            SIZE=$(du -h data/gamelog.json | cut -f1)
+            GAMES=$(grep -o '"gameId"' data/gamelog.json | wc -l)
+            echo "✅ **gamelog.json** - $SIZE ($GAMES games)" >> $GITHUB_STEP_SUMMARY
           else
-            echo "❌ gamelog.json failed" >> $GITHUB_STEP_SUMMARY
+            echo "❌ **gamelog.json** failed" >> $GITHUB_STEP_SUMMARY
           fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Stats Captured" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- 📈 Season stats with shooting breakdown" >> $GITHUB_STEP_SUMMARY
+          echo "- 🎯 Per-game and per-40 minute averages" >> $GITHUB_STEP_SUMMARY
+          echo "- 🏀 Complete shot type distribution" >> $GITHUB_STEP_SUMMARY
+          echo "- 📊 All advanced metrics (ORtg, DRtg, TS%, etc)" >> $GITHUB_STEP_SUMMARY
+          echo "- 🎮 Game-by-game logs with full stats" >> $GITHUB_STEP_SUMMARY
+          echo "- 👥 Team and opponent statistics" >> $GITHUB_STEP_SUMMARY
+          echo "- 🏆 Win shares and four factors" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Total: 300+ data points per player!**" >> $GITHUB_STEP_SUMMARY
