@@ -25,37 +25,37 @@
                 "value": "73.7",
                 "rank": "9"
             },
-            "Offensive TOV%": {
-                "value": "15.0",
-                "rank": "39"
+            "Turnovers": {
+                "value": "11.2",
+                "rank": "95"
             },
-            "Defensive TOV%": {
-                "value": "14.1",
-                "rank": "338"
-            },
-            "O3P%": {
+            "3P%": {
                 "value": "37.5",
                 "rank": "24"
             },
-            "O2P%": {
+            "2P%": {
                 "value": "55.6",
                 "rank": "34"
             },
-            "OFT%": {
+            "FT%": {
                 "value": "73.1",
                 "rank": "131"
             },
-            "D3P%": {
-                "value": "30.5",
-                "rank": "20"
+            "Assists": {
+                "value": "16.8",
+                "rank": "42"
             },
-            "D2P%": {
-                "value": "53.9",
-                "rank": "296"
+            "Rebounds": {
+                "value": "38.4",
+                "rank": "28"
             },
-            "DFT%": {
-                "value": "71.7",
-                "rank": "120"
+            "Steals": {
+                "value": "7.1",
+                "rank": "125"
+            },
+            "Blocks": {
+                "value": "4.3",
+                "rank": "89"
             }
         }
     },
@@ -63,10 +63,10 @@
         "rankings": {
             "Overall Record": "15-7",
             "AP Poll": "N/A",
-            "Conference Standings": "#5",
-            "KenPom": "#32",
+            "Conference Standings": "#3",
+            "KenPom": "#30",
             "NET Rankings": "#28",
-            "Bracketology": "No. 8 Seed"
+            "Bracketology": "No. 7 Seed"
         },
         "stats": {
             "Offensive Rating": {
@@ -85,35 +85,35 @@
                 "value": "0.0",
                 "rank": "0"
             },
-            "Offensive TOV%": {
+            "Turnovers": {
                 "value": "0.0",
                 "rank": "0"
             },
-            "Defensive TOV%": {
+            "3P%": {
                 "value": "0.0",
                 "rank": "0"
             },
-            "O3P%": {
+            "2P%": {
                 "value": "0.0",
                 "rank": "0"
             },
-            "O2P%": {
+            "FT%": {
                 "value": "0.0",
                 "rank": "0"
             },
-            "OFT%": {
+            "Assists": {
                 "value": "0.0",
                 "rank": "0"
             },
-            "D3P%": {
+            "Rebounds": {
                 "value": "0.0",
                 "rank": "0"
             },
-            "D2P%": {
+            "Steals": {
                 "value": "0.0",
                 "rank": "0"
             },
-            "DFT%": {
+            "Blocks": {
                 "value": "0.0",
                 "rank": "0"
             }
