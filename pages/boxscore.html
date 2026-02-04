@@ -2,34 +2,205 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Box Score - BBN Stats</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="icon" type="image/x-icon" href="../images/uk-logo/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Box Score - Kentucky Basketball</title>
     <link rel="stylesheet" href="../styles/boxscore.css">
+    <style>
+        /* Additional styles for comprehensive box score */
+        .team-comparison {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+            align-items: center;
+        }
+        
+        .team-stats-column {
+            text-align: center;
+        }
+        
+        .vs-divider {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .stat-comparison {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+        }
+        
+        .stat-name {
+            flex: 1;
+            text-align: right;
+            padding-right: 1rem;
+            font-weight: 500;
+        }
+        
+        .stat-bar-container {
+            flex: 2;
+            height: 30px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .stat-bar-kentucky {
+            height: 100%;
+            background: #0033A0;
+            float: left;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 0.5rem;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .stat-bar-opponent {
+            height: 100%;
+            background: #dc3545;
+            float: right;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 0.5rem;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .points-breakdown {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .breakdown-card {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .breakdown-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .breakdown-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0033A0;
+        }
+        
+        .four-factors-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .factor-comparison {
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        .factor-name {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            color: #0033A0;
+        }
+        
+        .factor-values {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+        }
+        
+        .factor-uk {
+            color: #0033A0;
+            font-weight: bold;
+        }
+        
+        .factor-opp {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .period-scoring {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .period-box {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .period-label {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .period-scores {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 0.5rem;
+        }
+        
+        .player-detail-stats {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 768px) {
+            .points-breakdown,
+            .four-factors-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .vs-divider {
+                margin: 1rem 0;
+            }
+        }
+    </style>
 </head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-25CW7MFC29"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-25CW7MFC29');
-</script>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    
     <div class="container">
         <div class="boxscore-container">
-            <a href="schedule.html" class="btn btn-primary mb-4">&laquo; Back to Schedule</a>
+            <a href="schedule.html" class="btn btn-primary mb-4">← Back to Schedule</a>
             
-            <div class="loading" id="loading">
-                <div class="spinner-border text-primary"></div>
-                <p class="mt-2">Loading box score...</p>
+            <!-- Loading -->
+            <div id="loading">
+                <div class="spinner"></div>
+                <p>Loading complete box score...</p>
             </div>
             
+            <!-- Box Score Content -->
             <div id="boxscore-content" style="display: none;">
+                
+                <!-- Game Header -->
                 <div class="game-header">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="game-info-container">
                         <div>
                             <div class="team-name">Kentucky Wildcats</div>
                             <div class="team-name" id="opponent-name"></div>
@@ -38,56 +209,105 @@
                             <div class="game-info" id="game-date"></div>
                             <div class="game-info" id="game-result"></div>
                             <div class="game-info" id="game-location"></div>
-                            <a id="video-button" class="btn btn-danger mt-2" target="_blank" style="display: none;">
-                                <i class="bi bi-play-btn-fill"></i> Watch Highlights
-                            </a>
+                            <div class="game-info" id="game-type"></div>
                         </div>
                     </div>
                 </div>
                 
-                <h4 class="mb-3">Kentucky Box Score</h4>
-                <div class="table-responsive">
-                    <table class="boxscore-table">
-                        <thead>
-                            <tr>
-                                <th data-sort="player">Player</th>
-                                <th data-sort="min">MIN</th>
-                                <th data-sort="pts">PTS</th>
-                                <th data-sort="reb">REB</th>
-                                <th data-sort="ast">AST</th>
-                                <th data-sort="stl">STL</th>
-                                <th data-sort="blk">BLK</th>
-                                <th data-sort="to">TO</th>
-                                <th data-sort="fg">FG</th>
-                                <th data-sort="threept">3PT</th>
-                                <th data-sort="ft">FT</th>
-                                <th data-sort="rating">Rating</th>
-                            </tr>
-                        </thead>
-                        <tbody id="player-stats"></tbody>
-                    </table>
+                <!-- Scoring by Period -->
+                <div class="stats-section">
+                    <h3>Scoring by Period</h3>
+                    <div id="periodScoring"></div>
                 </div>
                 
-                <div class="game-stats">
-                    <div class="stat-card">
-                        <h4>FG%</h4>
-                        <div class="stat-value" id="fg-pct">-</div>
-                    </div>
-                    <div class="stat-card">
-                        <h4>3P%</h4>
-                        <div class="stat-value" id="three-pct">-</div>
-                    </div>
-                    <div class="stat-card">
-                        <h4>FT%</h4>
-                        <div class="stat-value" id="ft-pct">-</div>
+                <!-- Team Comparison -->
+                <div class="stats-section">
+                    <h3>Team Statistics Comparison</h3>
+                    <div id="teamComparison"></div>
+                </div>
+                
+                <!-- Points Breakdown -->
+                <div class="stats-section">
+                    <h3>Kentucky Points Breakdown</h3>
+                    <div id="pointsBreakdown"></div>
+                </div>
+                
+                <!-- Four Factors -->
+                <div class="stats-section">
+                    <h3>Four Factors</h3>
+                    <div id="fourFactorsComparison"></div>
+                </div>
+                
+                <!-- Player Box Score -->
+                <div class="stats-section">
+                    <h4>Kentucky Player Statistics</h4>
+                    <div class="table-responsive">
+                        <table class="boxscore-table">
+                            <thead>
+                                <tr>
+                                    <th data-sort="player">Player</th>
+                                    <th data-sort="min">MIN</th>
+                                    <th data-sort="pts">PTS</th>
+                                    <th data-sort="reb">REB</th>
+                                    <th data-sort="orb">OREB</th>
+                                    <th data-sort="drb">DREB</th>
+                                    <th data-sort="ast">AST</th>
+                                    <th data-sort="stl">STL</th>
+                                    <th data-sort="blk">BLK</th>
+                                    <th data-sort="to">TO</th>
+                                    <th data-sort="pf">PF</th>
+                                    <th data-sort="fg">FG</th>
+                                    <th data-sort="fg_pct">FG%</th>
+                                    <th data-sort="two">2P</th>
+                                    <th data-sort="two_pct">2P%</th>
+                                    <th data-sort="three">3P</th>
+                                    <th data-sort="three_pct">3P%</th>
+                                    <th data-sort="ft">FT</th>
+                                    <th data-sort="ft_pct">FT%</th>
+                                    <th data-sort="ortg">ORtg</th>
+                                    <th data-sort="drtg">DRtg</th>
+                                    <th data-sort="nrtg">+/-</th>
+                                    <th data-sort="usg">USG%</th>
+                                    <th data-sort="gs">GmSc</th>
+                                    <th data-sort="rating">Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody id="player-stats"></tbody>
+                        </table>
                     </div>
                 </div>
+                
+                <!-- Team Shooting Stats -->
+                <div class="stats-section">
+                    <h3>Team Shooting Statistics</h3>
+                    <div id="teamShooting"></div>
+                </div>
+                
+                <!-- Rebounds Breakdown -->
+                <div class="stats-section">
+                    <h3>Rebounding Details</h3>
+                    <div id="reboundingBreakdown"></div>
+                </div>
+                
+                <!-- Turnovers & Fouls -->
+                <div class="stats-section">
+                    <h3>Turnovers & Fouls</h3>
+                    <div id="turnoversAndFouls"></div>
+                </div>
+                
+                <!-- Game Flow -->
+                <div class="stats-section">
+                    <h3>Game Flow & Pace</h3>
+                    <div id="gameFlow"></div>
+                </div>
+                
             </div>
             
-            <div id="error-message" class="alert alert-danger mt-3" style="display: none;"></div>
+            <!-- Error Message -->
+            <div id="error-message" class="alert alert-danger" style="display: none;"></div>
         </div>
     </div>
-
-<script src="../scripts/boxscore.js"></script>
+    
+    <script src="../scripts/boxscore_complete.js"></script>
 </body>
 </html>

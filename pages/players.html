@@ -3,406 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kentucky Basketball Players - BBN Stats</title>
-    <link rel="icon" type="image/x-icon" href="../images/uk-logo/favicon.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../styles/search.css">
+    <title>Complete Player Stats - Kentucky Basketball</title>
     <link rel="stylesheet" href="../styles/players.css">
+    <style>
+        /* Additional styles for comprehensive stats display */
+        .stats-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .stats-section h3 {
+            color: #0033A0;
+            border-bottom: 2px solid #0033A0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-value-large {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0033A0;
+        }
+        
+        .shooting-chart {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .shot-type {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            border-left: 4px solid #0033A0;
+        }
+        
+        .shot-type-name {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #0033A0;
+        }
+        
+        .shot-stats {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.25rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .advanced-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        
+        .metric-box {
+            background: linear-gradient(135deg, #0033A0 0%, #0055D4 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .metric-name {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+        
+        .comparison-bar {
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .comparison-fill {
+            height: 100%;
+            background: white;
+            transition: width 0.3s ease;
+        }
+        
+        .four-factors {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .factor-card {
+            text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-top: 3px solid #0033A0;
+        }
+        
+        @media (max-width: 768px) {
+            .stat-grid,
+            .advanced-metrics,
+            .four-factors {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .shooting-chart {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-25CW7MFC29"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-25CW7MFC29');
-</script>
 <body>
-    <nav class="navbar navbar-expand-lg py-3 bg-white">
-        <div class="container">
-            <div class="d-flex justify-content-between w-100 align-items-center">
-                <div class="dropdown order-1">
-                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">More</button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../index.html">Home</a></li>
-                        <li><a class="dropdown-item" href="staff.html">Staff</a></li>
-                        <li><a class="dropdown-item" href="schedule.html">Schedule</a></li>
-                        <li><a class="dropdown-item" href="rankings.html">Rankings</a></li>
-                        <li><a class="dropdown-item" href="stats.html">Statistics</a></li>
-                        <li><a class="dropdown-item" href="comparison.html">Compare</a></li>
-                        <li><a class="dropdown-item" href="history.html">History</a></li>
-                        <li><a class="dropdown-item" href="news.html">News</a></li>
-                    </ul>
-                </div>
-                <div class="order-2 mx-auto text-center">
-                    <h1 class="bbn-title mb-0">BBN Stats</h1>
-                </div>
-                <div class="order-3 d-flex align-items-center gap-2">
-                    <button class="search-btn" onclick="openSearch()" title="Search (Ctrl+K)">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <a href="../index.html" class="btn btn-primary d-none d-lg-inline-flex align-items-center gap-2">
-                        <i class="fas fa-arrow-left"></i> <span>Back to Home</span>
-                    </a>
-                </div>
-            </div>
+    <div class="container">
+        <h1>Kentucky Wildcats - Complete Player Statistics</h1>
+        
+        <!-- Controls -->
+        <div class="controls">
+            <select id="seasonSelect"></select>
+            
+            <label>
+                <input type="checkbox" id="gridViewToggle"> Grid View
+            </label>
+            
+            <label>
+                <input type="checkbox" id="advancedStatsToggle"> Advanced Stats
+            </label>
+            
+            <label>
+                <input type="checkbox" id="shootingStatsToggle"> Shooting Breakdown
+            </label>
         </div>
-    </nav>
-
-    <div id="searchModal" class="search-modal">
-        <div class="search-container">
-            <div class="search-header">
-                <h3 style="margin: 0;">Search BBN Stats</h3>
-                <button class="search-close" onclick="closeSearch()">&times;</button>
-            </div>
-            <div class="search-input-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search players, staff, games, and more..." autocomplete="off">
-            </div>
-            <div id="searchResults" class="search-results">
-                <div class="no-results">Start typing to search for players, staff, games, and more...</div>
-            </div>
-        </div>
-    </div>
-
-    <header class="players-header text-center mb-5" id="playersPageHeader">
-        <div class="container">
-            <div class="d-flex justify-content-center align-items-center flex-wrap gap-3">
-                <h1 class="display-4 fw-bold mb-0">Kentucky Basketball Players</h1>
-                <select class="form-select season-selector bg-white text-uk-blue" id="seasonSelect">
-                    <option value="2025" selected>2025-2026</option>
-                    <option value="2024">2024-2025</option>
-                </select>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="advancedStatsToggle">
-                    <label class="form-check-label text-white" for="advancedStatsToggle">Advanced Stats</label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="gridViewToggle">
-                    <label class="form-check-label text-white" for="gridViewToggle">Grid View</label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="pieViewToggle">
-                    <label class="form-check-label text-white" for="pieViewToggle">Pie View</label>
-                </div>
-            </div>
-            <p class="text-white-50 mt-2 mb-0">Click on any player to view detailed profile</p>
-        </div>
-    </header>
-
-    <main class="container mb-5">
-        <section id="playerListSection">
+        
+        <!-- Error Message -->
+        <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+        
+        <!-- Table View -->
+        <div id="playerListSection">
             <div class="table-responsive">
-                <table class="table stats-table">
+                <table class="stats-table">
                     <thead>
                         <tr>
-                            <th>Player</th>
-                            <th data-sort-key="grade">Grade<span class="sort-arrow"></span></th>
-                            <th data-sort-key="pos">POS<span class="sort-arrow"></span></th>
-                            <th data-sort-key="ht">HT<span class="sort-arrow"></span></th>
-                            <th data-sort-key="wt">WT<span class="sort-arrow"></span></th>
-                            <th class="advanced-stat" data-sort-key="mpg">MPG<span class="sort-arrow"></span></th>
-                            <th data-sort-key="ppg">PPG<span class="sort-arrow"></span></th>
-                            <th data-sort-key="rpg">RPG<span class="sort-arrow"></span></th>
-                            <th data-sort-key="apg">APG<span class="sort-arrow"></span></th>
-                            <th data-sort-key="spg">SPG<span class="sort-arrow"></span></th>
-                            <th data-sort-key="bpg">BPG<span class="sort-arrow"></span></th>
-                            <th class="advanced-stat" data-sort-key="tpg">TO<span class="sort-arrow"></span></th>
-                            <th class="advanced-stat" data-sort-key="fgPct">FG%<span class="sort-arrow"></span></th>
-                            <th class="advanced-stat" data-sort-key="threePct">3P%<span class="sort-arrow"></span></th>
-                            <th class="advanced-stat" data-sort-key="ftPct">FT%<span class="sort-arrow"></span></th>
-                            <th class="advanced-stat" data-sort-key="tsPct">TS%<span class="sort-arrow"></span></th>
-                            <th class="advanced-stat" data-sort-key="per">PER<span class="sort-arrow"></span></th>
-                            <th class="advanced-stat" data-sort-key="eff">EFF<span class="sort-arrow"></span></th>
-                            <th class="advanced-stat" data-sort-key="usgRate">USG<span class="sort-arrow"></span></th>
-                            <th class="advanced-stat" data-sort-key="ortg">ORtg<span class="sort-arrow"></span></th>
-                            <th class="advanced-stat" data-sort-key="drtg">DRtg<span class="sort-arrow"></span></th>
-                            <th data-sort-key="rating">Rating<span class="sort-arrow"></span></th>
+                            <th data-sort-key="name">Player</th>
+                            <th data-sort-key="position">Pos</th>
+                            <th data-sort-key="games">G</th>
+                            <th data-sort-key="starts">GS</th>
+                            <th data-sort-key="minutes">MIN</th>
+                            
+                            <!-- Basic Stats -->
+                            <th data-sort-key="ppg">PPG</th>
+                            <th data-sort-key="rpg">RPG</th>
+                            <th data-sort-key="apg">APG</th>
+                            <th data-sort-key="spg">SPG</th>
+                            <th data-sort-key="bpg">BPG</th>
+                            <th data-sort-key="tpg">TO</th>
+                            <th data-sort-key="fpg">PF</th>
+                            
+                            <!-- Shooting -->
+                            <th data-sort-key="fg">FG%</th>
+                            <th data-sort-key="two">2P%</th>
+                            <th data-sort-key="three">3P%</th>
+                            <th data-sort-key="ft">FT%</th>
+                            
+                            <!-- Advanced -->
+                            <th class="advanced-stat" data-sort-key="ts">TS%</th>
+                            <th class="advanced-stat" data-sort-key="efg">eFG%</th>
+                            <th class="advanced-stat" data-sort-key="ortg">ORtg</th>
+                            <th class="advanced-stat" data-sort-key="drtg">DRtg</th>
+                            <th class="advanced-stat" data-sort-key="nrtg">NetRtg</th>
+                            <th class="advanced-stat" data-sort-key="usg">USG%</th>
+                            <th class="advanced-stat" data-sort-key="ast_to">AST/TO</th>
+                            <th class="advanced-stat" data-sort-key="orb_pct">ORB%</th>
+                            <th class="advanced-stat" data-sort-key="ftr">FTr</th>
+                            <th class="advanced-stat" data-sort-key="ws">WS</th>
+                            <th class="advanced-stat" data-sort-key="ws40">WS/40</th>
+                            <th class="advanced-stat" data-sort-key="por">POR</th>
+                            
+                            <!-- Shooting Breakdown -->
+                            <th class="shooting-stat" data-sort-key="dunks">Dunks</th>
+                            <th class="shooting-stat" data-sort-key="layups">Layups</th>
+                            <th class="shooting-stat" data-sort-key="jumpers">Jumpers</th>
+                            <th class="shooting-stat" data-sort-key="assisted">Ast%</th>
+                            
+                            <th data-sort-key="rating">Rating</th>
                         </tr>
                     </thead>
-                    <tbody id="playersTableBody"></tbody>
+                    <tbody id="playerStats"></tbody>
                 </table>
             </div>
-        </section>
+        </div>
         
-        <section id="playersGridView" class="grid-container"></section>
-
-        <section id="playersPieView" class="pie-view-container" style="display: none;">
-            <div class="row g-4">
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="pie-chart-card">
-                        <canvas id="minutesPie" width="300" height="300"></canvas>
-                    </div>
+        <!-- Grid View -->
+        <div id="playersGridView" style="display: none;"></div>
+        
+        <!-- COMPREHENSIVE Player Detail View -->
+        <div id="playerDetailSection" style="display: none;">
+            <button id="backToList" class="btn btn-primary">← Back to List</button>
+            
+            <div id="playerDetailContent">
+                <!-- Header will be inserted here -->
+                
+                <!-- Basic Stats Section -->
+                <div class="stats-section">
+                    <h3>Season Overview</h3>
+                    <div id="basicStats"></div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="pie-chart-card">
-                        <canvas id="pointsPie" width="300" height="300"></canvas>
-                    </div>
+                
+                <!-- Per-Game Averages -->
+                <div class="stats-section">
+                    <h3>Per-Game Averages</h3>
+                    <div id="perGameStats"></div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="pie-chart-card">
-                        <canvas id="assistsPie" width="300" height="300"></canvas>
-                    </div>
+                
+                <!-- Per-40 Minutes -->
+                <div class="stats-section">
+                    <h3>Per-40 Minute Stats</h3>
+                    <div id="per40Stats"></div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="pie-chart-card">
-                        <canvas id="reboundsPie" width="300" height="300"></canvas>
-                    </div>
+                
+                <!-- Shooting Breakdown -->
+                <div class="stats-section">
+                    <h3>Complete Shooting Breakdown</h3>
+                    <div id="shootingBreakdown"></div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="pie-chart-card">
-                        <canvas id="stealsPie" width="300" height="300"></canvas>
-                    </div>
+                
+                <!-- Shot Attempts Distribution -->
+                <div class="stats-section">
+                    <h3>Shot Selection</h3>
+                    <div id="shotDistribution"></div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="pie-chart-card">
-                        <canvas id="blocksPie" width="300" height="300"></canvas>
-                    </div>
+                
+                <!-- Advanced Metrics -->
+                <div class="stats-section">
+                    <h3>Advanced Metrics</h3>
+                    <div id="advancedMetrics"></div>
                 </div>
-            </div>
-        </section>
-
-        <section id="playerDetailSection">
-            <div class="player-detail-header text-center">
-                <button id="backButton" class="btn btn-primary back-button">
-                    <i class="fas fa-arrow-left"></i> Back to Players
-                </button>
-                <div class="container">
-                    <img id="detailPlayerPhoto" src="" class="player-photo-lg" alt="Player Photo">
-                    <h2 id="detailPlayerName" class="mb-1"></h2>
-                    <div class="social-media">
-                        <div class="social-links">
-                            <a id="x-link" class="social-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-x"></i> 
-                            </a>
-                            <a id="instagram-link" class="social-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-instagram"></i> Instagram
-                            </a>
-                        </div>
-                    </div>
-                    <div id="detailPlayerInfo" class="mb-2"></div>
-                    <div id="detailPlayerRating" class="fs-5 fw-bold"></div>
+                
+                <!-- Four Factors -->
+                <div class="stats-section">
+                    <h3>Four Factors</h3>
+                    <div id="fourFactors"></div>
                 </div>
-            </div>
-
-            <div class="container">
-                <div class="row mb-4 g-3">
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <div class="stat-card p-3 text-center h-100">
-                            <h6>Minutes</h6>
-                            <p id="statMinutes" class="fw-bold fs-4 text-uk-blue mb-0">-</p>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <div class="stat-card p-3 text-center h-100">
-                            <h6>Points</h6>
-                            <p id="statPoints" class="fw-bold fs-4 text-uk-blue mb-0">-</p>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <div class="stat-card p-3 text-center h-100">
-                            <h6>Assists</h6>
-                            <p id="statAssists" class="fw-bold fs-4 text-uk-blue mb-0">-</p>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <div class="stat-card p-3 text-center h-100">
-                            <h6>Rebounds</h6>
-                            <p id="statRebounds" class="fw-bold fs-4 text-uk-blue mb-0">-</p>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <div class="stat-card p-3 text-center h-100">
-                            <h6>Steals</h6>
-                            <p id="statSteals" class="fw-bold fs-4 text-uk-blue mb-0">-</p>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <div class="stat-card p-3 text-center h-100">
-                            <h6>Blocks</h6>
-                            <p id="statBlocks" class="fw-bold fs-4 text-uk-blue mb-0">-</p>
-                        </div>
-                    </div>
+                
+                <!-- Win Shares -->
+                <div class="stats-section">
+                    <h3>Win Shares & Impact</h3>
+                    <div id="winShares"></div>
                 </div>
-
-                <div class="card mb-4">
-                    <div class="card-header bg-uk-blue text-white">
-                        <h5 class="mb-0">Shooting Stats</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row text-center">
-                            <div class="col-6 col-md-3 mb-3">
-                                <p class="mb-1" title="Field Goal Percentage">FG%</p>
-                                <span id="statFgPct" class="fw-bold fs-5 d-block">-</span>
-                            </div>
-                            <div class="col-6 col-md-3 mb-3">
-                                <p class="mb-1" title="Three Point Percentage">3P%</p>
-                                <span id="statThreePct" class="fw-bold fs-5 d-block">-</span>
-                            </div>
-                            <div class="col-6 col-md-3 mb-3">
-                                <p class="mb-1" title="Free Throw Percentage">FT%</p>
-                                <span id="statFtPct" class="fw-bold fs-5 d-block">-</span>
-                            </div>
-                            <div class="col-6 col-md-3 mb-3">
-                                <p class="mb-1" title="True Shooting Percentage">TS%</p>
-                                <span id="statTsPct" class="fw-bold fs-5 d-block">-</span>
-                            </div>
-                        </div>
-                    </div>
+                
+                <!-- Rebounding Details -->
+                <div class="stats-section">
+                    <h3>Rebounding Breakdown</h3>
+                    <div id="reboundingDetails"></div>
                 </div>
-
-                <div class="card mb-4">
-                    <div class="card-header bg-uk-blue text-white">
-                        <h5 class="mb-0">Advanced Stats</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row text-center">
-                            <div class="col-6 col-md-4 mb-3">
-                                <p class="mb-1" title="Player Efficiency Rating">PER</p>
-                                <span id="statPer" class="fw-bold fs-5 d-block">-</span>
-                            </div>
-                            <div class="col-6 col-md-4 mb-3">
-                                <p class="mb-1" title="Efficiency">EFF</p>
-                                <span id="statEff" class="fw-bold fs-5 d-block">-</span>
-                            </div>
-                            <div class="col-6 col-md-4 mb-3">
-                                <p class="mb-1" title="Offensive Rating">ORtg</p>
-                                <span id="statOrtg" class="fw-bold fs-5 d-block">-</span>
-                            </div>
-                            <div class="col-6 col-md-4 mb-3">
-                                <p class="mb-1" title="Defensive Rating">DRtg</p>
-                                <span id="statDrtg" class="fw-bold fs-5 d-block">-</span>
-                            </div>
-                            <div class="col-6 col-md-4 mb-3">
-                                <p class="mb-1" title="Usage Percentage">USG%</p>
-                                <span id="statUsgRate" class="fw-bold fs-5 d-block">-</span>
-                            </div>
-                            <div class="col-6 col-md-4 mb-3">
-                                <p class="mb-1" title="Box Plus/Minus">BPM</p>
-                                <span id="statBpm" class="fw-bold fs-5 d-block">-</span>
-                            </div>
-                        </div>
-                    </div>
+                
+                <!-- Career History -->
+                <div class="stats-section" id="careerSection" style="display: none;">
+                    <h3>Career History</h3>
+                    <div id="careerHistory"></div>
                 </div>
-
-                <div class="row g-4 mb-4">
-                    <div class="col-md-5">
-                        <div class="card h-100">
-                            <div class="card-header bg-uk-blue text-white">
-                                <h5 class="mb-0">Player Bio</h5>
-                            </div>
-                            <div class="card-body">
-                                <p id="playerBio" class="mb-0">Loading bio...</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="card h-100">
-                            <div class="card-header bg-uk-blue text-white">
-                                <h5 class="mb-0">Past Seasons</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-hover mb-0 past-seasons-table">
-                                        <thead class="bg-light">
-                                            <tr>
-                                                <th>Year</th>
-                                                <th>Team</th>
-                                                <th>Grade</th>
-                                                <th>GP</th>
-                                                <th>MPG</th>
-                                                <th>PPG</th>
-                                                <th>RPG</th>
-                                                <th>APG</th>
-                                                <th>BPG</th>
-                                                <th>SPG</th>
-                                                <th>FG%</th>
-                                                <th>3P%</th>
-                                                <th>FT%</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="pastSeasonsBody"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
+                <!-- Game Log -->
+                <div class="stats-section">
+                    <h3>Game-by-Game Log</h3>
+                    <div id="gameLog"></div>
                 </div>
-
-                <div class="row g-4 mb-4">
-                    <div class="col-md-5">
-                        <div class="card">
-                            <div class="card-header bg-uk-blue text-white">
-                                <h5 class="mb-0">Recent Performances</h5>
-                            </div>
-                            <div class="card-body text-center">
-                                <div id="recentRatings" class="d-flex justify-content-center gap-2 mb-3 flex-wrap"></div>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <p class="mb-1 small">Best</p>
-                                        <div id="statBestRating" class="fw-bold">-</div>
-                                    </div>
-                                    <div class="col-4">
-                                        <p class="mb-1 small">Worst</p>
-                                        <div id="statWorstRating" class="fw-bold">-</div>
-                                    </div>
-                                    <div class="col-4">
-                                        <p class="mb-1 small">Consistency</p>
-                                        <div id="statConsistency" class="fw-bold">-</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="card h-100">
-                            <div class="card-header bg-uk-blue text-white">
-                                <h5 class="mb-0">Game Logs</h5>
-                            </div>
-                            <div class="card-body p-0">
-                                <div class="table-responsive">
-                                    <table class="table table-hover mb-0">
-                                        <thead class="bg-light">
-                                            <tr>
-                                                <th>Date</th>
-                                                <th>Opponent</th>
-                                                <th>MIN</th>
-                                                <th>PTS</th>
-                                                <th>Rating</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="gameLogsBody"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <div class="modal fade" id="gameStatsModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-uk-blue text-white">
-                    <h5 class="modal-title">Game Details</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body" id="gameStatsContent"></div>
             </div>
         </div>
     </div>
-
-    <footer class="bg-dark text-white py-4">
-        <div class="container text-center">
-            <p class="mb-0">&copy; 2025 BBN Stats. All rights reserved.<br>
-            University of Kentucky Basketball Statistics</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../scripts/players.js"></script>
-    <script src="../scripts/search.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script src="../scripts/players_complete.js"></script>
 </body>
 </html>
