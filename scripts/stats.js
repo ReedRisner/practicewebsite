@@ -26,12 +26,15 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Update value
             let displayValue = data.value;
-            if (title.includes('%') || ['3P%', '2P%', 'FT%', 'Offensive TOV%', 'Defensive TOV%'].includes(title)) {
+            
+            // Handle percentage stats - add % symbol after the number
+            if (title.includes('%') || ['3P%', '2P%', 'FT%'].includes(title)) {
                 displayValue = displayValue.replace('%', '');
                 valueElement.classList.add('percent-value');
             } else {
                 valueElement.classList.remove('percent-value');
             }
+            
             valueElement.textContent = displayValue;
             
             // Update ranking
