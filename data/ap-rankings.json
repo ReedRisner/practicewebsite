@@ -1,131 +1,131 @@
 {
-  "lastUpdated": "2026-02-03T23:35:23.002Z",
   "apPollDate": "Through Games JAN. 25, 2026",
+  "lastUpdated": "2026-02-04T23:02:17.629821",
   "teams": {
     "arizona": {
       "rank": 1,
       "school": "Arizona",
-      "points": "1475"
+      "record": "22-0"
     },
     "michigan": {
       "rank": 2,
       "school": "Michigan",
-      "points": "1388"
+      "record": "20-1"
     },
-    "uconn": {
+    "connecticut": {
       "rank": 3,
       "school": "UConn",
-      "points": "1367"
+      "record": "21-1"
     },
     "duke": {
       "rank": 4,
       "school": "Duke",
-      "points": "1314"
+      "record": "20-1"
     },
     "illinois": {
       "rank": 5,
       "school": "Illinois",
-      "points": "1172"
+      "record": "19-3"
     },
     "gonzaga": {
       "rank": 6,
       "school": "Gonzaga",
-      "points": "1167"
+      "record": "22-1"
     },
     "iowa state": {
       "rank": 7,
       "school": "Iowa State",
-      "points": "1130"
+      "record": "20-2"
     },
     "houston": {
       "rank": 8,
       "school": "Houston",
-      "points": "1067"
+      "record": "19-2"
     },
     "nebraska": {
       "rank": 9,
       "school": "Nebraska",
-      "points": "1036"
+      "record": "20-2"
     },
     "michigan state": {
       "rank": 10,
       "school": "Michigan State",
-      "points": "950"
+      "record": "19-3"
     },
     "kansas": {
       "rank": 11,
       "school": "Kansas",
-      "points": "847"
+      "record": "16-5"
     },
     "purdue": {
       "rank": 12,
       "school": "Purdue",
-      "points": "697"
+      "record": "18-4"
     },
     "texas tech": {
       "rank": 13,
       "school": "Texas Tech",
-      "points": "638"
+      "record": "16-5"
     },
     "north carolina": {
       "rank": 14,
       "school": "North Carolina",
-      "points": "633"
+      "record": "17-4"
     },
     "vanderbilt": {
       "rank": 15,
       "school": "Vanderbilt",
-      "points": "627"
+      "record": "19-3"
     },
     "byu": {
       "rank": 16,
       "school": "BYU",
-      "points": "622"
+      "record": "17-4"
     },
     "florida": {
       "rank": 17,
       "school": "Florida",
-      "points": "618"
+      "record": "16-6"
     },
     "virginia": {
       "rank": 18,
       "school": "Virginia",
-      "points": "578"
+      "record": "18-3"
     },
-    "saint louis": {
+    "st louis": {
       "rank": 19,
       "school": "Saint Louis",
-      "points": "353"
+      "record": "21-1"
     },
     "clemson": {
       "rank": 20,
       "school": "Clemson",
-      "points": "284"
+      "record": "18-4"
     },
     "arkansas": {
       "rank": 21,
       "school": "Arkansas",
-      "points": "276"
+      "record": "16-6"
     },
-    "st. john's": {
+    "st johns": {
       "rank": 22,
       "school": "St. John's",
-      "points": "199"
+      "record": "16-5"
     },
-    "miami (oh)": {
+    "miami ohio": {
       "rank": 23,
       "school": "Miami (OH)",
-      "points": "170"
+      "record": "22-0"
     },
     "louisville": {
       "rank": 24,
       "school": "Louisville",
-      "points": "148"
+      "record": "15-6"
     },
     "tennessee": {
       "rank": 25,
       "school": "Tennessee",
-      "points": "134"
+      "record": "15-6"
     }
   }
 }
