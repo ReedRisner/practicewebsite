@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let displayValue = data.value;
             
             // Handle percentage stats - add % symbol after the number
-            if (title.includes('%') || ['3P%', '2P%', 'FT%'].includes(title)) {
+            if (title.includes('%') || ['3P%', '2P%', 'FT%', 'Opp 3P%', 'Opp 2P%', 'Opp FT%'].includes(title)) {
                 displayValue = displayValue.replace('%', '');
                 valueElement.classList.add('percent-value');
             } else {
