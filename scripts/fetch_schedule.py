@@ -8,26 +8,46 @@ import requests
 import json
 from datetime import datetime
 import os
+import sys
 
-def fetch_schedule(season):
+# API Configuration - uses same key as your existing workflow
+API_KEY = os.environ.get('BASKETBALL_API_KEY', '')
+
+def fetch_schedule(season, api_key=None):
     """
     Fetch schedule data from API for a specific season
     Args:
         season (int): Year the season starts (e.g., 2025 for 2025-26 season)
+        api_key (str): API key for authentication
     """
-    # API endpoint - season parameter is the year the season starts
+    # API endpoint - season parameter is the year the season ENDS
     api_season = season + 1  # API uses end year (2026 for 2025-26 season)
     url = f"https://api.collegebasketballdata.com/games?team=Kentucky&season={api_season}"
     
     print(f"Fetching schedule for {season}-{season+1} season...")
     print(f"URL: {url}")
     
+    headers = {}
+    if api_key:
+        headers['Authorization'] = f'Bearer {api_key}'
+        print("✓ Using API key for authentication")
+    else:
+        print("⚠️  No API key provided - request will likely fail")
+    
     try:
-        response = requests.get(url, timeout=30)
+        response = requests.get(url, headers=headers, timeout=30)
         response.raise_for_status()
         data = response.json()
         print(f"✓ Fetched {len(data)} games")
         return data
+    except requests.exceptions.HTTPError as e:
+        if e.response.status_code == 401:
+            print(f"✗ Error: API authentication failed")
+            print(f"   Make sure BASKETBALL_API_KEY is set in GitHub Secrets")
+            return None
+        else:
+            print(f"✗ HTTP Error {e.response.status_code}: {e}")
+            return None
     except requests.exceptions.RequestException as e:
         print(f"✗ Error fetching schedule: {e}")
         return None
@@ -60,7 +80,6 @@ def format_time(start_date_str):
     try:
         dt = datetime.fromisoformat(start_date_str.replace('Z', '+00:00'))
         # Convert to EST/EDT (UTC-5/UTC-4)
-        # For simplicity, using EST (UTC-5)
         from datetime import timedelta
         dt_est = dt - timedelta(hours=5)
         
@@ -194,26 +213,48 @@ def save_schedule(schedule_data, season, output_dir='data'):
 
 def main():
     """Main execution function"""
+    # Get API key from environment variable or command line
+    api_key = API_KEY
+    
+    if not api_key and len(sys.argv) > 1:
+        api_key = sys.argv[1]
+    
+    if not api_key:
+        print("\n" + "="*60)
+        print("⚠️  WARNING: No API Key Found")
+        print("="*60)
+        print("\nMake sure BASKETBALL_API_KEY is set:")
+        print("  - Environment variable: export BASKETBALL_API_KEY='your-key'")
+        print("  - Command line: python fetch_schedule.py YOUR_API_KEY")
+        print("  - GitHub Secret: Add BASKETBALL_API_KEY in repository settings")
+        print("\n" + "="*60 + "\n")
+    
     # Fetch schedules for multiple seasons
     seasons = [2024, 2025]  # 2024-25 and 2025-26 seasons
     
+    success_count = 0
     for season in seasons:
         print(f"\n{'='*50}")
         print(f"Processing {season}-{season+1} Season")
         print(f"{'='*50}")
         
-        raw_data = fetch_schedule(season)
+        raw_data = fetch_schedule(season, api_key)
         
         if raw_data:
             processed_data = process_schedule(raw_data, season)
             save_schedule(processed_data, season)
             print(f"✓ Successfully processed {len(processed_data)} games")
+            success_count += 1
         else:
             print(f"✗ Failed to process {season}-{season+1} season")
     
     print("\n" + "="*50)
-    print("Schedule fetch complete!")
+    print(f"Schedule fetch complete! ({success_count}/{len(seasons)} seasons)")
     print("="*50)
+    
+    # Exit with error code if no seasons were successful
+    if success_count == 0:
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
