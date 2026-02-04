@@ -56,6 +56,18 @@
             "Blocks": {
                 "value": "4.3",
                 "rank": "89"
+            },
+            "Opp 3P%": {
+                "value": "32.1",
+                "rank": "75"
+            },
+            "Opp 2P%": {
+                "value": "48.3",
+                "rank": "102"
+            },
+            "Opp FT%": {
+                "value": "68.5",
+                "rank": "45"
             }
         }
     },
@@ -63,10 +75,10 @@
         "rankings": {
             "Overall Record": "15-7",
             "AP Poll": "N/A",
-            "Conference Standings": "#3",
-            "KenPom": "#30",
+            "Conference Standings": "#5",
+            "KenPom": "#32",
             "NET Rankings": "#28",
-            "Bracketology": "No. 7 Seed"
+            "Bracketology": "No. 8 Seed"
         },
         "stats": {
             "Offensive Rating": {
@@ -89,6 +101,18 @@
                 "value": "0.0",
                 "rank": "0"
             },
+            "3P%": {
+                "value": "0.0",
+                "rank": "0"
+            },
+            "2P%": {
+                "value": "0.0",
+                "rank": "0"
+            },
+            "FT%": {
+                "value": "0.0",
+                "rank": "0"
+            },
             "Assists": {
                 "value": "0.0",
                 "rank": "0"
@@ -105,15 +129,15 @@
                 "value": "0.0",
                 "rank": "0"
             },
-            "3P%": {
+            "Opp 3P%": {
                 "value": "0.0",
                 "rank": "0"
             },
-            "2P%": {
+            "Opp 2P%": {
                 "value": "0.0",
                 "rank": "0"
             },
-            "FT%": {
+            "Opp FT%": {
                 "value": "0.0",
                 "rank": "0"
             }
