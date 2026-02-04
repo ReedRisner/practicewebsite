@@ -156,43 +156,33 @@ def fetch_and_calculate_stats():
         print("\nCalculating statistics...")
         
         # Get Kentucky values from dictionaries
-        uk_off_rating = safe_get(uk_eff, 'offense')
-        uk_def_rating = safe_get(uk_eff, 'defense')
-        uk_pace = safe_get(uk_eff, 'tempo')
+        uk_off_rating = safe_get(uk_eff, 'offensiveRating')
+        uk_def_rating = safe_get(uk_eff, 'defensiveRating')
+        uk_pace = safe_get(uk_stats, 'pace')
         uk_net_rating = uk_off_rating - uk_def_rating if uk_off_rating and uk_def_rating else 0
         
+        # Get teamStats and opponentStats dictionaries
+        team_stats = uk_stats.get('teamStats', {})
+        opp_stats = uk_stats.get('opponentStats', {})
+        
         uk_games = safe_get(uk_stats, 'games', 1)
-        uk_to = safe_get(uk_stats, 'turnovers') / uk_games if uk_games > 0 else 0
-        uk_ast = safe_get(uk_stats, 'assists') / uk_games if uk_games > 0 else 0
-        uk_reb = safe_get(uk_stats, 'total_rebounds') / uk_games if uk_games > 0 else 0
-        uk_stl = safe_get(uk_stats, 'steals') / uk_games if uk_games > 0 else 0
-        uk_blk = safe_get(uk_stats, 'blocks') / uk_games if uk_games > 0 else 0
         
-        # Shooting percentages
-        uk_fg3_pct = safe_get(uk_stats, 'three_point_field_goal_pct')
-        if uk_fg3_pct < 1:
-            uk_fg3_pct *= 100
+        # Per-game stats from teamStats
+        uk_to = safe_get(team_stats.get('turnovers', {}), 'total') / uk_games if uk_games > 0 else 0
+        uk_ast = safe_get(team_stats, 'assists') / uk_games if uk_games > 0 else 0
+        uk_reb = safe_get(team_stats.get('rebounds', {}), 'total') / uk_games if uk_games > 0 else 0
+        uk_stl = safe_get(team_stats, 'steals') / uk_games if uk_games > 0 else 0
+        uk_blk = safe_get(team_stats, 'blocks') / uk_games if uk_games > 0 else 0
         
-        uk_fg2_pct = safe_get(uk_stats, 'two_point_field_goal_pct')
-        if uk_fg2_pct < 1:
-            uk_fg2_pct *= 100
+        # Shooting percentages from teamStats
+        uk_fg3_pct = safe_get(team_stats.get('threePointFieldGoals', {}), 'pct')
+        uk_fg2_pct = safe_get(team_stats.get('twoPointFieldGoals', {}), 'pct')
+        uk_ft_pct = safe_get(team_stats.get('freeThrows', {}), 'pct')
         
-        uk_ft_pct = safe_get(uk_stats, 'free_throw_pct')
-        if uk_ft_pct < 1:
-            uk_ft_pct *= 100
-        
-        # Opponent shooting percentages
-        uk_opp_fg3_pct = safe_get(uk_stats, 'opponent_three_point_field_goal_pct')
-        if uk_opp_fg3_pct < 1:
-            uk_opp_fg3_pct *= 100
-        
-        uk_opp_fg2_pct = safe_get(uk_stats, 'opponent_two_point_field_goal_pct')
-        if uk_opp_fg2_pct < 1:
-            uk_opp_fg2_pct *= 100
-        
-        uk_opp_ft_pct = safe_get(uk_stats, 'opponent_free_throw_pct')
-        if uk_opp_ft_pct < 1:
-            uk_opp_ft_pct *= 100
+        # Opponent shooting percentages from opponentStats
+        uk_opp_fg3_pct = safe_get(opp_stats.get('threePointFieldGoals', {}), 'pct')
+        uk_opp_fg2_pct = safe_get(opp_stats.get('twoPointFieldGoals', {}), 'pct')
+        uk_opp_ft_pct = safe_get(opp_stats.get('freeThrows', {}), 'pct')
         
         print(f"\n  Extracted Values:")
         print(f"    Offensive Rating: {uk_off_rating:.1f}")
@@ -212,11 +202,11 @@ def fetch_and_calculate_stats():
         print(f"    Opp FT%: {uk_opp_ft_pct:.1f}")
         
         # Collect all values for ranking
-        all_off_ratings = [safe_get(t, 'offense') for t in all_eff]
-        all_def_ratings = [safe_get(t, 'defense') for t in all_eff]
-        all_paces = [safe_get(t, 'tempo') for t in all_eff]
-        all_net_ratings = [safe_get(t, 'offense') - safe_get(t, 'defense') for t in all_eff]
+        all_off_ratings = [safe_get(t, 'offensiveRating') for t in all_eff]
+        all_def_ratings = [safe_get(t, 'defensiveRating') for t in all_eff]
+        all_net_ratings = [safe_get(t, 'offensiveRating') - safe_get(t, 'defensiveRating') for t in all_eff]
         
+        all_paces = []
         all_to_pgs = []
         all_ast_pgs = []
         all_reb_pgs = []
@@ -231,43 +221,28 @@ def fetch_and_calculate_stats():
         
         for team in all_stats:
             games = safe_get(team, 'games', 1)
+            team_stats_dict = team.get('teamStats', {})
+            opp_stats_dict = team.get('opponentStats', {})
+            
+            # Add pace
+            all_paces.append(safe_get(team, 'pace'))
+            
             if games > 0:
-                all_to_pgs.append(safe_get(team, 'turnovers') / games)
-                all_ast_pgs.append(safe_get(team, 'assists') / games)
-                all_reb_pgs.append(safe_get(team, 'total_rebounds') / games)
-                all_stl_pgs.append(safe_get(team, 'steals') / games)
-                all_blk_pgs.append(safe_get(team, 'blocks') / games)
+                all_to_pgs.append(safe_get(team_stats_dict.get('turnovers', {}), 'total') / games)
+                all_ast_pgs.append(safe_get(team_stats_dict, 'assists') / games)
+                all_reb_pgs.append(safe_get(team_stats_dict.get('rebounds', {}), 'total') / games)
+                all_stl_pgs.append(safe_get(team_stats_dict, 'steals') / games)
+                all_blk_pgs.append(safe_get(team_stats_dict, 'blocks') / games)
             
-            fg3 = safe_get(team, 'three_point_field_goal_pct')
-            if fg3 < 1:
-                fg3 *= 100
-            all_fg3_pcts.append(fg3)
-            
-            fg2 = safe_get(team, 'two_point_field_goal_pct')
-            if fg2 < 1:
-                fg2 *= 100
-            all_fg2_pcts.append(fg2)
-            
-            ft = safe_get(team, 'free_throw_pct')
-            if ft < 1:
-                ft *= 100
-            all_ft_pcts.append(ft)
+            # Shooting percentages (already in percentage format)
+            all_fg3_pcts.append(safe_get(team_stats_dict.get('threePointFieldGoals', {}), 'pct'))
+            all_fg2_pcts.append(safe_get(team_stats_dict.get('twoPointFieldGoals', {}), 'pct'))
+            all_ft_pcts.append(safe_get(team_stats_dict.get('freeThrows', {}), 'pct'))
             
             # Opponent shooting percentages
-            opp_fg3 = safe_get(team, 'opponent_three_point_field_goal_pct')
-            if opp_fg3 < 1:
-                opp_fg3 *= 100
-            all_opp_fg3_pcts.append(opp_fg3)
-            
-            opp_fg2 = safe_get(team, 'opponent_two_point_field_goal_pct')
-            if opp_fg2 < 1:
-                opp_fg2 *= 100
-            all_opp_fg2_pcts.append(opp_fg2)
-            
-            opp_ft = safe_get(team, 'opponent_free_throw_pct')
-            if opp_ft < 1:
-                opp_ft *= 100
-            all_opp_ft_pcts.append(opp_ft)
+            all_opp_fg3_pcts.append(safe_get(opp_stats_dict.get('threePointFieldGoals', {}), 'pct'))
+            all_opp_fg2_pcts.append(safe_get(opp_stats_dict.get('twoPointFieldGoals', {}), 'pct'))
+            all_opp_ft_pcts.append(safe_get(opp_stats_dict.get('freeThrows', {}), 'pct'))
         
         # Build stats dictionary
         stats = {
