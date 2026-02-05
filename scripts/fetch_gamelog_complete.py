@@ -14,13 +14,20 @@ TEAM = "Kentucky"
 START_YEAR = 2009
 END_YEAR = 2026
 
+def get_headers():
+    """Get request headers with API key"""
+    api_key = os.getenv("BASKETBALL_API_KEY")
+    if not api_key:
+        raise ValueError("BASKETBALL_API_KEY environment variable not set")
+    return {"X-API-Key": api_key}
+
 def fetch_player_game_logs(season):
     """Fetch ALL player game logs for a season"""
     url = f"{API_BASE}/games/players"
     params = {"team": TEAM, "season": season}
     
     try:
-        response = requests.get(url, params=params, timeout=10)
+        response = requests.get(url, params=params, headers=get_headers(), timeout=10)
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
@@ -33,7 +40,7 @@ def fetch_team_game_logs(season):
     params = {"team": TEAM, "season": season}
     
     try:
-        response = requests.get(url, params=params, timeout=10)
+        response = requests.get(url, params=params, headers=get_headers(), timeout=10)
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
@@ -235,7 +242,7 @@ def organize_complete_game_data(player_logs, team_logs):
                 'players': []
             }
         
-        # Add COMPLETE player stats to game
+        # Add player stats
         games_dict[game_id]['players'].append({
             # Player Identity
             'athleteId': game_log.get('athleteId'),
