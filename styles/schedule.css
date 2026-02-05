@@ -137,7 +137,6 @@ body {
         padding: 1.5rem;
         transition: var(--transition);
         border: 2px solid transparent;
-        border-left: 5px solid var(--uk-blue);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -145,26 +144,10 @@ body {
         overflow: hidden;
     }
     
-    .game-card::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 5px;
-        background: var(--uk-blue);
-        transition: var(--transition);
-    }
-    
     .game-card:hover {
         transform: translateX(8px);
         box-shadow: var(--shadow-lg);
         border-color: var(--uk-light-blue);
-    }
-    
-    .game-card:hover::before {
-        width: 8px;
-        background: var(--uk-gold);
     }
     
     .game-card.completed {
@@ -280,8 +263,7 @@ body {
         box-shadow: var(--shadow-sm);
         padding: 1rem;
         transition: var(--transition);
-        border: 2px solid var(--uk-blue);
-        border-left: 4px solid var(--uk-blue);
+        border: 2px solid #e0e0e0;
         display: flex;
         flex-direction: column;
     }
