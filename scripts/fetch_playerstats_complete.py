@@ -308,11 +308,15 @@ def main():
         'seasons': all_seasons_data
     }
     
-    # Ensure data directory exists
-    os.makedirs('../data', exist_ok=True)
+    # --- FIXED PATH HANDLING ---
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    DATA_DIR = os.path.join(BASE_DIR, '..', 'data')
     
-    # Write to file
-    output_path = '../data/playerstats.json'
+    os.makedirs(DATA_DIR, exist_ok=True)
+    
+    output_path = os.path.join(DATA_DIR, 'gamelog.json')
+    print("Writing to:", os.path.abspath(output_path))
+    
     with open(output_path, 'w') as f:
         json.dump(output, f, indent=2)
     
