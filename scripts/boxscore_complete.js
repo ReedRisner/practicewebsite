@@ -88,25 +88,32 @@ function getSeasonFromDate(dateStr) {
     const [year, month] = dateStr.split('-').map(Number);
     
     // Basketball season runs from July (7) to June (6)
-    // If month is July-December (7-12), season is year-nextYear
-    // If month is January-June (1-6), season is prevYear-year
+    // Season format is just the ending year
+    // If month is July-December (7-12), season is nextYear
+    // If month is January-June (1-6), season is year
     
     if (month >= 7) {
-        // Second half of year: 2024-07 through 2024-12 = 2024-25 season
-        return `${year}-${(year + 1).toString().slice(2)}`;
+        // Second half of year: 2024-07 through 2024-12 = 2024-25 season = "2025"
+        return `${year + 1}`;
     } else {
-        // First half of year: 2024-01 through 2024-06 = 2023-24 season
-        return `${year - 1}-${year.toString().slice(2)}`;
+        // First half of year: 2024-01 through 2024-06 = 2023-24 season = "2024"
+        return `${year}`;
     }
 }
 
 function convertToSeasonFormat(dateStr, yearParam) {
-    // yearParam might be "2024" and we need to convert to "2024-25" format
-    // based on the date
+    // yearParam might be "2024" which is already the correct format
+    // or it might be "2024-25" which we need to convert
     
-    // If yearParam already has a hyphen, return it as is
-    if (yearParam.includes('-')) {
+    // If yearParam is just a 4-digit year, return it as is
+    if (yearParam && yearParam.length === 4 && !yearParam.includes('-')) {
         return yearParam;
+    }
+    
+    // If it has a hyphen (like "2024-25"), extract the second year
+    if (yearParam && yearParam.includes('-')) {
+        const parts = yearParam.split('-');
+        return parts[1].length === 2 ? `20${parts[1]}` : parts[1];
     }
     
     // Otherwise, use the date to determine the season
