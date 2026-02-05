@@ -58,10 +58,30 @@ function loadBoxScore() {
         game = findGameById(parseInt(gameId));
     } else if (date && season) {
         game = findGameByDate(date, season);
+        
+        // If not found, adjust the year based on season logic
         if (!game) {
-            const [y, m, d] = date.split('-');
-            const alt = parseInt(m) >= 7 ? `${parseInt(y)-1}-${m}-${d}` : date;
-            game = findGameByDate(alt, season);
+            const [yearStr, month, day] = date.split('-');
+            const year = parseInt(yearStr);
+            const monthNum = parseInt(month);
+            const seasonYear = parseInt(season);
+            
+            // If date year matches season year but month is July-Dec,
+            // the actual game is in the previous calendar year
+            // Example: season=2025, date=2025-11-26 -> actual date is 2024-11-26
+            if (monthNum >= 7 && year === seasonYear) {
+                const adjustedDate = `${year - 1}-${month}-${day}`;
+                console.log(`Adjusting date from ${date} to ${adjustedDate} for season ${season}`);
+                game = findGameByDate(adjustedDate, season);
+            }
+            // If date year is one less than season year and month is Jan-June,
+            // the actual game is in the season year
+            // Example: season=2025, date=2024-01-15 -> actual date is 2025-01-15
+            else if (monthNum < 7 && year === seasonYear - 1) {
+                const adjustedDate = `${seasonYear}-${month}-${day}`;
+                console.log(`Adjusting date from ${date} to ${adjustedDate} for season ${season}`);
+                game = findGameByDate(adjustedDate, season);
+            }
         }
     }
     
@@ -89,8 +109,26 @@ function findGameById(gameId) {
 
 function findGameByDate(dateStr, seasonKey) {
     const seasonData = gameLogsData.seasons[seasonKey];
-    if (!seasonData) return null;
-    return seasonData.games.find(g => g.startDate.split('T')[0] === dateStr);
+    if (!seasonData) {
+        console.error('Season not found:', seasonKey, 'Available seasons:', Object.keys(gameLogsData.seasons));
+        return null;
+    }
+    
+    console.log(`Searching for date ${dateStr} in season ${seasonKey}`);
+    const game = seasonData.games.find(g => {
+        const gameDate = g.startDate.split('T')[0];
+        if (gameDate === dateStr) {
+            console.log(`Found matching game: ${g.opponent} on ${gameDate}`);
+        }
+        return gameDate === dateStr;
+    });
+    
+    if (!game) {
+        console.log(`No game found for ${dateStr}. Available dates in season ${seasonKey}:`, 
+            seasonData.games.map(g => ({ date: g.startDate.split('T')[0], opponent: g.opponent })));
+    }
+    
+    return game;
 }
 
 function getTeamColors(teamName) {
