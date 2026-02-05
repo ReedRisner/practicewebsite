@@ -2,6 +2,7 @@
 """
 Fetch Kentucky Basketball Schedule from College Basketball Data API
 Processes and formats data for BBN Stats website
+Integrates with AP rankings data
 """
 
 import requests
@@ -12,6 +13,66 @@ import sys
 
 # API Configuration - uses same key as your existing workflow
 API_KEY = os.environ.get('BASKETBALL_API_KEY', '')
+
+def load_ap_rankings():
+    """Load AP rankings from local file"""
+    try:
+        rankings_path = 'data/ap-rankings.json'
+        if os.path.exists(rankings_path):
+            with open(rankings_path, 'r') as f:
+                data = json.load(f)
+                print(f"✓ Loaded AP rankings from {rankings_path}")
+                print(f"  Poll date: {data.get('apPollDate', 'Unknown')}")
+                return data.get('teams', {})
+        else:
+            print(f"⚠️  AP rankings file not found at {rankings_path}")
+            return {}
+    except Exception as e:
+        print(f"⚠️  Error loading AP rankings: {e}")
+        return {}
+
+def normalize_team_name(name):
+    """Normalize team name for matching with rankings"""
+    normalized = name.lower().strip()
+    
+    # Common replacements
+    replacements = {
+        'st.': 'st',
+        'miami (oh)': 'miami ohio',
+        'miami-oh': 'miami ohio',
+        'miami (fl)': 'miami',
+        'st john\'s': 'st johns',
+        'saint louis': 'st louis',
+        'unc': 'north carolina',
+        'uconn': 'connecticut',
+    }
+    
+    for old, new in replacements.items():
+        normalized = normalized.replace(old, new)
+    
+    # Remove special characters
+    normalized = normalized.replace('.', '').replace('\'', '').replace('(', '').replace(')', '')
+    normalized = ' '.join(normalized.split())
+    
+    return normalized
+
+def get_team_rank(team_name, rankings):
+    """Get AP ranking for a team"""
+    if not rankings:
+        return None
+    
+    normalized = normalize_team_name(team_name)
+    
+    # Direct match
+    if normalized in rankings:
+        return rankings[normalized].get('rank')
+    
+    # Fuzzy match
+    for key in rankings:
+        if key in normalized or normalized in key:
+            return rankings[key].get('rank')
+    
+    return None
 
 def fetch_schedule(season, api_key=None):
     """
@@ -132,7 +193,7 @@ def format_date(start_date_str):
         from datetime import timedelta
         dt_est = dt - timedelta(hours=5)
         
-        # Format as "Mon Nov 15"
+        # Format as "Mon Nov 15, 2024"
         day_name = dt_est.strftime("%a")  # Mon, Tue, etc.
         month_name = dt_est.strftime("%b")  # Jan, Feb, etc.
         day_num = dt_est.strftime("%d").lstrip('0')  # 15, 1, etc.
@@ -140,11 +201,11 @@ def format_date(start_date_str):
         
         return {
             'day': day_name,
-            'date': f"{month_name} {day_num}, {year}",  # Include year in date string
+            'date': f"{month_name} {day_num}, {year}",
             'year': year,
             'full': dt_est.strftime("%B %d, %Y"),
-            'iso': dt_est.isoformat(),  # For sorting
-            'sort_key': dt_est.strftime("%Y%m%d")  # YYYYMMDD format for easy sorting
+            'iso': dt_est.isoformat(),
+            'sort_key': dt_est.strftime("%Y%m%d")
         }
     except Exception as e:
         print(f"Error parsing date: {e}")
@@ -156,9 +217,9 @@ def is_conference_game(game, kentucky_team_id=135):
     # Both teams must be in SEC
     return game['conferenceGame'] and opponent['conference'] == 'SEC'
 
-def process_schedule(raw_data, season):
+def process_schedule(raw_data, season, rankings):
     """
-    Convert API data to website format
+    Convert API data to website format and integrate rankings
     """
     kentucky_team_id = 135
     processed_games = []
@@ -171,22 +232,25 @@ def process_schedule(raw_data, season):
         if not date_info:
             continue
         
+        # Get opponent ranking
+        opponent_rank = get_team_rank(opponent['name'], rankings)
+        
         game_obj = {
             'date': date_info['date'],
             'day': date_info['day'],
             'year': date_info['year'],
             'opponent': opponent['name'],
-            'opponentId': opponent['id'],  # Use team ID for logo
-            'logo': f"{opponent['id']}.png",  # Team ID based logo
+            'opponentId': opponent['id'],
+            'opponentRank': opponent_rank if opponent_rank else 0,
+            'logo': f"{opponent['id']}.png",
             'location': format_location(game, kentucky_team_id),
             'venue': venue_type,
             'time': format_time(game['startDate']),
             'result': get_game_result(game, kentucky_team_id),
             'conference': is_conference_game(game, kentucky_team_id),
-            'opponentRank': 0,  # Will be updated by frontend from rankings API
             'title': game['gameNotes'] if game['gameNotes'] else None,
-            'exh': False,  # Mark as true for exhibition games if needed
-            '_sortKey': date_info['sort_key']  # Internal field for sorting
+            'exh': False,
+            '_sortKey': date_info['sort_key']
         }
         
         processed_games.append(game_obj)
@@ -230,6 +294,12 @@ def main():
         print("  - GitHub Secret: Add BASKETBALL_API_KEY in repository settings")
         print("\n" + "="*60 + "\n")
     
+    # Load AP rankings once
+    print("\n" + "="*50)
+    print("Loading AP Rankings")
+    print("="*50)
+    rankings = load_ap_rankings()
+    
     # Fetch schedules for multiple seasons
     seasons = [2024, 2025]  # 2024-25 and 2025-26 seasons
     
@@ -242,9 +312,13 @@ def main():
         raw_data = fetch_schedule(season, api_key)
         
         if raw_data:
-            processed_data = process_schedule(raw_data, season)
+            processed_data = process_schedule(raw_data, season, rankings)
             save_schedule(processed_data, season)
+            
+            # Count ranked opponents
+            ranked_games = sum(1 for g in processed_data if g['opponentRank'] > 0)
             print(f"✓ Successfully processed {len(processed_data)} games")
+            print(f"  - {ranked_games} games vs ranked opponents")
             success_count += 1
         else:
             print(f"✗ Failed to process {season}-{season+1} season")
