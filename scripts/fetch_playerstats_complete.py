@@ -14,13 +14,20 @@ TEAM = "Kentucky"
 START_YEAR = 2009
 END_YEAR = 2026
 
+def get_headers():
+    """Get request headers with API key"""
+    api_key = os.getenv("BASKETBALL_API_KEY")
+    if not api_key:
+        raise ValueError("BASKETBALL_API_KEY environment variable not set")
+    return {"X-API-Key": api_key}
+
 def fetch_player_season_stats(season):
     """Fetch ALL player season statistics"""
     url = f"{API_BASE}/stats/player/season"
     params = {"season": season, "team": TEAM}
     
     try:
-        response = requests.get(url, params=params, timeout=10)
+        response = requests.get(url, params=params, headers=get_headers(), timeout=10)
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
@@ -33,7 +40,7 @@ def fetch_player_shooting_stats(season):
     params = {"season": season, "team": TEAM}
     
     try:
-        response = requests.get(url, params=params, timeout=10)
+        response = requests.get(url, params=params, headers=get_headers(), timeout=10)
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
