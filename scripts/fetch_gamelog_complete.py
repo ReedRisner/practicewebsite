@@ -19,7 +19,7 @@ def get_headers():
     api_key = os.getenv("BASKETBALL_API_KEY")
     if not api_key:
         raise ValueError("BASKETBALL_API_KEY environment variable not set")
-    return {"X-API-Key": api_key}
+    return {"Authorization": f"Bearer {api_key}"}
 
 def fetch_player_game_logs(season):
     """Fetch ALL player game logs for a season"""
