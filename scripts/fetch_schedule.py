@@ -136,25 +136,19 @@ def format_date(start_date_str):
         day_name = dt_est.strftime("%a")  # Mon, Tue, etc.
         month_name = dt_est.strftime("%b")  # Jan, Feb, etc.
         day_num = dt_est.strftime("%d").lstrip('0')  # 15, 1, etc.
+        year = dt_est.strftime("%Y")  # 2024, 2025, etc.
         
         return {
             'day': day_name,
             'date': f"{month_name} {day_num}",
-            'full': dt_est.strftime("%B %d, %Y")
+            'year': year,
+            'full': dt_est.strftime("%B %d, %Y"),
+            'iso': dt_est.isoformat(),  # For sorting
+            'sort_key': dt_est.strftime("%Y%m%d")  # YYYYMMDD format for easy sorting
         }
     except Exception as e:
         print(f"Error parsing date: {e}")
         return None
-
-def get_team_logo_filename(team_name):
-    """Generate logo filename from team name"""
-    # Convert to lowercase and replace spaces/special chars with hyphens
-    filename = team_name.lower()
-    filename = filename.replace(' ', '-')
-    filename = filename.replace('&', 'and')
-    filename = filename.replace('.', '')
-    filename = filename.replace("'", '')
-    return f"{filename}.png"
 
 def is_conference_game(game, kentucky_team_id=135):
     """Check if game is a conference game"""
@@ -180,8 +174,10 @@ def process_schedule(raw_data, season):
         game_obj = {
             'date': date_info['date'],
             'day': date_info['day'],
+            'year': date_info['year'],
             'opponent': opponent['name'],
-            'logo': get_team_logo_filename(opponent['name']),
+            'opponentId': opponent['id'],  # Use team ID for logo
+            'logo': f"{opponent['id']}.png",  # Team ID based logo
             'location': format_location(game, kentucky_team_id),
             'venue': venue_type,
             'time': format_time(game['startDate']),
@@ -189,13 +185,18 @@ def process_schedule(raw_data, season):
             'conference': is_conference_game(game, kentucky_team_id),
             'opponentRank': 0,  # Will be updated by frontend from rankings API
             'title': game['gameNotes'] if game['gameNotes'] else None,
-            'exh': False  # Mark as true for exhibition games if needed
+            'exh': False,  # Mark as true for exhibition games if needed
+            '_sortKey': date_info['sort_key']  # Internal field for sorting
         }
         
         processed_games.append(game_obj)
     
-    # Sort by date (earliest first)
-    processed_games.sort(key=lambda x: datetime.strptime(x['date'], "%b %d"))
+    # Sort by full date (YYYYMMDD format, earliest first)
+    processed_games.sort(key=lambda x: x['_sortKey'])
+    
+    # Remove the sort key from final output
+    for game in processed_games:
+        del game['_sortKey']
     
     return processed_games
 
