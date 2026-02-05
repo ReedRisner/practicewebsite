@@ -11,7 +11,7 @@ from datetime import datetime
 
 API_BASE = "https://api.collegebasketballdata.com"
 TEAM = "Kentucky"
-START_YEAR = 2009
+START_YEAR = 2025
 END_YEAR = 2026
 
 def get_headers():
