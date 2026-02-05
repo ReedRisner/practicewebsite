@@ -33,18 +33,24 @@ jobs:
           pip install requests
       
       - name: Fetch complete roster data
+        env:
+          BASKETBALL_API_KEY: ${{ secrets.BASKETBALL_API_KEY }}
         run: |
           cd scripts
           python fetch_roster.py
         continue-on-error: true
       
       - name: Fetch COMPLETE player stats
+        env:
+          BASKETBALL_API_KEY: ${{ secrets.BASKETBALL_API_KEY }}
         run: |
           cd scripts
           python fetch_playerstats_complete.py
         continue-on-error: true
       
       - name: Fetch COMPLETE game logs
+        env:
+          BASKETBALL_API_KEY: ${{ secrets.BASKETBALL_API_KEY }}
         run: |
           cd scripts
           python fetch_gamelog_complete.py
