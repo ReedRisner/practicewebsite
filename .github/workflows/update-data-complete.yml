@@ -1,5 +1,8 @@
 name: Update Kentucky Basketball Data - COMPLETE STATS
 
+permissions:
+  contents: write
+
 on:
   schedule:
     # Run daily at 6 AM UTC (1 AM EST)
