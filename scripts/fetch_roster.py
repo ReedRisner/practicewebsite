@@ -163,7 +163,7 @@ def main():
     
     os.makedirs(DATA_DIR, exist_ok=True)
     
-    output_path = os.path.join(DATA_DIR, 'gamelog.json')
+    output_path = os.path.join(DATA_DIR, 'roster.json')
     print("Writing to:", os.path.abspath(output_path))
     
     with open(output_path, 'w') as f:
