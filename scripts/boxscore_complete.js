@@ -64,6 +64,27 @@ function loadBoxScore() {
     } else if (date && season) {
         console.log('Searching for game by date and season:', { date, season });
         game = findGameByDate(date, season);
+        
+        // If not found and date year doesn't match season, try adjusting the date year
+        if (!game) {
+            const [dateYear, month, day] = date.split('-');
+            const seasonYear = parseInt(season);
+            
+            // If date is in second half of year (July-Dec) but year is season year
+            // Try previous year (e.g., season 2025, date 2025-11-11 -> try 2024-11-11)
+            if (parseInt(month) >= 7 && parseInt(dateYear) === seasonYear) {
+                const adjustedDate = `${seasonYear - 1}-${month}-${day}`;
+                console.log('Trying adjusted date:', adjustedDate);
+                game = findGameByDate(adjustedDate, season);
+            }
+            // If date is in first half of year (Jan-June) but year is season year - 1
+            // Try season year (e.g., season 2025, date 2024-01-15 -> try 2025-01-15)
+            else if (parseInt(month) < 7 && parseInt(dateYear) === seasonYear - 1) {
+                const adjustedDate = `${seasonYear}-${month}-${day}`;
+                console.log('Trying adjusted date:', adjustedDate);
+                game = findGameByDate(adjustedDate, season);
+            }
+        }
     } else if (date) {
         console.log('Searching for game by date (all seasons):', date);
         game = findGameByDateAllSeasons(date);
@@ -96,27 +117,17 @@ function getSeasonFromDate(dateStr) {
         // Second half of year: 2024-07 through 2024-12 = 2024-25 season = "2025"
         return `${year + 1}`;
     } else {
-        // First half of year: 2024-01 through 2024-06 = 2023-24 season = "2024"
+        // First half of year: 2025-01 through 2025-06 = 2024-25 season = "2025"
         return `${year}`;
     }
 }
 
 function convertToSeasonFormat(dateStr, yearParam) {
-    // yearParam might be "2024" which is already the correct format
-    // or it might be "2024-25" which we need to convert
+    // The URL might have season=2024 which represents the 2024-25 season
+    // But our data stores it as "2025" (the ending year)
+    // We need to determine the correct season based on the actual date
     
-    // If yearParam is just a 4-digit year, return it as is
-    if (yearParam && yearParam.length === 4 && !yearParam.includes('-')) {
-        return yearParam;
-    }
-    
-    // If it has a hyphen (like "2024-25"), extract the second year
-    if (yearParam && yearParam.includes('-')) {
-        const parts = yearParam.split('-');
-        return parts[1].length === 2 ? `20${parts[1]}` : parts[1];
-    }
-    
-    // Otherwise, use the date to determine the season
+    // Always use the date to determine the season, ignore yearParam
     return getSeasonFromDate(dateStr);
 }
 
