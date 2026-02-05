@@ -140,7 +140,7 @@ def format_date(start_date_str):
         
         return {
             'day': day_name,
-            'date': f"{month_name} {day_num}",
+            'date': f"{month_name} {day_num}, {year}",  # Include year in date string
             'year': year,
             'full': dt_est.strftime("%B %d, %Y"),
             'iso': dt_est.isoformat(),  # For sorting
