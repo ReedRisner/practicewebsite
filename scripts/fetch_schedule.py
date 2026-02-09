@@ -22,8 +22,8 @@ def load_ap_rankings():
             with open(rankings_path, 'r') as f:
                 data = json.load(f)
                 print(f"✓ Loaded AP rankings from {rankings_path}")
-                print(f"  Poll date: {data.get('apPollDate', 'Unknown')}")
-                return data.get('teams', {})
+                print(f"  Poll date: {data.get('latestPollDate', 'Unknown')}")
+                return data.get('currentRankings', {})
         else:
             print(f"⚠️  AP rankings file not found at {rankings_path}")
             return {}
@@ -184,16 +184,23 @@ def get_game_result(game, kentucky_team_id=135):
         return f"L {uk_score}-{opp_score}"
 
 def format_date(start_date_str):
-    """Format date for display"""
+    """Format date for display - PRESERVES ORIGINAL UTC DATE FOR BOXSCORE LINKING"""
     if not start_date_str:
         return None
     
     try:
-        dt = datetime.fromisoformat(start_date_str.replace('Z', '+00:00'))
-        from datetime import timedelta
-        dt_est = dt - timedelta(hours=5)
+        # Parse the UTC datetime
+        dt_utc = datetime.fromisoformat(start_date_str.replace('Z', '+00:00'))
         
-        # Format as "Mon Nov 15, 2024"
+        # Extract just the DATE part in UTC (this matches the API data)
+        # This is what we'll use for boxscore linking
+        utc_date_str = dt_utc.strftime("%Y-%m-%d")
+        
+        # Convert to EST for display purposes only
+        from datetime import timedelta
+        dt_est = dt_utc - timedelta(hours=5)
+        
+        # Format display strings using EST
         day_name = dt_est.strftime("%a")  # Mon, Tue, etc.
         month_name = dt_est.strftime("%b")  # Jan, Feb, etc.
         day_num = dt_est.strftime("%d").lstrip('0')  # 15, 1, etc.
@@ -205,6 +212,7 @@ def format_date(start_date_str):
             'year': year,
             'full': dt_est.strftime("%B %d, %Y"),
             'iso': dt_est.isoformat(),
+            'utcDate': utc_date_str,  # THIS IS THE KEY - original UTC date for boxscore matching
             'sort_key': dt_est.strftime("%Y%m%d")
         }
     except Exception as e:
@@ -239,6 +247,7 @@ def process_schedule(raw_data, season, rankings):
             'date': date_info['date'],
             'day': date_info['day'],
             'year': date_info['year'],
+            'utcDate': date_info['utcDate'],  # Add UTC date for boxscore linking
             'opponent': opponent['name'],
             'opponentId': opponent['id'],
             'opponentRank': opponent_rank if opponent_rank else 0,
