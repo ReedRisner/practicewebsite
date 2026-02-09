@@ -1,6 +1,7 @@
 /**
  * BBN Stats - Schedule Management
  * Handles loading, displaying, and filtering Kentucky Basketball schedules
+ * Features: Frozen rankings for played games, live rankings for upcoming games
  */
 
 // Utility: Parse game date string to ISO format
@@ -31,7 +32,7 @@ function parseGameDate(dateStr) {
     }
 }
 
-// Rankings Manager - Handles AP Top 25 rankings
+// Rankings Manager - Handles AP Top 25 rankings with frozen rankings for played games
 const RankingsManager = {
     cache: {
         rankings: null,
@@ -43,12 +44,14 @@ const RankingsManager = {
         try {
             const response = await fetch('../data/ap-rankings.json');
             if (!response.ok) {
-                console.warn('Could not load ap-rankings.json, using schedule data rankings');
+                console.warn('Could not load ap-rankings.json');
                 return null;
             }
             const data = await response.json();
             console.log('✓ Loaded AP rankings from local file');
-            console.log(`  Last updated: ${data.apPollDate}`);
+            console.log(`  Latest poll date: ${data.latestPollDate}`);
+            console.log(`  Season: ${data.season}`);
+            console.log(`  Weeks available: ${Object.keys(data.weeklyRankings || {}).length}`);
             return data;
         } catch (error) {
             console.warn('Error loading local rankings:', error);
@@ -57,15 +60,19 @@ const RankingsManager = {
     },
 
     parseRankings(data) {
-        if (!data || !data.teams) return null;
+        if (!data || !data.currentRankings) return null;
         
-        // Convert teams object to Map for O(1) lookups
+        // Convert current rankings to Map for O(1) lookups
         const rankings = new Map();
-        Object.entries(data.teams).forEach(([normalizedName, info]) => {
+        Object.entries(data.currentRankings).forEach(([normalizedName, info]) => {
             rankings.set(normalizedName, info.rank);
         });
         
-        return rankings;
+        return {
+            current: rankings,
+            weekly: data.weeklyRankings || {},
+            latestPollDate: data.latestPollDate
+        };
     },
 
     async getRankings() {
@@ -119,18 +126,18 @@ const RankingsManager = {
         return normalized.trim();
     },
 
-    findTeamRank(opponentName, rankings) {
-        if (!rankings) return null;
+    findTeamRank(opponentName, rankingsData) {
+        if (!rankingsData || !rankingsData.current) return null;
         
         const normalized = this.normalizeTeamName(opponentName);
         
-        // Direct match
-        if (rankings.has(normalized)) {
-            return rankings.get(normalized);
+        // Direct match in current rankings
+        if (rankingsData.current.has(normalized)) {
+            return rankingsData.current.get(normalized);
         }
         
-        // Fuzzy match
-        for (const [teamName, rank] of rankings) {
+        // Fuzzy match in current rankings
+        for (const [teamName, rank] of rankingsData.current) {
             if (teamName.includes(normalized) || normalized.includes(teamName)) {
                 return rank;
             }
@@ -139,23 +146,78 @@ const RankingsManager = {
         return null;
     },
 
-    async updateGameRankings(games) {
-        const rankings = await this.getRankings();
+    findHistoricalRank(opponentName, gameDate, rankingsData) {
+        /**
+         * Find the ranking for a team at the time the game was played
+         * This "freezes" the ranking at game time
+         */
+        if (!rankingsData || !rankingsData.weekly) return null;
         
-        if (!rankings) {
-            console.log('Using rankings from schedule JSON file');
+        const normalized = this.normalizeTeamName(opponentName);
+        
+        // Find the most recent poll before or on the game date
+        let bestWeek = null;
+        let bestDate = null;
+        
+        for (const [week, weekData] of Object.entries(rankingsData.weekly)) {
+            const pollDate = weekData.pollDate;
+            
+            if (pollDate <= gameDate) {
+                if (bestDate === null || pollDate > bestDate) {
+                    bestDate = pollDate;
+                    bestWeek = week;
+                }
+            }
+        }
+        
+        if (!bestWeek) return null;
+        
+        const teams = rankingsData.weekly[bestWeek].teams;
+        
+        // Direct match
+        if (teams[normalized]) {
+            return teams[normalized].rank;
+        }
+        
+        // Fuzzy match
+        for (const [teamName, info] of Object.entries(teams)) {
+            if (teamName.includes(normalized) || normalized.includes(teamName)) {
+                return info.rank;
+            }
+        }
+        
+        return null;
+    },
+
+    async updateGameRankings(games) {
+        const rankingsData = await this.getRankings();
+        
+        if (!rankingsData) {
+            console.log('No rankings data available, using schedule JSON rankings');
             return games;
         }
         
-        // Only update upcoming games (TBD results)
         games.forEach(game => {
+            const gameDate = parseGameDate(game.date);
+            
             if (game.result === 'TBD') {
-                const rank = this.findTeamRank(game.opponent, rankings);
+                // Upcoming game - use current rankings
+                const rank = this.findTeamRank(game.opponent, rankingsData);
                 if (rank !== null && rank <= 25) {
                     game.opponentRank = rank;
-                    game.liveRank = true;
+                    game.rankSource = 'current';
                 } else {
                     game.opponentRank = 0;
+                }
+            } else {
+                // Played game - freeze ranking at game time
+                const historicalRank = this.findHistoricalRank(game.opponent, gameDate, rankingsData);
+                if (historicalRank !== null && historicalRank <= 25) {
+                    game.opponentRank = historicalRank;
+                    game.rankSource = 'frozen';
+                } else {
+                    // If no historical rank found, keep the schedule's original rank
+                    game.rankSource = 'original';
                 }
             }
         });
@@ -343,12 +405,18 @@ class GameRenderer {
     }
 
     static getGameLabel(game) {
+        // Special tournament/event title
         if (game.title) {
             return `<div class="game-tournament">${game.title}</div>`;
         }
-        return game.conference 
-            ? '<div class="game-conference">Conference</div>' 
-            : '<div class="game-non-conference">Non-Conference</div>';
+        
+        // Conference game - just say "Conference" (fixes "Flex Game" issue)
+        if (game.conference) {
+            return '<div class="game-conference">Conference</div>';
+        }
+        
+        // Non-conference game
+        return '<div class="game-non-conference">Non-Conference</div>';
     }
 
     static getResultClass(result) {
@@ -372,7 +440,7 @@ async function loadSchedule(season) {
         
         let games = await response.json();
 
-        // Update rankings for upcoming games
+        // Update rankings - freeze for played games, update for upcoming
         games = await RankingsManager.updateGameRankings(games);
 
         // Clear loading state
