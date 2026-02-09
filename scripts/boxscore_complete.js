@@ -115,20 +115,58 @@ function findGameByDate(dateStr, seasonKey) {
     }
     
     console.log(`Searching for date ${dateStr} in season ${seasonKey}`);
-    const game = seasonData.games.find(g => {
+    
+    // Try exact match first
+    let game = seasonData.games.find(g => {
         const gameDate = g.startDate.split('T')[0];
-        if (gameDate === dateStr) {
-            console.log(`Found matching game: ${g.opponent} on ${gameDate}`);
-        }
         return gameDate === dateStr;
     });
     
-    if (!game) {
-        console.log(`No game found for ${dateStr}. Available dates in season ${seasonKey}:`, 
-            seasonData.games.map(g => ({ date: g.startDate.split('T')[0], opponent: g.opponent })));
+    if (game) {
+        console.log(`Found exact match: ${game.opponent} on ${game.startDate.split('T')[0]}`);
+        return game;
     }
     
-    return game;
+    // If no exact match, try adjacent dates (±1 day) to handle timezone issues
+    console.log(`No exact match found. Trying adjacent dates for timezone handling...`);
+    const [year, month, day] = dateStr.split('-').map(Number);
+    const targetDate = new Date(year, month - 1, day);
+    
+    // Try day before
+    const dayBefore = new Date(targetDate);
+    dayBefore.setDate(dayBefore.getDate() - 1);
+    const dayBeforeStr = dayBefore.toISOString().split('T')[0];
+    
+    game = seasonData.games.find(g => {
+        const gameDate = g.startDate.split('T')[0];
+        return gameDate === dayBeforeStr;
+    });
+    
+    if (game) {
+        console.log(`Found match on day before: ${game.opponent} on ${game.startDate.split('T')[0]}`);
+        return game;
+    }
+    
+    // Try day after
+    const dayAfter = new Date(targetDate);
+    dayAfter.setDate(dayAfter.getDate() + 1);
+    const dayAfterStr = dayAfter.toISOString().split('T')[0];
+    
+    game = seasonData.games.find(g => {
+        const gameDate = g.startDate.split('T')[0];
+        return gameDate === dayAfterStr;
+    });
+    
+    if (game) {
+        console.log(`Found match on day after: ${game.opponent} on ${game.startDate.split('T')[0]}`);
+        return game;
+    }
+    
+    // No match found
+    console.log(`No game found for ${dateStr}. Available dates in season ${seasonKey}:`, 
+        seasonData.games.map(g => ({ date: g.startDate.split('T')[0], opponent: g.opponent })));
+    
+    return null;
 }
 
 function getTeamColors(teamName) {
