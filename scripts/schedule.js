@@ -4,6 +4,17 @@
  * Features: Frozen rankings for played games, live rankings for upcoming games
  */
 
+// Utility: Get ISO date from game object for boxscore linking
+function getGameISODate(game) {
+    // Use the UTC date that matches the API data (not the display date)
+    if (game.utcDate) {
+        return game.utcDate;
+    }
+    
+    // Fallback to parsing the display date if utcDate isn't available
+    return parseGameDate(game.date);
+}
+
 // Utility: Parse game date string to ISO format
 function parseGameDate(dateStr) {
     const months = {
@@ -327,7 +338,7 @@ class GameRenderer {
         if (game.result && game.result !== 'TBD') {
             card.style.cursor = 'pointer';
             card.addEventListener('click', () => {
-                const formattedDate = parseGameDate(game.date);
+                const formattedDate = getGameISODate(game);
                 window.location.href = `boxscore.html?season=${season}&date=${formattedDate}`;
             });
         }
@@ -372,7 +383,7 @@ class GameRenderer {
         if (game.result && game.result !== 'TBD') {
             row.style.cursor = 'pointer';
             row.addEventListener('click', () => {
-                const formattedDate = parseGameDate(game.date);
+                const formattedDate = getGameISODate(game);
                 window.location.href = `boxscore.html?season=${season}&date=${formattedDate}`;
             });
         }
