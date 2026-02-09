@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-08T06:36:04.261548",
+  "lastUpdated": "2026-02-09T06:52:52.423374",
   "team": "Kentucky",
   "seasons": {
     "2025": [
@@ -374,8 +374,8 @@
                 "three_pct": 34.6,
                 "ft_pct": 71.6,
                 "offensiveRating": 118.8,
-                "defensiveRating": 103,
-                "netRating": 15.8,
+                "defensiveRating": 103.1,
+                "netRating": 15.7,
                 "usage": 26.9,
                 "trueShootingPct": 0.58,
                 "winShares": 3.3
@@ -532,8 +532,8 @@
                 "three_pct": 38.5,
                 "ft_pct": 84.2,
                 "offensiveRating": 130.6,
-                "defensiveRating": 99.7,
-                "netRating": 30.9,
+                "defensiveRating": 99.8,
+                "netRating": 30.8,
                 "usage": 13.8,
                 "trueShootingPct": 0.619,
                 "winShares": 0.9
@@ -602,8 +602,8 @@
                 "three_pct": 16.7,
                 "ft_pct": 66.7,
                 "offensiveRating": 114.5,
-                "defensiveRating": 102.8,
-                "netRating": 11.7,
+                "defensiveRating": 102.9,
+                "netRating": 11.6,
                 "usage": 15.1,
                 "trueShootingPct": 0.594,
                 "winShares": 1.1
@@ -672,8 +672,8 @@
                 "three_pct": 40.9,
                 "ft_pct": 83.7,
                 "offensiveRating": 125.8,
-                "defensiveRating": 103.9,
-                "netRating": 21.9,
+                "defensiveRating": 104.1,
+                "netRating": 21.7,
                 "usage": 17.9,
                 "trueShootingPct": 0.592,
                 "winShares": 2.4
@@ -893,8 +893,8 @@
                 "three_pct": 34.6,
                 "ft_pct": 71.6,
                 "offensiveRating": 118.8,
-                "defensiveRating": 103,
-                "netRating": 15.8,
+                "defensiveRating": 103.1,
+                "netRating": 15.7,
                 "usage": 26.9,
                 "trueShootingPct": 0.58,
                 "winShares": 3.3
@@ -963,8 +963,8 @@
                 "three_pct": 38.5,
                 "ft_pct": 84.2,
                 "offensiveRating": 130.6,
-                "defensiveRating": 99.7,
-                "netRating": 30.9,
+                "defensiveRating": 99.8,
+                "netRating": 30.8,
                 "usage": 13.8,
                 "trueShootingPct": 0.619,
                 "winShares": 0.9
@@ -1033,8 +1033,8 @@
                 "three_pct": 16.7,
                 "ft_pct": 66.7,
                 "offensiveRating": 114.5,
-                "defensiveRating": 102.8,
-                "netRating": 11.7,
+                "defensiveRating": 102.9,
+                "netRating": 11.6,
                 "usage": 15.1,
                 "trueShootingPct": 0.594,
                 "winShares": 1.1
@@ -1103,8 +1103,8 @@
                 "three_pct": 40.9,
                 "ft_pct": 83.7,
                 "offensiveRating": 125.8,
-                "defensiveRating": 103.9,
-                "netRating": 21.9,
+                "defensiveRating": 104.1,
+                "netRating": 21.7,
                 "usage": 17.9,
                 "trueShootingPct": 0.592,
                 "winShares": 2.4
@@ -1293,8 +1293,8 @@
                 "three_pct": 10.5,
                 "ft_pct": 64.1,
                 "offensiveRating": 121.8,
-                "defensiveRating": 102.1,
-                "netRating": 19.7,
+                "defensiveRating": 102.2,
+                "netRating": 19.6,
                 "usage": 19.1,
                 "trueShootingPct": 0.58,
                 "winShares": 1.6
@@ -1381,8 +1381,8 @@
                 "three_pct": 37.5,
                 "ft_pct": 81.1,
                 "offensiveRating": 121.5,
-                "defensiveRating": 109.4,
-                "netRating": 12.1,
+                "defensiveRating": 109.5,
+                "netRating": 12,
                 "usage": 21.2,
                 "trueShootingPct": 0.577,
                 "winShares": 2.4
@@ -1513,8 +1513,8 @@
                 "three_pct": 30.4,
                 "ft_pct": 41.7,
                 "offensiveRating": 111.1,
-                "defensiveRating": 102.5,
-                "netRating": 8.6,
+                "defensiveRating": 102.6,
+                "netRating": 8.5,
                 "usage": 18.2,
                 "trueShootingPct": 0.558,
                 "winShares": 1
@@ -1549,7 +1549,7 @@
                 "conference": "SEC",
                 "games": 23,
                 "starts": 0,
-                "minutes": 318,
+                "minutes": 320,
                 "ppg": 6.2,
                 "rpg": 1.3,
                 "apg": 2.0,
@@ -1557,9 +1557,9 @@
                 "three_pct": 36.4,
                 "ft_pct": 91.3,
                 "offensiveRating": 114.4,
-                "defensiveRating": 110.9,
-                "netRating": 3.5,
-                "usage": 23.6,
+                "defensiveRating": 111.1,
+                "netRating": 3.3,
+                "usage": 23.4,
                 "trueShootingPct": 0.562,
                 "winShares": 1
               }
@@ -1601,8 +1601,8 @@
                 "three_pct": 0,
                 "ft_pct": 67.4,
                 "offensiveRating": 130.7,
-                "defensiveRating": 99.8,
-                "netRating": 30.9,
+                "defensiveRating": 99.9,
+                "netRating": 30.8,
                 "usage": 16.9,
                 "trueShootingPct": 0.635,
                 "winShares": 2.6

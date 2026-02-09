@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-08T06:36:07.441761",
+  "lastUpdated": "2026-02-09T06:52:55.371710",
   "team": "Kentucky",
   "dataSource": "https://api.collegebasketballdata.com",
   "seasonsIncluded": [
@@ -12677,11 +12677,11 @@
             "assists": 17,
             "steals": 8,
             "blocks": 3,
-            "trueShooting": 47.3,
-            "rating": 103,
-            "gameScore": 54,
+            "trueShooting": 48.6,
+            "rating": 106,
+            "gameScore": 56,
             "points": {
-              "total": 69,
+              "total": 71,
               "byPeriod": [
                 47,
                 24
@@ -12785,10 +12785,10 @@
             }
           ],
           "result": "W",
-          "finalScore": "W 74-69",
-          "pointDifferential": 5,
+          "finalScore": "W 74-71",
+          "pointDifferential": 3,
           "teamScore": 74,
-          "opponentScore": 69,
+          "opponentScore": 71,
           "scoringByPeriod": {
             "team": [
               33,
