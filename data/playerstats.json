@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-14T06:30:28.021931",
+  "lastUpdated": "2026-02-15T06:37:01.757258",
   "team": "Kentucky",
   "dataSource": "https://api.collegebasketballdata.com",
   "seasonsIncluded": [
@@ -2120,34 +2120,34 @@
           "athleteSourceId": "4895780",
           "name": "Mouhamed Dioubate",
           "position": "F",
-          "games": 19,
+          "games": 20,
           "starts": 10,
-          "minutes": 398,
-          "points": 159,
+          "minutes": 423,
+          "points": 168,
           "turnovers": 15,
-          "fouls": 45,
-          "assists": 17,
-          "steals": 19,
+          "fouls": 48,
+          "assists": 19,
+          "steals": 20,
           "blocks": 21,
-          "offensiveRating": 121.8,
-          "defensiveRating": 102.2,
-          "netRating": 19.6,
+          "offensiveRating": 122.1,
+          "defensiveRating": 103.5,
+          "netRating": 18.6,
           "PORPAG": 2.2,
-          "usage": 19.1,
-          "assistsTurnoverRatio": 1.13,
-          "offensiveReboundPct": 41.2,
-          "freeThrowRate": 58.7,
-          "effectiveFieldGoalPct": 54.1,
-          "trueShootingPct": 0.58,
+          "usage": 18.9,
+          "assistsTurnoverRatio": 1.27,
+          "offensiveReboundPct": 42.1,
+          "freeThrowRate": 62.6,
+          "effectiveFieldGoalPct": 53,
+          "trueShootingPct": 0.573,
           "fieldGoals": {
-            "made": 58,
-            "attempted": 109,
-            "pct": 53.2
+            "made": 60,
+            "attempted": 115,
+            "pct": 52.2
           },
           "twoPointFieldGoals": {
-            "made": 56,
-            "attempted": 90,
-            "pct": 62.2
+            "made": 58,
+            "attempted": 96,
+            "pct": 60.4
           },
           "threePointFieldGoals": {
             "made": 2,
@@ -2155,25 +2155,25 @@
             "pct": 10.5
           },
           "freeThrows": {
-            "made": 41,
-            "attempted": 64,
-            "pct": 64.1
+            "made": 46,
+            "attempted": 72,
+            "pct": 63.9
           },
           "rebounds": {
-            "offensive": 42,
-            "defensive": 60,
-            "total": 102
+            "offensive": 45,
+            "defensive": 62,
+            "total": 107
           },
           "winShares": {
-            "offensive": 1,
+            "offensive": 1.1,
             "defensive": 0.6,
-            "total": 1.6,
+            "total": 1.7,
             "totalPer40": 0.161
           },
           "shootingStats": {
-            "trackedShots": 109,
-            "freeThrowRate": 58.7,
-            "assistedPct": 24.8,
+            "trackedShots": 115,
+            "freeThrowRate": 62.6,
+            "assistedPct": 23.5,
             "dunks": {
               "attempted": 8,
               "made": 8,
@@ -2182,23 +2182,23 @@
               "assistedPct": 62.5
             },
             "layups": {
-              "attempted": 53,
-              "made": 36,
-              "pct": 67.9,
+              "attempted": 56,
+              "made": 37,
+              "pct": 66.1,
               "assisted": 16,
-              "assistedPct": 44.4
+              "assistedPct": 43.2
             },
             "tipIns": {
-              "attempted": 6,
+              "attempted": 8,
               "made": 3,
-              "pct": 50
+              "pct": 37.5
             },
             "twoPointJumpers": {
-              "attempted": 23,
-              "made": 9,
-              "pct": 39.1,
+              "attempted": 24,
+              "made": 10,
+              "pct": 41.7,
               "assisted": 4,
-              "assistedPct": 44.4
+              "assistedPct": 40
             },
             "threePointJumpers": {
               "attempted": 19,
@@ -2208,57 +2208,57 @@
               "assistedPct": 100
             },
             "freeThrows": {
-              "attempted": 64,
-              "made": 41,
-              "pct": 64.1
+              "attempted": 72,
+              "made": 46,
+              "pct": 63.9
             },
             "attemptsBreakdown": {
-              "dunks": 7.3,
-              "layups": 48.6,
-              "tipIns": 5.5,
-              "twoPointJumpers": 21.1,
-              "threePointJumpers": 17.4
+              "dunks": 7,
+              "layups": 48.7,
+              "tipIns": 7,
+              "twoPointJumpers": 20.9,
+              "threePointJumpers": 16.5
             }
           },
           "perGameAverages": {
-            "points": 8.37,
-            "rebounds": 5.37,
-            "offensiveRebounds": 2.21,
-            "defensiveRebounds": 3.16,
-            "assists": 0.89,
+            "points": 8.4,
+            "rebounds": 5.35,
+            "offensiveRebounds": 2.25,
+            "defensiveRebounds": 3.1,
+            "assists": 0.95,
             "steals": 1.0,
-            "blocks": 1.11,
-            "turnovers": 0.79,
-            "fouls": 2.37,
-            "minutes": 20.95,
-            "fieldGoalsMade": 3.05,
-            "fieldGoalsAttempted": 5.74,
-            "twoPointMade": 2.95,
-            "twoPointAttempted": 4.74,
-            "threePointMade": 0.11,
-            "threePointAttempted": 1.0,
-            "freeThrowsMade": 2.16,
-            "freeThrowsAttempted": 3.37
+            "blocks": 1.05,
+            "turnovers": 0.75,
+            "fouls": 2.4,
+            "minutes": 21.15,
+            "fieldGoalsMade": 3.0,
+            "fieldGoalsAttempted": 5.75,
+            "twoPointMade": 2.9,
+            "twoPointAttempted": 4.8,
+            "threePointMade": 0.1,
+            "threePointAttempted": 0.95,
+            "freeThrowsMade": 2.3,
+            "freeThrowsAttempted": 3.6
           },
           "per40Stats": {
-            "points": 15.98,
-            "rebounds": 10.25,
-            "offensiveRebounds": 4.22,
-            "defensiveRebounds": 6.03,
-            "assists": 1.71,
-            "steals": 1.91,
-            "blocks": 2.11,
-            "turnovers": 1.51,
-            "fouls": 4.52
+            "points": 15.89,
+            "rebounds": 10.12,
+            "offensiveRebounds": 4.26,
+            "defensiveRebounds": 5.86,
+            "assists": 1.8,
+            "steals": 1.89,
+            "blocks": 1.99,
+            "turnovers": 1.42,
+            "fouls": 4.54
           },
           "calculatedMetrics": {
-            "pointsPerShot": 1.459,
-            "pointsPerPossession": 1.045,
-            "shootingEfficiency": 54.1,
-            "scoringEfficiency": 0.58,
-            "assistPercentage": 11.17,
-            "turnoverPercentage": 9.86,
-            "reboundRate": 10.25
+            "pointsPerShot": 1.461,
+            "pointsPerPossession": 1.039,
+            "shootingEfficiency": 53,
+            "scoringEfficiency": 0.573,
+            "assistPercentage": 11.75,
+            "turnoverPercentage": 9.28,
+            "reboundRate": 10.12
           }
         },
         {
@@ -2271,73 +2271,73 @@
           "athleteSourceId": "5105527",
           "name": "Denzel Aberdeen",
           "position": "G",
-          "games": 24,
-          "starts": 23,
-          "minutes": 676,
-          "points": 294,
-          "turnovers": 33,
-          "fouls": 40,
-          "assists": 76,
-          "steals": 17,
+          "games": 25,
+          "starts": 24,
+          "minutes": 710,
+          "points": 313,
+          "turnovers": 35,
+          "fouls": 44,
+          "assists": 80,
+          "steals": 18,
           "blocks": 3,
-          "offensiveRating": 121.5,
-          "defensiveRating": 109.5,
-          "netRating": 12,
-          "PORPAG": 3.3,
-          "usage": 21.2,
-          "assistsTurnoverRatio": 2.3,
-          "offensiveReboundPct": 25,
-          "freeThrowRate": 33.3,
-          "effectiveFieldGoalPct": 52.7,
-          "trueShootingPct": 0.577,
+          "offensiveRating": 119.7,
+          "defensiveRating": 110.4,
+          "netRating": 9.3,
+          "PORPAG": 3.2,
+          "usage": 21.8,
+          "assistsTurnoverRatio": 2.29,
+          "offensiveReboundPct": 26.2,
+          "freeThrowRate": 31.7,
+          "effectiveFieldGoalPct": 51.6,
+          "trueShootingPct": 0.565,
           "fieldGoals": {
-            "made": 99,
-            "attempted": 222,
-            "pct": 44.6
+            "made": 107,
+            "attempted": 243,
+            "pct": 44
           },
           "twoPointFieldGoals": {
-            "made": 63,
-            "attempted": 126,
-            "pct": 50
+            "made": 70,
+            "attempted": 141,
+            "pct": 49.6
           },
           "threePointFieldGoals": {
-            "made": 36,
-            "attempted": 96,
-            "pct": 37.5
+            "made": 37,
+            "attempted": 102,
+            "pct": 36.3
           },
           "freeThrows": {
-            "made": 60,
-            "attempted": 74,
-            "pct": 81.1
+            "made": 62,
+            "attempted": 77,
+            "pct": 80.5
           },
           "rebounds": {
-            "offensive": 15,
+            "offensive": 16,
             "defensive": 45,
-            "total": 60
+            "total": 61
           },
           "winShares": {
             "offensive": 1.9,
             "defensive": 0.5,
             "total": 2.4,
-            "totalPer40": 0.142
+            "totalPer40": 0.135
           },
           "shootingStats": {
-            "trackedShots": 222,
-            "freeThrowRate": 33.3,
-            "assistedPct": 20.7,
+            "trackedShots": 243,
+            "freeThrowRate": 31.7,
+            "assistedPct": 18.9,
             "dunks": {
-              "attempted": 6,
-              "made": 6,
+              "attempted": 7,
+              "made": 7,
               "pct": 100,
               "assisted": 4,
-              "assistedPct": 66.7
+              "assistedPct": 57.1
             },
             "layups": {
-              "attempted": 46,
-              "made": 27,
-              "pct": 58.7,
+              "attempted": 51,
+              "made": 29,
+              "pct": 56.9,
               "assisted": 9,
-              "assistedPct": 33.3
+              "assistedPct": 31
             },
             "tipIns": {
               "attempted": 2,
@@ -2345,71 +2345,71 @@
               "pct": 100
             },
             "twoPointJumpers": {
-              "attempted": 72,
-              "made": 28,
-              "pct": 38.9,
+              "attempted": 81,
+              "made": 32,
+              "pct": 39.5,
               "assisted": 6,
-              "assistedPct": 21.4
+              "assistedPct": 18.8
             },
             "threePointJumpers": {
-              "attempted": 96,
-              "made": 36,
-              "pct": 37.5,
+              "attempted": 102,
+              "made": 37,
+              "pct": 36.3,
               "assisted": 27,
-              "assistedPct": 75
+              "assistedPct": 73
             },
             "freeThrows": {
-              "attempted": 74,
-              "made": 60,
-              "pct": 81.1
+              "attempted": 77,
+              "made": 62,
+              "pct": 80.5
             },
             "attemptsBreakdown": {
-              "dunks": 2.7,
-              "layups": 20.7,
-              "tipIns": 0.9,
-              "twoPointJumpers": 32.4,
-              "threePointJumpers": 43.2
+              "dunks": 2.9,
+              "layups": 21,
+              "tipIns": 0.8,
+              "twoPointJumpers": 33.3,
+              "threePointJumpers": 42
             }
           },
           "perGameAverages": {
-            "points": 12.25,
-            "rebounds": 2.5,
-            "offensiveRebounds": 0.62,
-            "defensiveRebounds": 1.88,
-            "assists": 3.17,
-            "steals": 0.71,
+            "points": 12.52,
+            "rebounds": 2.44,
+            "offensiveRebounds": 0.64,
+            "defensiveRebounds": 1.8,
+            "assists": 3.2,
+            "steals": 0.72,
             "blocks": 0.12,
-            "turnovers": 1.38,
-            "fouls": 1.67,
-            "minutes": 28.17,
-            "fieldGoalsMade": 4.12,
-            "fieldGoalsAttempted": 9.25,
-            "twoPointMade": 2.62,
-            "twoPointAttempted": 5.25,
-            "threePointMade": 1.5,
-            "threePointAttempted": 4.0,
-            "freeThrowsMade": 2.5,
+            "turnovers": 1.4,
+            "fouls": 1.76,
+            "minutes": 28.4,
+            "fieldGoalsMade": 4.28,
+            "fieldGoalsAttempted": 9.72,
+            "twoPointMade": 2.8,
+            "twoPointAttempted": 5.64,
+            "threePointMade": 1.48,
+            "threePointAttempted": 4.08,
+            "freeThrowsMade": 2.48,
             "freeThrowsAttempted": 3.08
           },
           "per40Stats": {
-            "points": 17.4,
-            "rebounds": 3.55,
-            "offensiveRebounds": 0.89,
-            "defensiveRebounds": 2.66,
-            "assists": 4.5,
+            "points": 17.63,
+            "rebounds": 3.44,
+            "offensiveRebounds": 0.9,
+            "defensiveRebounds": 2.54,
+            "assists": 4.51,
             "steals": 1.01,
-            "blocks": 0.18,
-            "turnovers": 1.95,
-            "fouls": 2.37
+            "blocks": 0.17,
+            "turnovers": 1.97,
+            "fouls": 2.48
           },
           "calculatedMetrics": {
-            "pointsPerShot": 1.324,
-            "pointsPerPossession": 1.022,
-            "shootingEfficiency": 52.7,
-            "scoringEfficiency": 0.577,
-            "assistPercentage": 26.43,
-            "turnoverPercentage": 11.48,
-            "reboundRate": 3.55
+            "pointsPerShot": 1.288,
+            "pointsPerPossession": 1.004,
+            "shootingEfficiency": 51.6,
+            "scoringEfficiency": 0.565,
+            "assistPercentage": 25.65,
+            "turnoverPercentage": 11.22,
+            "reboundRate": 3.44
           }
         },
         {
@@ -2422,60 +2422,60 @@
           "athleteSourceId": "5106270",
           "name": "Otega Oweh",
           "position": "G",
-          "games": 24,
-          "starts": 24,
-          "minutes": 733,
-          "points": 411,
-          "turnovers": 42,
-          "fouls": 56,
-          "assists": 61,
-          "steals": 41,
+          "games": 25,
+          "starts": 25,
+          "minutes": 770,
+          "points": 424,
+          "turnovers": 45,
+          "fouls": 60,
+          "assists": 63,
+          "steals": 43,
           "blocks": 7,
-          "offensiveRating": 118.8,
-          "defensiveRating": 103.1,
-          "netRating": 15.7,
-          "PORPAG": 4.2,
-          "usage": 26.9,
-          "assistsTurnoverRatio": 1.45,
-          "offensiveReboundPct": 22.9,
-          "freeThrowRate": 48.3,
-          "effectiveFieldGoalPct": 53.1,
-          "trueShootingPct": 0.58,
+          "offensiveRating": 117,
+          "defensiveRating": 103.9,
+          "netRating": 13.1,
+          "PORPAG": 3.9,
+          "usage": 26.8,
+          "assistsTurnoverRatio": 1.4,
+          "offensiveReboundPct": 21.8,
+          "freeThrowRate": 48.4,
+          "effectiveFieldGoalPct": 52,
+          "trueShootingPct": 0.571,
           "fieldGoals": {
-            "made": 141,
-            "attempted": 292,
-            "pct": 48.3
+            "made": 145,
+            "attempted": 306,
+            "pct": 47.4
           },
           "twoPointFieldGoals": {
-            "made": 113,
-            "attempted": 211,
-            "pct": 53.6
+            "made": 117,
+            "attempted": 222,
+            "pct": 52.7
           },
           "threePointFieldGoals": {
             "made": 28,
-            "attempted": 81,
-            "pct": 34.6
+            "attempted": 84,
+            "pct": 33.3
           },
           "freeThrows": {
-            "made": 101,
-            "attempted": 141,
+            "made": 106,
+            "attempted": 148,
             "pct": 71.6
           },
           "rebounds": {
             "offensive": 24,
-            "defensive": 81,
-            "total": 105
+            "defensive": 86,
+            "total": 110
           },
           "winShares": {
             "offensive": 2.3,
             "defensive": 1,
             "total": 3.3,
-            "totalPer40": 0.18
+            "totalPer40": 0.171
           },
           "shootingStats": {
-            "trackedShots": 292,
-            "freeThrowRate": 48.3,
-            "assistedPct": 25.3,
+            "trackedShots": 306,
+            "freeThrowRate": 48.4,
+            "assistedPct": 24.5,
             "dunks": {
               "attempted": 33,
               "made": 30,
@@ -2484,11 +2484,11 @@
               "assistedPct": 56.7
             },
             "layups": {
-              "attempted": 94,
-              "made": 58,
-              "pct": 61.7,
-              "assisted": 28,
-              "assistedPct": 48.3
+              "attempted": 102,
+              "made": 61,
+              "pct": 59.8,
+              "assisted": 29,
+              "assistedPct": 47.5
             },
             "tipIns": {
               "attempted": 8,
@@ -2496,71 +2496,71 @@
               "pct": 50
             },
             "twoPointJumpers": {
-              "attempted": 76,
-              "made": 21,
-              "pct": 27.6,
+              "attempted": 79,
+              "made": 22,
+              "pct": 27.8,
               "assisted": 8,
-              "assistedPct": 38.1
+              "assistedPct": 36.4
             },
             "threePointJumpers": {
-              "attempted": 81,
+              "attempted": 84,
               "made": 28,
-              "pct": 34.6,
+              "pct": 33.3,
               "assisted": 21,
               "assistedPct": 75
             },
             "freeThrows": {
-              "attempted": 141,
-              "made": 101,
+              "attempted": 148,
+              "made": 106,
               "pct": 71.6
             },
             "attemptsBreakdown": {
-              "dunks": 11.3,
-              "layups": 32.2,
-              "tipIns": 2.7,
-              "twoPointJumpers": 26,
-              "threePointJumpers": 27.7
+              "dunks": 10.8,
+              "layups": 33.3,
+              "tipIns": 2.6,
+              "twoPointJumpers": 25.8,
+              "threePointJumpers": 27.5
             }
           },
           "perGameAverages": {
-            "points": 17.12,
-            "rebounds": 4.38,
-            "offensiveRebounds": 1.0,
-            "defensiveRebounds": 3.38,
-            "assists": 2.54,
-            "steals": 1.71,
-            "blocks": 0.29,
-            "turnovers": 1.75,
-            "fouls": 2.33,
-            "minutes": 30.54,
-            "fieldGoalsMade": 5.88,
-            "fieldGoalsAttempted": 12.17,
-            "twoPointMade": 4.71,
-            "twoPointAttempted": 8.79,
-            "threePointMade": 1.17,
-            "threePointAttempted": 3.38,
-            "freeThrowsMade": 4.21,
-            "freeThrowsAttempted": 5.88
+            "points": 16.96,
+            "rebounds": 4.4,
+            "offensiveRebounds": 0.96,
+            "defensiveRebounds": 3.44,
+            "assists": 2.52,
+            "steals": 1.72,
+            "blocks": 0.28,
+            "turnovers": 1.8,
+            "fouls": 2.4,
+            "minutes": 30.8,
+            "fieldGoalsMade": 5.8,
+            "fieldGoalsAttempted": 12.24,
+            "twoPointMade": 4.68,
+            "twoPointAttempted": 8.88,
+            "threePointMade": 1.12,
+            "threePointAttempted": 3.36,
+            "freeThrowsMade": 4.24,
+            "freeThrowsAttempted": 5.92
           },
           "per40Stats": {
-            "points": 22.43,
-            "rebounds": 5.73,
-            "offensiveRebounds": 1.31,
-            "defensiveRebounds": 4.42,
-            "assists": 3.33,
-            "steals": 2.24,
-            "blocks": 0.38,
-            "turnovers": 2.29,
-            "fouls": 3.06
+            "points": 22.03,
+            "rebounds": 5.71,
+            "offensiveRebounds": 1.25,
+            "defensiveRebounds": 4.47,
+            "assists": 3.27,
+            "steals": 2.23,
+            "blocks": 0.36,
+            "turnovers": 2.34,
+            "fouls": 3.12
           },
           "calculatedMetrics": {
-            "pointsPerShot": 1.408,
-            "pointsPerPossession": 1.038,
-            "shootingEfficiency": 53.1,
-            "scoringEfficiency": 0.58,
-            "assistPercentage": 15.4,
-            "turnoverPercentage": 10.6,
-            "reboundRate": 5.73
+            "pointsPerShot": 1.386,
+            "pointsPerPossession": 1.019,
+            "shootingEfficiency": 52,
+            "scoringEfficiency": 0.571,
+            "assistPercentage": 15.14,
+            "turnoverPercentage": 10.81,
+            "reboundRate": 5.71
           }
         },
         {
@@ -2573,22 +2573,22 @@
           "athleteSourceId": "5175592",
           "name": "Trent Noah",
           "position": "F",
-          "games": 19,
+          "games": 20,
           "starts": 3,
-          "minutes": 230,
+          "minutes": 233,
           "points": 71,
           "turnovers": 6,
-          "fouls": 21,
+          "fouls": 22,
           "assists": 10,
           "steals": 12,
           "blocks": 3,
           "offensiveRating": 130.6,
-          "defensiveRating": 99.8,
-          "netRating": 30.8,
-          "PORPAG": 1.2,
-          "usage": 13.8,
+          "defensiveRating": 100.8,
+          "netRating": 29.8,
+          "PORPAG": 1.1,
+          "usage": 13.5,
           "assistsTurnoverRatio": 1.67,
-          "offensiveReboundPct": 18.2,
+          "offensiveReboundPct": 17.8,
           "freeThrowRate": 38.8,
           "effectiveFieldGoalPct": 56.1,
           "trueShootingPct": 0.619,
@@ -2614,14 +2614,14 @@
           },
           "rebounds": {
             "offensive": 8,
-            "defensive": 36,
-            "total": 44
+            "defensive": 37,
+            "total": 45
           },
           "winShares": {
             "offensive": 0.5,
             "defensive": 0.4,
             "total": 0.9,
-            "totalPer40": 0.157
+            "totalPer40": 0.155
           },
           "shootingStats": {
             "trackedShots": 49,
@@ -2674,35 +2674,35 @@
             }
           },
           "perGameAverages": {
-            "points": 3.74,
-            "rebounds": 2.32,
-            "offensiveRebounds": 0.42,
-            "defensiveRebounds": 1.89,
-            "assists": 0.53,
-            "steals": 0.63,
-            "blocks": 0.16,
-            "turnovers": 0.32,
-            "fouls": 1.11,
-            "minutes": 12.11,
-            "fieldGoalsMade": 1.05,
-            "fieldGoalsAttempted": 2.58,
-            "twoPointMade": 0.26,
-            "twoPointAttempted": 0.53,
-            "threePointMade": 0.79,
-            "threePointAttempted": 2.05,
-            "freeThrowsMade": 0.84,
-            "freeThrowsAttempted": 1.0
+            "points": 3.55,
+            "rebounds": 2.25,
+            "offensiveRebounds": 0.4,
+            "defensiveRebounds": 1.85,
+            "assists": 0.5,
+            "steals": 0.6,
+            "blocks": 0.15,
+            "turnovers": 0.3,
+            "fouls": 1.1,
+            "minutes": 11.65,
+            "fieldGoalsMade": 1.0,
+            "fieldGoalsAttempted": 2.45,
+            "twoPointMade": 0.25,
+            "twoPointAttempted": 0.5,
+            "threePointMade": 0.75,
+            "threePointAttempted": 1.95,
+            "freeThrowsMade": 0.8,
+            "freeThrowsAttempted": 0.95
           },
           "per40Stats": {
-            "points": 12.35,
-            "rebounds": 7.65,
-            "offensiveRebounds": 1.39,
-            "defensiveRebounds": 6.26,
-            "assists": 1.74,
-            "steals": 2.09,
+            "points": 12.19,
+            "rebounds": 7.73,
+            "offensiveRebounds": 1.37,
+            "defensiveRebounds": 6.35,
+            "assists": 1.72,
+            "steals": 2.06,
             "blocks": 0.52,
-            "turnovers": 1.04,
-            "fouls": 3.65
+            "turnovers": 1.03,
+            "fouls": 3.78
           },
           "calculatedMetrics": {
             "pointsPerShot": 1.449,
@@ -2711,7 +2711,7 @@
             "scoringEfficiency": 0.619,
             "assistPercentage": 15.78,
             "turnoverPercentage": 9.47,
-            "reboundRate": 7.65
+            "reboundRate": 7.73
           }
         },
         {
@@ -2724,34 +2724,34 @@
           "athleteSourceId": "4711306",
           "name": "Brandon Garrison",
           "position": "F",
-          "games": 24,
+          "games": 25,
           "starts": 5,
-          "minutes": 378,
+          "minutes": 395,
           "points": 110,
-          "turnovers": 22,
-          "fouls": 51,
-          "assists": 30,
-          "steals": 10,
-          "blocks": 12,
-          "offensiveRating": 114.5,
-          "defensiveRating": 102.9,
-          "netRating": 11.6,
-          "PORPAG": 1,
-          "usage": 15.1,
-          "assistsTurnoverRatio": 1.36,
+          "turnovers": 24,
+          "fouls": 56,
+          "assists": 31,
+          "steals": 11,
+          "blocks": 14,
+          "offensiveRating": 112.2,
+          "defensiveRating": 103.3,
+          "netRating": 8.9,
+          "PORPAG": 0.9,
+          "usage": 14.7,
+          "assistsTurnoverRatio": 1.29,
           "offensiveReboundPct": 34,
-          "freeThrowRate": 29.3,
-          "effectiveFieldGoalPct": 57.3,
-          "trueShootingPct": 0.594,
+          "freeThrowRate": 28.9,
+          "effectiveFieldGoalPct": 56.6,
+          "trueShootingPct": 0.588,
           "fieldGoals": {
             "made": 46,
-            "attempted": 82,
-            "pct": 56.1
+            "attempted": 83,
+            "pct": 55.4
           },
           "twoPointFieldGoals": {
             "made": 44,
-            "attempted": 70,
-            "pct": 62.9
+            "attempted": 71,
+            "pct": 62
           },
           "threePointFieldGoals": {
             "made": 2,
@@ -2764,20 +2764,20 @@
             "pct": 66.7
           },
           "rebounds": {
-            "offensive": 32,
-            "defensive": 62,
-            "total": 94
+            "offensive": 33,
+            "defensive": 64,
+            "total": 97
           },
           "winShares": {
             "offensive": 0.6,
             "defensive": 0.5,
             "total": 1.1,
-            "totalPer40": 0.116
+            "totalPer40": 0.111
           },
           "shootingStats": {
-            "trackedShots": 82,
-            "freeThrowRate": 29.3,
-            "assistedPct": 32.9,
+            "trackedShots": 83,
+            "freeThrowRate": 28.9,
+            "assistedPct": 32.5,
             "dunks": {
               "attempted": 15,
               "made": 15,
@@ -2786,9 +2786,9 @@
               "assistedPct": 100
             },
             "layups": {
-              "attempted": 30,
+              "attempted": 31,
               "made": 17,
-              "pct": 56.7,
+              "pct": 54.8,
               "assisted": 5,
               "assistedPct": 29.4
             },
@@ -2817,52 +2817,52 @@
               "pct": 66.7
             },
             "attemptsBreakdown": {
-              "dunks": 18.3,
-              "layups": 36.6,
+              "dunks": 18.1,
+              "layups": 37.3,
               "tipIns": 1.2,
-              "twoPointJumpers": 29.3,
-              "threePointJumpers": 14.6
+              "twoPointJumpers": 28.9,
+              "threePointJumpers": 14.5
             }
           },
           "perGameAverages": {
-            "points": 4.58,
-            "rebounds": 3.92,
-            "offensiveRebounds": 1.33,
-            "defensiveRebounds": 2.58,
-            "assists": 1.25,
-            "steals": 0.42,
-            "blocks": 0.5,
-            "turnovers": 0.92,
-            "fouls": 2.12,
-            "minutes": 15.75,
-            "fieldGoalsMade": 1.92,
-            "fieldGoalsAttempted": 3.42,
-            "twoPointMade": 1.83,
-            "twoPointAttempted": 2.92,
+            "points": 4.4,
+            "rebounds": 3.88,
+            "offensiveRebounds": 1.32,
+            "defensiveRebounds": 2.56,
+            "assists": 1.24,
+            "steals": 0.44,
+            "blocks": 0.56,
+            "turnovers": 0.96,
+            "fouls": 2.24,
+            "minutes": 15.8,
+            "fieldGoalsMade": 1.84,
+            "fieldGoalsAttempted": 3.32,
+            "twoPointMade": 1.76,
+            "twoPointAttempted": 2.84,
             "threePointMade": 0.08,
-            "threePointAttempted": 0.5,
-            "freeThrowsMade": 0.67,
-            "freeThrowsAttempted": 1.0
+            "threePointAttempted": 0.48,
+            "freeThrowsMade": 0.64,
+            "freeThrowsAttempted": 0.96
           },
           "per40Stats": {
-            "points": 11.64,
-            "rebounds": 9.95,
-            "offensiveRebounds": 3.39,
-            "defensiveRebounds": 6.56,
-            "assists": 3.17,
-            "steals": 1.06,
-            "blocks": 1.27,
-            "turnovers": 2.33,
-            "fouls": 5.4
+            "points": 11.14,
+            "rebounds": 9.82,
+            "offensiveRebounds": 3.34,
+            "defensiveRebounds": 6.48,
+            "assists": 3.14,
+            "steals": 1.11,
+            "blocks": 1.42,
+            "turnovers": 2.43,
+            "fouls": 5.67
           },
           "calculatedMetrics": {
-            "pointsPerShot": 1.341,
-            "pointsPerPossession": 0.96,
-            "shootingEfficiency": 57.3,
-            "scoringEfficiency": 0.594,
-            "assistPercentage": 26.19,
-            "turnoverPercentage": 19.2,
-            "reboundRate": 9.95
+            "pointsPerShot": 1.325,
+            "pointsPerPossession": 0.936,
+            "shootingEfficiency": 56.6,
+            "scoringEfficiency": 0.588,
+            "assistPercentage": 26.37,
+            "turnoverPercentage": 20.42,
+            "reboundRate": 9.82
           }
         },
         {
@@ -2875,60 +2875,60 @@
           "athleteSourceId": "5238207",
           "name": "Collin Chandler",
           "position": "G",
-          "games": 24,
-          "starts": 19,
-          "minutes": 584,
-          "points": 225,
-          "turnovers": 20,
+          "games": 25,
+          "starts": 20,
+          "minutes": 618,
+          "points": 243,
+          "turnovers": 22,
           "fouls": 52,
-          "assists": 52,
-          "steals": 28,
+          "assists": 54,
+          "steals": 31,
           "blocks": 8,
-          "offensiveRating": 125.8,
-          "defensiveRating": 104.1,
-          "netRating": 21.7,
-          "PORPAG": 2.7,
+          "offensiveRating": 126.8,
+          "defensiveRating": 104.7,
+          "netRating": 22.1,
+          "PORPAG": 2.8,
           "usage": 17.9,
-          "assistsTurnoverRatio": 2.6,
-          "offensiveReboundPct": 13.9,
-          "freeThrowRate": 25.1,
-          "effectiveFieldGoalPct": 55.3,
-          "trueShootingPct": 0.592,
+          "assistsTurnoverRatio": 2.45,
+          "offensiveReboundPct": 14.7,
+          "freeThrowRate": 24.9,
+          "effectiveFieldGoalPct": 56.9,
+          "trueShootingPct": 0.605,
           "fieldGoals": {
-            "made": 72,
-            "attempted": 171,
-            "pct": 42.1
+            "made": 78,
+            "attempted": 181,
+            "pct": 43.1
           },
           "twoPointFieldGoals": {
-            "made": 27,
-            "attempted": 61,
-            "pct": 44.3
+            "made": 28,
+            "attempted": 64,
+            "pct": 43.8
           },
           "threePointFieldGoals": {
-            "made": 45,
-            "attempted": 110,
-            "pct": 40.9
+            "made": 50,
+            "attempted": 117,
+            "pct": 42.7
           },
           "freeThrows": {
-            "made": 36,
-            "attempted": 43,
-            "pct": 83.7
+            "made": 37,
+            "attempted": 45,
+            "pct": 82.2
           },
           "rebounds": {
-            "offensive": 10,
-            "defensive": 62,
-            "total": 72
+            "offensive": 11,
+            "defensive": 64,
+            "total": 75
           },
           "winShares": {
-            "offensive": 1.6,
+            "offensive": 1.7,
             "defensive": 0.8,
-            "total": 2.4,
-            "totalPer40": 0.164
+            "total": 2.5,
+            "totalPer40": 0.162
           },
           "shootingStats": {
-            "trackedShots": 171,
-            "freeThrowRate": 25.1,
-            "assistedPct": 29.2,
+            "trackedShots": 181,
+            "freeThrowRate": 24.9,
+            "assistedPct": 29.8,
             "dunks": {
               "attempted": 8,
               "made": 8,
@@ -2937,11 +2937,11 @@
               "assistedPct": 50
             },
             "layups": {
-              "attempted": 31,
-              "made": 14,
-              "pct": 45.2,
+              "attempted": 33,
+              "made": 15,
+              "pct": 45.5,
               "assisted": 5,
-              "assistedPct": 35.7
+              "assistedPct": 33.3
             },
             "tipIns": {
               "attempted": 0,
@@ -2949,71 +2949,71 @@
               "pct": 0
             },
             "twoPointJumpers": {
-              "attempted": 22,
+              "attempted": 23,
               "made": 5,
-              "pct": 22.7,
+              "pct": 21.7,
               "assisted": 2,
               "assistedPct": 40
             },
             "threePointJumpers": {
-              "attempted": 110,
-              "made": 45,
-              "pct": 40.9,
-              "assisted": 39,
-              "assistedPct": 86.7
+              "attempted": 117,
+              "made": 50,
+              "pct": 42.7,
+              "assisted": 43,
+              "assistedPct": 86
             },
             "freeThrows": {
-              "attempted": 43,
-              "made": 36,
-              "pct": 83.7
+              "attempted": 45,
+              "made": 37,
+              "pct": 82.2
             },
             "attemptsBreakdown": {
-              "dunks": 4.7,
-              "layups": 18.1,
+              "dunks": 4.4,
+              "layups": 18.2,
               "tipIns": 0,
-              "twoPointJumpers": 12.9,
-              "threePointJumpers": 64.3
+              "twoPointJumpers": 12.7,
+              "threePointJumpers": 64.6
             }
           },
           "perGameAverages": {
-            "points": 9.38,
+            "points": 9.72,
             "rebounds": 3.0,
-            "offensiveRebounds": 0.42,
-            "defensiveRebounds": 2.58,
-            "assists": 2.17,
-            "steals": 1.17,
-            "blocks": 0.33,
-            "turnovers": 0.83,
-            "fouls": 2.17,
-            "minutes": 24.33,
-            "fieldGoalsMade": 3.0,
-            "fieldGoalsAttempted": 7.12,
+            "offensiveRebounds": 0.44,
+            "defensiveRebounds": 2.56,
+            "assists": 2.16,
+            "steals": 1.24,
+            "blocks": 0.32,
+            "turnovers": 0.88,
+            "fouls": 2.08,
+            "minutes": 24.72,
+            "fieldGoalsMade": 3.12,
+            "fieldGoalsAttempted": 7.24,
             "twoPointMade": 1.12,
-            "twoPointAttempted": 2.54,
-            "threePointMade": 1.88,
-            "threePointAttempted": 4.58,
-            "freeThrowsMade": 1.5,
-            "freeThrowsAttempted": 1.79
+            "twoPointAttempted": 2.56,
+            "threePointMade": 2.0,
+            "threePointAttempted": 4.68,
+            "freeThrowsMade": 1.48,
+            "freeThrowsAttempted": 1.8
           },
           "per40Stats": {
-            "points": 15.41,
-            "rebounds": 4.93,
-            "offensiveRebounds": 0.68,
-            "defensiveRebounds": 4.25,
-            "assists": 3.56,
-            "steals": 1.92,
-            "blocks": 0.55,
-            "turnovers": 1.37,
-            "fouls": 3.56
+            "points": 15.73,
+            "rebounds": 4.85,
+            "offensiveRebounds": 0.71,
+            "defensiveRebounds": 4.14,
+            "assists": 3.5,
+            "steals": 2.01,
+            "blocks": 0.52,
+            "turnovers": 1.42,
+            "fouls": 3.37
           },
           "calculatedMetrics": {
-            "pointsPerShot": 1.316,
-            "pointsPerPossession": 1.072,
-            "shootingEfficiency": 55.3,
-            "scoringEfficiency": 0.592,
-            "assistPercentage": 24.77,
-            "turnoverPercentage": 9.53,
-            "reboundRate": 4.93
+            "pointsPerShot": 1.343,
+            "pointsPerPossession": 1.091,
+            "shootingEfficiency": 56.9,
+            "scoringEfficiency": 0.605,
+            "assistPercentage": 24.24,
+            "turnoverPercentage": 9.87,
+            "reboundRate": 4.85
           }
         },
         {
@@ -3781,55 +3781,55 @@
           "athleteSourceId": "5281347",
           "name": "Andrija Jelavi\u0107",
           "position": "F",
-          "games": 20,
-          "starts": 8,
-          "minutes": 318,
-          "points": 113,
-          "turnovers": 15,
-          "fouls": 26,
+          "games": 21,
+          "starts": 9,
+          "minutes": 335,
+          "points": 120,
+          "turnovers": 18,
+          "fouls": 29,
           "assists": 14,
           "steals": 8,
           "blocks": 8,
-          "offensiveRating": 111.1,
-          "defensiveRating": 102.6,
-          "netRating": 8.5,
+          "offensiveRating": 110.3,
+          "defensiveRating": 104.2,
+          "netRating": 6.1,
           "PORPAG": 1.1,
-          "usage": 18.2,
-          "assistsTurnoverRatio": 0.93,
-          "offensiveReboundPct": 30.5,
-          "freeThrowRate": 12.5,
-          "effectiveFieldGoalPct": 56.3,
-          "trueShootingPct": 0.558,
+          "usage": 18.4,
+          "assistsTurnoverRatio": 0.78,
+          "offensiveReboundPct": 33.7,
+          "freeThrowRate": 14,
+          "effectiveFieldGoalPct": 56.5,
+          "trueShootingPct": 0.565,
           "fieldGoals": {
-            "made": 47,
-            "attempted": 96,
+            "made": 49,
+            "attempted": 100,
             "pct": 49
           },
           "twoPointFieldGoals": {
-            "made": 33,
-            "attempted": 50,
-            "pct": 66
+            "made": 34,
+            "attempted": 52,
+            "pct": 65.4
           },
           "threePointFieldGoals": {
-            "made": 14,
-            "attempted": 46,
-            "pct": 30.4
+            "made": 15,
+            "attempted": 48,
+            "pct": 31.3
           },
           "freeThrows": {
-            "made": 5,
-            "attempted": 12,
-            "pct": 41.7
+            "made": 7,
+            "attempted": 14,
+            "pct": 50
           },
           "rebounds": {
-            "offensive": 25,
+            "offensive": 29,
             "defensive": 57,
-            "total": 82
+            "total": 86
           },
           "winShares": {
             "offensive": 0.5,
-            "defensive": 0.5,
-            "total": 1,
-            "totalPer40": 0.126
+            "defensive": 0.4,
+            "total": 0.9,
+            "totalPer40": 0.107
           },
           "shootingStats": {
             "trackedShots": 71,
@@ -3882,44 +3882,44 @@
             }
           },
           "perGameAverages": {
-            "points": 5.65,
+            "points": 5.71,
             "rebounds": 4.1,
-            "offensiveRebounds": 1.25,
-            "defensiveRebounds": 2.85,
-            "assists": 0.7,
-            "steals": 0.4,
-            "blocks": 0.4,
-            "turnovers": 0.75,
-            "fouls": 1.3,
-            "minutes": 15.9,
-            "fieldGoalsMade": 2.35,
-            "fieldGoalsAttempted": 4.8,
-            "twoPointMade": 1.65,
-            "twoPointAttempted": 2.5,
-            "threePointMade": 0.7,
-            "threePointAttempted": 2.3,
-            "freeThrowsMade": 0.25,
-            "freeThrowsAttempted": 0.6
+            "offensiveRebounds": 1.38,
+            "defensiveRebounds": 2.71,
+            "assists": 0.67,
+            "steals": 0.38,
+            "blocks": 0.38,
+            "turnovers": 0.86,
+            "fouls": 1.38,
+            "minutes": 15.95,
+            "fieldGoalsMade": 2.33,
+            "fieldGoalsAttempted": 4.76,
+            "twoPointMade": 1.62,
+            "twoPointAttempted": 2.48,
+            "threePointMade": 0.71,
+            "threePointAttempted": 2.29,
+            "freeThrowsMade": 0.33,
+            "freeThrowsAttempted": 0.67
           },
           "per40Stats": {
-            "points": 14.21,
-            "rebounds": 10.31,
-            "offensiveRebounds": 3.14,
-            "defensiveRebounds": 7.17,
-            "assists": 1.76,
-            "steals": 1.01,
-            "blocks": 1.01,
-            "turnovers": 1.89,
-            "fouls": 3.27
+            "points": 14.33,
+            "rebounds": 10.27,
+            "offensiveRebounds": 3.46,
+            "defensiveRebounds": 6.81,
+            "assists": 1.67,
+            "steals": 0.96,
+            "blocks": 0.96,
+            "turnovers": 2.15,
+            "fouls": 3.46
           },
           "calculatedMetrics": {
-            "pointsPerShot": 1.177,
-            "pointsPerPossession": 0.972,
-            "shootingEfficiency": 56.3,
-            "scoringEfficiency": 0.558,
-            "assistPercentage": 12.04,
-            "turnoverPercentage": 12.9,
-            "reboundRate": 10.31
+            "pointsPerShot": 1.2,
+            "pointsPerPossession": 0.966,
+            "shootingEfficiency": 56.5,
+            "scoringEfficiency": 0.565,
+            "assistPercentage": 11.28,
+            "turnoverPercentage": 14.5,
+            "reboundRate": 10.27
           }
         },
         {
@@ -3932,29 +3932,29 @@
           "athleteSourceId": "5095153",
           "name": "Jasper Johnson",
           "position": "G",
-          "games": 23,
+          "games": 24,
           "starts": 0,
-          "minutes": 320,
-          "points": 143,
-          "turnovers": 24,
-          "fouls": 27,
+          "minutes": 332,
+          "points": 149,
+          "turnovers": 25,
+          "fouls": 29,
           "assists": 46,
           "steals": 2,
           "blocks": 2,
-          "offensiveRating": 114.4,
-          "defensiveRating": 111.1,
-          "netRating": 3.3,
+          "offensiveRating": 115.4,
+          "defensiveRating": 111.9,
+          "netRating": 3.5,
           "PORPAG": 1.4,
-          "usage": 23.4,
-          "assistsTurnoverRatio": 1.92,
-          "offensiveReboundPct": 19.4,
-          "freeThrowRate": 19.7,
-          "effectiveFieldGoalPct": 52.1,
-          "trueShootingPct": 0.562,
+          "usage": 22.9,
+          "assistsTurnoverRatio": 1.84,
+          "offensiveReboundPct": 18.8,
+          "freeThrowRate": 19.3,
+          "effectiveFieldGoalPct": 53.8,
+          "trueShootingPct": 0.577,
           "fieldGoals": {
-            "made": 49,
-            "attempted": 117,
-            "pct": 41.9
+            "made": 51,
+            "attempted": 119,
+            "pct": 42.9
           },
           "twoPointFieldGoals": {
             "made": 25,
@@ -3962,9 +3962,9 @@
             "pct": 49
           },
           "threePointFieldGoals": {
-            "made": 24,
-            "attempted": 66,
-            "pct": 36.4
+            "made": 26,
+            "attempted": 68,
+            "pct": 38.2
           },
           "freeThrows": {
             "made": 21,
@@ -3973,19 +3973,19 @@
           },
           "rebounds": {
             "offensive": 6,
-            "defensive": 25,
-            "total": 31
+            "defensive": 26,
+            "total": 32
           },
           "winShares": {
             "offensive": 0.8,
             "defensive": 0.2,
             "total": 1,
-            "totalPer40": 0.125
+            "totalPer40": 0.12
           },
           "shootingStats": {
-            "trackedShots": 117,
-            "freeThrowRate": 19.7,
-            "assistedPct": 18.8,
+            "trackedShots": 119,
+            "freeThrowRate": 19.3,
+            "assistedPct": 20.2,
             "dunks": {
               "attempted": 0,
               "made": 0,
@@ -4013,11 +4013,11 @@
               "assistedPct": 18.2
             },
             "threePointJumpers": {
-              "attempted": 66,
-              "made": 24,
-              "pct": 36.4,
-              "assisted": 16,
-              "assistedPct": 66.7
+              "attempted": 68,
+              "made": 26,
+              "pct": 38.2,
+              "assisted": 18,
+              "assistedPct": 69.2
             },
             "freeThrows": {
               "attempted": 23,
@@ -4026,51 +4026,51 @@
             },
             "attemptsBreakdown": {
               "dunks": 0,
-              "layups": 20.5,
+              "layups": 20.2,
               "tipIns": 0,
-              "twoPointJumpers": 23.1,
-              "threePointJumpers": 56.4
+              "twoPointJumpers": 22.7,
+              "threePointJumpers": 57.1
             }
           },
           "perGameAverages": {
-            "points": 6.22,
-            "rebounds": 1.35,
-            "offensiveRebounds": 0.26,
-            "defensiveRebounds": 1.09,
-            "assists": 2.0,
-            "steals": 0.09,
-            "blocks": 0.09,
+            "points": 6.21,
+            "rebounds": 1.33,
+            "offensiveRebounds": 0.25,
+            "defensiveRebounds": 1.08,
+            "assists": 1.92,
+            "steals": 0.08,
+            "blocks": 0.08,
             "turnovers": 1.04,
-            "fouls": 1.17,
-            "minutes": 13.91,
-            "fieldGoalsMade": 2.13,
-            "fieldGoalsAttempted": 5.09,
-            "twoPointMade": 1.09,
-            "twoPointAttempted": 2.22,
-            "threePointMade": 1.04,
-            "threePointAttempted": 2.87,
-            "freeThrowsMade": 0.91,
-            "freeThrowsAttempted": 1.0
+            "fouls": 1.21,
+            "minutes": 13.83,
+            "fieldGoalsMade": 2.12,
+            "fieldGoalsAttempted": 4.96,
+            "twoPointMade": 1.04,
+            "twoPointAttempted": 2.12,
+            "threePointMade": 1.08,
+            "threePointAttempted": 2.83,
+            "freeThrowsMade": 0.88,
+            "freeThrowsAttempted": 0.96
           },
           "per40Stats": {
-            "points": 17.88,
-            "rebounds": 3.88,
-            "offensiveRebounds": 0.75,
-            "defensiveRebounds": 3.12,
-            "assists": 5.75,
-            "steals": 0.25,
-            "blocks": 0.25,
-            "turnovers": 3.0,
-            "fouls": 3.38
+            "points": 17.95,
+            "rebounds": 3.86,
+            "offensiveRebounds": 0.72,
+            "defensiveRebounds": 3.13,
+            "assists": 5.54,
+            "steals": 0.24,
+            "blocks": 0.24,
+            "turnovers": 3.01,
+            "fouls": 3.49
           },
           "calculatedMetrics": {
-            "pointsPerShot": 1.222,
-            "pointsPerPossession": 0.946,
-            "shootingEfficiency": 52.1,
-            "scoringEfficiency": 0.562,
-            "assistPercentage": 30.44,
-            "turnoverPercentage": 15.88,
-            "reboundRate": 3.88
+            "pointsPerShot": 1.252,
+            "pointsPerPossession": 0.967,
+            "shootingEfficiency": 53.8,
+            "scoringEfficiency": 0.577,
+            "assistPercentage": 29.85,
+            "turnoverPercentage": 16.22,
+            "reboundRate": 3.86
           }
         },
         {
@@ -4083,34 +4083,34 @@
           "athleteSourceId": "5101849",
           "name": "Malachi Moreno",
           "position": "C",
-          "games": 24,
-          "starts": 18,
-          "minutes": 535,
-          "points": 202,
-          "turnovers": 23,
-          "fouls": 49,
-          "assists": 42,
+          "games": 25,
+          "starts": 19,
+          "minutes": 556,
+          "points": 213,
+          "turnovers": 24,
+          "fouls": 53,
+          "assists": 43,
           "steals": 16,
-          "blocks": 40,
-          "offensiveRating": 130.7,
-          "defensiveRating": 99.9,
-          "netRating": 30.8,
+          "blocks": 41,
+          "offensiveRating": 130.9,
+          "defensiveRating": 100.5,
+          "netRating": 30.4,
           "PORPAG": 2.7,
-          "usage": 16.9,
-          "assistsTurnoverRatio": 1.83,
-          "offensiveReboundPct": 39.3,
-          "freeThrowRate": 74.2,
-          "effectiveFieldGoalPct": 59.2,
-          "trueShootingPct": 0.635,
+          "usage": 17.1,
+          "assistsTurnoverRatio": 1.79,
+          "offensiveReboundPct": 38.5,
+          "freeThrowRate": 72.4,
+          "effectiveFieldGoalPct": 59.1,
+          "trueShootingPct": 0.636,
           "fieldGoals": {
-            "made": 71,
-            "attempted": 120,
-            "pct": 59.2
+            "made": 75,
+            "attempted": 127,
+            "pct": 59.1
           },
           "twoPointFieldGoals": {
-            "made": 71,
-            "attempted": 118,
-            "pct": 60.2
+            "made": 75,
+            "attempted": 125,
+            "pct": 60
           },
           "threePointFieldGoals": {
             "made": 0,
@@ -4118,48 +4118,48 @@
             "pct": 0
           },
           "freeThrows": {
-            "made": 60,
-            "attempted": 89,
-            "pct": 67.4
+            "made": 63,
+            "attempted": 92,
+            "pct": 68.5
           },
           "rebounds": {
-            "offensive": 59,
-            "defensive": 91,
-            "total": 150
+            "offensive": 62,
+            "defensive": 99,
+            "total": 161
           },
           "winShares": {
-            "offensive": 1.7,
+            "offensive": 1.8,
             "defensive": 0.9,
-            "total": 2.6,
+            "total": 2.7,
             "totalPer40": 0.194
           },
           "shootingStats": {
-            "trackedShots": 120,
-            "freeThrowRate": 74.2,
-            "assistedPct": 40.8,
+            "trackedShots": 127,
+            "freeThrowRate": 72.4,
+            "assistedPct": 40.9,
             "dunks": {
-              "attempted": 37,
-              "made": 33,
-              "pct": 89.2,
-              "assisted": 32,
-              "assistedPct": 97
+              "attempted": 39,
+              "made": 35,
+              "pct": 89.7,
+              "assisted": 34,
+              "assistedPct": 97.1
             },
             "layups": {
-              "attempted": 55,
-              "made": 23,
-              "pct": 41.8,
-              "assisted": 12,
-              "assistedPct": 52.2
+              "attempted": 58,
+              "made": 24,
+              "pct": 41.4,
+              "assisted": 13,
+              "assistedPct": 54.2
             },
             "tipIns": {
-              "attempted": 8,
-              "made": 6,
-              "pct": 75
+              "attempted": 9,
+              "made": 7,
+              "pct": 77.8
             },
             "twoPointJumpers": {
-              "attempted": 18,
+              "attempted": 19,
               "made": 9,
-              "pct": 50,
+              "pct": 47.4,
               "assisted": 5,
               "assistedPct": 55.6
             },
@@ -4171,57 +4171,57 @@
               "assistedPct": 0
             },
             "freeThrows": {
-              "attempted": 89,
-              "made": 60,
-              "pct": 67.4
+              "attempted": 92,
+              "made": 63,
+              "pct": 68.5
             },
             "attemptsBreakdown": {
-              "dunks": 30.8,
-              "layups": 45.8,
-              "tipIns": 6.7,
+              "dunks": 30.7,
+              "layups": 45.7,
+              "tipIns": 7.1,
               "twoPointJumpers": 15,
-              "threePointJumpers": 1.7
+              "threePointJumpers": 1.6
             }
           },
           "perGameAverages": {
-            "points": 8.42,
-            "rebounds": 6.25,
-            "offensiveRebounds": 2.46,
-            "defensiveRebounds": 3.79,
-            "assists": 1.75,
-            "steals": 0.67,
-            "blocks": 1.67,
+            "points": 8.52,
+            "rebounds": 6.44,
+            "offensiveRebounds": 2.48,
+            "defensiveRebounds": 3.96,
+            "assists": 1.72,
+            "steals": 0.64,
+            "blocks": 1.64,
             "turnovers": 0.96,
-            "fouls": 2.04,
-            "minutes": 22.29,
-            "fieldGoalsMade": 2.96,
-            "fieldGoalsAttempted": 5.0,
-            "twoPointMade": 2.96,
-            "twoPointAttempted": 4.92,
+            "fouls": 2.12,
+            "minutes": 22.24,
+            "fieldGoalsMade": 3.0,
+            "fieldGoalsAttempted": 5.08,
+            "twoPointMade": 3.0,
+            "twoPointAttempted": 5.0,
             "threePointMade": 0.0,
             "threePointAttempted": 0.08,
-            "freeThrowsMade": 2.5,
-            "freeThrowsAttempted": 3.71
+            "freeThrowsMade": 2.52,
+            "freeThrowsAttempted": 3.68
           },
           "per40Stats": {
-            "points": 15.1,
-            "rebounds": 11.21,
-            "offensiveRebounds": 4.41,
-            "defensiveRebounds": 6.8,
-            "assists": 3.14,
-            "steals": 1.2,
-            "blocks": 2.99,
-            "turnovers": 1.72,
-            "fouls": 3.66
+            "points": 15.32,
+            "rebounds": 11.58,
+            "offensiveRebounds": 4.46,
+            "defensiveRebounds": 7.12,
+            "assists": 3.09,
+            "steals": 1.15,
+            "blocks": 2.95,
+            "turnovers": 1.73,
+            "fouls": 3.81
           },
           "calculatedMetrics": {
-            "pointsPerShot": 1.683,
-            "pointsPerPossession": 1.109,
-            "shootingEfficiency": 59.2,
-            "scoringEfficiency": 0.635,
-            "assistPercentage": 23.06,
-            "turnoverPercentage": 12.63,
-            "reboundRate": 11.21
+            "pointsPerShot": 1.677,
+            "pointsPerPossession": 1.112,
+            "shootingEfficiency": 59.1,
+            "scoringEfficiency": 0.636,
+            "assistPercentage": 22.46,
+            "turnoverPercentage": 12.53,
+            "reboundRate": 11.58
           }
         }
       ]
