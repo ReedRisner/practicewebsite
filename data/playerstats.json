@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-18T06:47:52.045400",
+  "lastUpdated": "2026-02-19T06:45:18.600636",
   "team": "Kentucky",
   "dataSource": "https://api.collegebasketballdata.com",
   "seasonsIncluded": [
@@ -4085,7 +4085,7 @@
           "position": "C",
           "games": 26,
           "starts": 20,
-          "minutes": 584,
+          "minutes": 585,
           "points": 219,
           "turnovers": 27,
           "fouls": 54,
@@ -4193,7 +4193,7 @@
             "blocks": 1.69,
             "turnovers": 1.04,
             "fouls": 2.08,
-            "minutes": 22.46,
+            "minutes": 22.5,
             "fieldGoalsMade": 2.96,
             "fieldGoalsAttempted": 5.04,
             "twoPointMade": 2.96,
@@ -4204,15 +4204,15 @@
             "freeThrowsAttempted": 3.62
           },
           "per40Stats": {
-            "points": 15.0,
-            "rebounds": 11.51,
-            "offensiveRebounds": 4.32,
-            "defensiveRebounds": 7.19,
-            "assists": 2.95,
-            "steals": 1.1,
+            "points": 14.97,
+            "rebounds": 11.49,
+            "offensiveRebounds": 4.31,
+            "defensiveRebounds": 7.18,
+            "assists": 2.94,
+            "steals": 1.09,
             "blocks": 3.01,
             "turnovers": 1.85,
-            "fouls": 3.7
+            "fouls": 3.69
           },
           "calculatedMetrics": {
             "pointsPerShot": 1.672,
@@ -4221,7 +4221,7 @@
             "scoringEfficiency": 0.635,
             "assistPercentage": 21.57,
             "turnoverPercentage": 13.54,
-            "reboundRate": 11.51
+            "reboundRate": 11.49
           }
         }
       ]
