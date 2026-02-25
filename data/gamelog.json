@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-24T06:45:09.969733",
+  "lastUpdated": "2026-02-25T06:49:03.764681",
   "team": "Kentucky",
   "dataSource": "https://api.collegebasketballdata.com",
   "seasonsIncluded": [
@@ -7692,7 +7692,7 @@
       "season": 2026,
       "seasonLabel": "20252026",
       "team": "Kentucky",
-      "gameCount": 27,
+      "gameCount": 28,
       "games": [
         {
           "gameId": 212824,
@@ -13443,6 +13443,219 @@
             "opponentLargestLead": 6,
             "pace": 68,
             "possessions": 68
+          }
+        },
+        {
+          "gameId": 211865,
+          "season": 2026,
+          "seasonLabel": "20252026",
+          "seasonType": "regular",
+          "tournament": null,
+          "startDate": "2026-02-25T00:00:00.000Z",
+          "startTimeTbd": false,
+          "opponentId": 266,
+          "opponent": "South Carolina",
+          "opponentConference": "SEC",
+          "opponentSeed": null,
+          "isHome": false,
+          "neutralSite": false,
+          "conferenceGame": true,
+          "gameType": "STD",
+          "notes": "Flex Game: 2/24 or 2/25",
+          "gameMinutes": 40,
+          "gamePace": 71,
+          "teamStats": {
+            "possessions": 70,
+            "assists": 15,
+            "steals": 8,
+            "blocks": 3,
+            "trueShooting": 48.7,
+            "rating": 102.9,
+            "gameScore": 54.60000000000001,
+            "points": {
+              "total": 72,
+              "byPeriod": [
+                28,
+                44
+              ],
+              "largestLead": 12,
+              "fastBreak": 26,
+              "inPaint": 34,
+              "offTurnovers": 18
+            },
+            "twoPointFieldGoals": {
+              "made": 19,
+              "attempted": 41,
+              "pct": 46.3
+            },
+            "threePointFieldGoals": {
+              "made": 7,
+              "attempted": 25,
+              "pct": 28
+            },
+            "freeThrows": {
+              "made": 13,
+              "attempted": 18,
+              "pct": 72
+            },
+            "fieldGoals": {
+              "made": 26,
+              "attempted": 66,
+              "pct": 39
+            },
+            "turnovers": {
+              "total": 15,
+              "teamTotal": 1
+            },
+            "rebounds": {
+              "offensive": 18,
+              "defensive": 30,
+              "total": 48
+            },
+            "fouls": {
+              "total": 17,
+              "technical": 0,
+              "flagrant": 0
+            },
+            "fourFactors": {
+              "effectiveFieldGoalPct": 44.7,
+              "freeThrowRate": 27.3,
+              "turnoverRatio": 21.4,
+              "offensiveReboundPct": 37.5
+            }
+          },
+          "opponentStats": {
+            "possessions": 72,
+            "assists": 9,
+            "steals": 8,
+            "blocks": 4,
+            "trueShooting": 48.9,
+            "rating": 87.5,
+            "gameScore": 39,
+            "points": {
+              "total": 63,
+              "byPeriod": [
+                21,
+                42
+              ],
+              "largestLead": 7,
+              "fastBreak": 7,
+              "inPaint": 20,
+              "offTurnovers": 13
+            },
+            "twoPointFieldGoals": {
+              "made": 13,
+              "attempted": 28,
+              "pct": 46.4
+            },
+            "threePointFieldGoals": {
+              "made": 8,
+              "attempted": 29,
+              "pct": 28
+            },
+            "freeThrows": {
+              "made": 13,
+              "attempted": 17,
+              "pct": 76
+            },
+            "fieldGoals": {
+              "made": 21,
+              "attempted": 57,
+              "pct": 37
+            },
+            "turnovers": {
+              "total": 12,
+              "teamTotal": 0
+            },
+            "rebounds": {
+              "offensive": 5,
+              "defensive": 23,
+              "total": 28
+            },
+            "fouls": {
+              "total": 16,
+              "technical": 0,
+              "flagrant": 0
+            },
+            "fourFactors": {
+              "effectiveFieldGoalPct": 43.9,
+              "freeThrowRate": 29.8,
+              "turnoverRatio": 16.7,
+              "offensiveReboundPct": 17.9
+            }
+          },
+          "players": [
+            {
+              "athleteId": null,
+              "athleteSourceId": null,
+              "name": null,
+              "position": null,
+              "starter": null,
+              "ejected": null,
+              "minutes": null,
+              "points": null,
+              "turnovers": null,
+              "fouls": null,
+              "assists": null,
+              "steals": null,
+              "blocks": null,
+              "gameScore": null,
+              "offensiveRating": null,
+              "defensiveRating": null,
+              "netRating": null,
+              "usage": null,
+              "effectiveFieldGoalPct": null,
+              "trueShootingPct": null,
+              "assistsTurnoverRatio": null,
+              "freeThrowRate": null,
+              "offensiveReboundPct": null,
+              "fieldGoals": {
+                "made": null,
+                "attempted": null,
+                "pct": null
+              },
+              "twoPointFieldGoals": {
+                "made": null,
+                "attempted": null,
+                "pct": null
+              },
+              "threePointFieldGoals": {
+                "made": null,
+                "attempted": null,
+                "pct": null
+              },
+              "freeThrows": {
+                "made": null,
+                "attempted": null,
+                "pct": null
+              },
+              "rebounds": {
+                "offensive": null,
+                "defensive": null,
+                "total": null
+              }
+            }
+          ],
+          "result": "W",
+          "finalScore": "W 72-63",
+          "pointDifferential": 9,
+          "teamScore": 72,
+          "opponentScore": 63,
+          "scoringByPeriod": {
+            "team": [
+              28,
+              44
+            ],
+            "opponent": [
+              21,
+              42
+            ]
+          },
+          "gameFlow": {
+            "teamLargestLead": 12,
+            "opponentLargestLead": 7,
+            "pace": 71,
+            "possessions": 70
           }
         }
       ]
