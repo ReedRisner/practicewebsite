@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-10T11:29:02.475070",
+  "lastUpdated": "2026-10-11T11:42:37.925826",
   "team": "Kentucky",
   "seasons": {
     "2025": [
@@ -484,8 +484,8 @@
             "lastName": "Noah",
             "jersey": "9",
             "position": "Forward",
-            "height": 77,
-            "weight": 220,
+            "height": 78,
+            "weight": 225,
             "hometown": {
               "city": "Harlan",
               "state": "KY",
@@ -496,7 +496,7 @@
             },
             "dateOfBirth": null,
             "startSeason": 2025,
-            "endSeason": 2026,
+            "endSeason": 2027,
             "careerStats": [
               {
                 "season": 2025,
@@ -624,7 +624,7 @@
             "lastName": "Chandler",
             "jersey": "5",
             "position": "Guard",
-            "height": 77,
+            "height": 78,
             "weight": 205,
             "hometown": {
               "city": "Farmington",
@@ -908,6 +908,138 @@
             }
           },
           {
+            "id": 1345,
+            "sourceId": "5176217",
+            "name": "Reece Potter",
+            "firstName": "Reece",
+            "lastName": "Potter",
+            "jersey": "33",
+            "position": "Center",
+            "height": 85,
+            "weight": 235,
+            "hometown": {
+              "city": "Lexington",
+              "state": "KY",
+              "country": null,
+              "latitude": 38.0464066,
+              "longitude": -84.4970393,
+              "countyFips": "21067"
+            },
+            "dateOfBirth": null,
+            "startSeason": 2026,
+            "endSeason": 2027
+          },
+          {
+            "id": 3904,
+            "sourceId": "4873183",
+            "name": "Kam Williams",
+            "firstName": "Kam",
+            "lastName": "Williams",
+            "jersey": "3",
+            "position": "Guard",
+            "height": 79,
+            "weight": 210,
+            "hometown": {
+              "city": "Lafayette",
+              "state": "LA",
+              "country": null,
+              "latitude": 30.2262187,
+              "longitude": -92.0178202,
+              "countyFips": "22055"
+            },
+            "dateOfBirth": null,
+            "startSeason": 2026,
+            "endSeason": 2027,
+            "careerStats": [
+              {
+                "season": 2026,
+                "team": "Kentucky",
+                "conference": "SEC",
+                "games": 24,
+                "starts": 7,
+                "minutes": 445,
+                "ppg": 6.0,
+                "rpg": 2.1,
+                "apg": 1.0,
+                "fg_pct": 44.9,
+                "three_pct": 35.9,
+                "ft_pct": 95.5,
+                "offensiveRating": 125.9,
+                "defensiveRating": 107.5,
+                "netRating": 18.4,
+                "usage": 14.7,
+                "trueShootingPct": 0.621,
+                "winShares": 1.4
+              }
+            ]
+          },
+          {
+            "id": 199958,
+            "sourceId": "5101820",
+            "name": "Braydon Hawthorne",
+            "firstName": "Braydon",
+            "lastName": "Hawthorne",
+            "jersey": "2",
+            "position": "Forward",
+            "height": 80,
+            "weight": 195,
+            "hometown": {
+              "city": "Beckley",
+              "state": "WV",
+              "country": null,
+              "latitude": 37.7781702,
+              "longitude": -81.1881557,
+              "countyFips": "54081"
+            },
+            "dateOfBirth": null,
+            "startSeason": 2026,
+            "endSeason": 2027
+          },
+          {
+            "id": 199963,
+            "sourceId": "5101849",
+            "name": "Malachi Moreno",
+            "firstName": "Malachi",
+            "lastName": "Moreno",
+            "jersey": "24",
+            "position": "Center",
+            "height": 84,
+            "weight": 250,
+            "hometown": {
+              "city": "Georgetown",
+              "state": "KY",
+              "country": null,
+              "latitude": 38.2099837,
+              "longitude": -84.5597128,
+              "countyFips": "21209"
+            },
+            "dateOfBirth": null,
+            "startSeason": 2026,
+            "endSeason": 2027,
+            "careerStats": [
+              {
+                "season": 2026,
+                "team": "Kentucky",
+                "conference": "SEC",
+                "games": 36,
+                "starts": 30,
+                "minutes": 815,
+                "ppg": 7.8,
+                "rpg": 6.3,
+                "apg": 1.8,
+                "fg_pct": 58.2,
+                "three_pct": 0,
+                "ft_pct": 69.8,
+                "offensiveRating": 124.3,
+                "defensiveRating": 104.2,
+                "netRating": 20.1,
+                "usage": 16.2,
+                "trueShootingPct": 0.635,
+                "winShares": 3.2
+              }
+            ]
+          },
+          {
             "id": 565,
             "sourceId": "5175592",
             "name": "Trent Noah",
@@ -915,8 +1047,8 @@
             "lastName": "Noah",
             "jersey": "9",
             "position": "Forward",
-            "height": 77,
-            "weight": 220,
+            "height": 78,
+            "weight": 225,
             "hometown": {
               "city": "Harlan",
               "state": "KY",
@@ -927,7 +1059,7 @@
             },
             "dateOfBirth": null,
             "startSeason": 2025,
-            "endSeason": 2026,
+            "endSeason": 2027,
             "careerStats": [
               {
                 "season": 2025,
@@ -1055,7 +1187,7 @@
             "lastName": "Chandler",
             "jersey": "5",
             "position": "Guard",
-            "height": 77,
+            "height": 78,
             "weight": 205,
             "hometown": {
               "city": "Farmington",
@@ -1354,7 +1486,7 @@
             "jersey": "1",
             "position": "Guard",
             "height": 77,
-            "weight": 195,
+            "weight": 190,
             "hometown": {
               "city": "Orlando",
               "state": "FL",
@@ -1390,103 +1522,15 @@
             ]
           },
           {
-            "id": 1345,
-            "sourceId": "5176217",
-            "name": "Reece Potter",
-            "firstName": "Reece",
-            "lastName": "Potter",
-            "jersey": "33",
-            "position": "Center",
-            "height": 85,
-            "weight": 230,
-            "hometown": {
-              "city": "Lexington",
-              "state": "KY",
-              "country": null,
-              "latitude": 38.0464066,
-              "longitude": -84.4970393,
-              "countyFips": "21067"
-            },
-            "dateOfBirth": null,
-            "startSeason": 2026,
-            "endSeason": 2026
-          },
-          {
-            "id": 3904,
-            "sourceId": "4873183",
-            "name": "Kam Williams",
-            "firstName": "Kam",
-            "lastName": "Williams",
-            "jersey": "3",
-            "position": "Guard",
-            "height": 80,
-            "weight": 205,
-            "hometown": {
-              "city": "Lafayette",
-              "state": "LA",
-              "country": null,
-              "latitude": 30.2262187,
-              "longitude": -92.0178202,
-              "countyFips": "22055"
-            },
-            "dateOfBirth": null,
-            "startSeason": 2026,
-            "endSeason": 2026,
-            "careerStats": [
-              {
-                "season": 2026,
-                "team": "Kentucky",
-                "conference": "SEC",
-                "games": 24,
-                "starts": 7,
-                "minutes": 445,
-                "ppg": 6.0,
-                "rpg": 2.1,
-                "apg": 1.0,
-                "fg_pct": 44.9,
-                "three_pct": 35.9,
-                "ft_pct": 95.5,
-                "offensiveRating": 125.9,
-                "defensiveRating": 107.5,
-                "netRating": 18.4,
-                "usage": 14.7,
-                "trueShootingPct": 0.621,
-                "winShares": 1.4
-              }
-            ]
-          },
-          {
-            "id": 199958,
-            "sourceId": "5101820",
-            "name": "Braydon Hawthorne",
-            "firstName": "Braydon",
-            "lastName": "Hawthorne",
-            "jersey": "22",
-            "position": "Forward",
-            "height": 80,
-            "weight": 190,
-            "hometown": {
-              "city": "Beckley",
-              "state": "WV",
-              "country": null,
-              "latitude": 37.7781702,
-              "longitude": -81.1881557,
-              "countyFips": "54081"
-            },
-            "dateOfBirth": null,
-            "startSeason": 2026,
-            "endSeason": 2026
-          },
-          {
             "id": 199960,
             "sourceId": "5281347",
-            "name": "Andrija Jelavi\u0107",
+            "name": "Andrija Jelavic",
             "firstName": "Andrija",
-            "lastName": "Jelavi\u0107",
+            "lastName": "Jelavic",
             "jersey": "4",
             "position": "Forward",
             "height": 83,
-            "weight": 225,
+            "weight": 240,
             "hometown": {
               "city": "Zagreb",
               "state": "CRO",
@@ -1562,50 +1606,6 @@
                 "usage": 23.1,
                 "trueShootingPct": 0.537,
                 "winShares": 0.9
-              }
-            ]
-          },
-          {
-            "id": 199963,
-            "sourceId": "5101849",
-            "name": "Malachi Moreno",
-            "firstName": "Malachi",
-            "lastName": "Moreno",
-            "jersey": "24",
-            "position": "Center",
-            "height": 84,
-            "weight": 250,
-            "hometown": {
-              "city": "Georgetown",
-              "state": "KY",
-              "country": null,
-              "latitude": 38.2099837,
-              "longitude": -84.5597128,
-              "countyFips": "21209"
-            },
-            "dateOfBirth": null,
-            "startSeason": 2026,
-            "endSeason": 2026,
-            "careerStats": [
-              {
-                "season": 2026,
-                "team": "Kentucky",
-                "conference": "SEC",
-                "games": 36,
-                "starts": 30,
-                "minutes": 815,
-                "ppg": 7.8,
-                "rpg": 6.3,
-                "apg": 1.8,
-                "fg_pct": 58.2,
-                "three_pct": 0,
-                "ft_pct": 69.8,
-                "offensiveRating": 124.3,
-                "defensiveRating": 104.2,
-                "netRating": 20.1,
-                "usage": 16.2,
-                "trueShootingPct": 0.635,
-                "winShares": 3.2
               }
             ]
           },

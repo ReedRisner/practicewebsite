@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-10T11:29:06.212096",
+  "lastUpdated": "2026-10-11T11:42:40.604237",
   "team": "Kentucky",
   "dataSource": "https://api.collegebasketballdata.com",
   "seasonsIncluded": [
@@ -3779,7 +3779,7 @@
           "conference": "SEC",
           "athleteId": 199960,
           "athleteSourceId": "5281347",
-          "name": "Andrija Jelavi\u0107",
+          "name": "Andrija Jelavic",
           "position": "F",
           "games": 32,
           "starts": 20,
@@ -3832,53 +3832,53 @@
             "totalPer40": 0.103
           },
           "shootingStats": {
-            "trackedShots": 71,
-            "freeThrowRate": 7,
-            "assistedPct": 33.8,
+            "trackedShots": 82,
+            "freeThrowRate": 12.2,
+            "assistedPct": 35.4,
             "dunks": {
-              "attempted": 4,
-              "made": 4,
-              "pct": 100,
-              "assisted": 4,
+              "attempted": 8,
+              "made": 7,
+              "pct": 87.5,
+              "assisted": 7,
               "assistedPct": 100
             },
             "layups": {
-              "attempted": 17,
-              "made": 15,
-              "pct": 88.2,
-              "assisted": 9,
-              "assistedPct": 60
+              "attempted": 21,
+              "made": 14,
+              "pct": 66.7,
+              "assisted": 10,
+              "assistedPct": 71.4
             },
             "tipIns": {
-              "attempted": 3,
-              "made": 1,
-              "pct": 33.3
+              "attempted": 0,
+              "made": 0,
+              "pct": 0
             },
             "twoPointJumpers": {
               "attempted": 12,
-              "made": 4,
-              "pct": 33.3,
-              "assisted": 1,
-              "assistedPct": 25
+              "made": 7,
+              "pct": 58.3,
+              "assisted": 2,
+              "assistedPct": 28.6
             },
             "threePointJumpers": {
-              "attempted": 35,
-              "made": 10,
-              "pct": 28.6,
+              "attempted": 41,
+              "made": 11,
+              "pct": 26.8,
               "assisted": 10,
-              "assistedPct": 100
+              "assistedPct": 90.9
             },
             "freeThrows": {
-              "attempted": 5,
-              "made": 3,
-              "pct": 60
+              "attempted": 10,
+              "made": 5,
+              "pct": 50
             },
             "attemptsBreakdown": {
-              "dunks": 5.6,
-              "layups": 23.9,
-              "tipIns": 4.2,
-              "twoPointJumpers": 16.9,
-              "threePointJumpers": 49.3
+              "dunks": 9.8,
+              "layups": 25.6,
+              "tipIns": 0,
+              "twoPointJumpers": 14.6,
+              "threePointJumpers": 50
             }
           },
           "perGameAverages": {
