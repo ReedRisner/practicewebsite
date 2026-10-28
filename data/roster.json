@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-27T11:10:36.218955",
+  "lastUpdated": "2026-10-28T11:44:39.084580",
   "team": "Kentucky",
   "seasons": {
     "2025": [
@@ -151,14 +151,14 @@
             "jersey": "11",
             "position": "Guard",
             "height": 73,
-            "weight": 185,
+            "weight": 184,
             "hometown": {
               "city": "Eddyville",
-              "state": "KY",
+              "state": "IA",
               "country": null,
-              "latitude": 37.0944971,
-              "longitude": -88.080301,
-              "countyFips": "21143"
+              "latitude": 41.1561503,
+              "longitude": -92.6381659,
+              "countyFips": "19179"
             },
             "dateOfBirth": null,
             "startSeason": 2025,
@@ -488,11 +488,11 @@
             "weight": 225,
             "hometown": {
               "city": "Harlan",
-              "state": "KY",
+              "state": "IA",
               "country": null,
-              "latitude": 36.8431441,
-              "longitude": -83.321848,
-              "countyFips": "21095"
+              "latitude": 41.6550929,
+              "longitude": -95.3194937,
+              "countyFips": "19165"
             },
             "dateOfBirth": null,
             "startSeason": 2025,
@@ -552,10 +552,10 @@
             "name": "Brandon Garrison",
             "firstName": "Brandon",
             "lastName": "Garrison",
-            "jersey": "10",
+            "jersey": "9",
             "position": "Forward",
             "height": 82,
-            "weight": 245,
+            "weight": 255,
             "hometown": {
               "city": "Oklahoma City",
               "state": "OK",
@@ -628,11 +628,11 @@
             "weight": 205,
             "hometown": {
               "city": "Farmington",
-              "state": "UT",
+              "state": "NM",
               "country": null,
-              "latitude": 40.9804423,
-              "longitude": -111.8874688,
-              "countyFips": "49011"
+              "latitude": 36.7291152,
+              "longitude": -108.205445,
+              "countyFips": "35045"
             },
             "dateOfBirth": null,
             "startSeason": 2025,
@@ -919,11 +919,11 @@
             "weight": 235,
             "hometown": {
               "city": "Lexington",
-              "state": "KY",
+              "state": "NE",
               "country": null,
-              "latitude": 38.0464066,
-              "longitude": -84.4970393,
-              "countyFips": "21067"
+              "latitude": 40.7788486,
+              "longitude": -99.7414869,
+              "countyFips": "31047"
             },
             "dateOfBirth": null,
             "startSeason": 2026,
@@ -1007,11 +1007,11 @@
             "weight": 250,
             "hometown": {
               "city": "Georgetown",
-              "state": "KY",
+              "state": "Guyana",
               "country": null,
-              "latitude": 38.2099837,
-              "longitude": -84.5597128,
-              "countyFips": "21209"
+              "latitude": null,
+              "longitude": null,
+              "countyFips": null
             },
             "dateOfBirth": null,
             "startSeason": 2026,
@@ -1051,11 +1051,11 @@
             "weight": 225,
             "hometown": {
               "city": "Harlan",
-              "state": "KY",
+              "state": "IA",
               "country": null,
-              "latitude": 36.8431441,
-              "longitude": -83.321848,
-              "countyFips": "21095"
+              "latitude": 41.6550929,
+              "longitude": -95.3194937,
+              "countyFips": "19165"
             },
             "dateOfBirth": null,
             "startSeason": 2025,
@@ -1115,10 +1115,10 @@
             "name": "Brandon Garrison",
             "firstName": "Brandon",
             "lastName": "Garrison",
-            "jersey": "10",
+            "jersey": "9",
             "position": "Forward",
             "height": 82,
-            "weight": 245,
+            "weight": 255,
             "hometown": {
               "city": "Oklahoma City",
               "state": "OK",
@@ -1191,11 +1191,11 @@
             "weight": 205,
             "hometown": {
               "city": "Farmington",
-              "state": "UT",
+              "state": "NM",
               "country": null,
-              "latitude": 40.9804423,
-              "longitude": -111.8874688,
-              "countyFips": "49011"
+              "latitude": 36.7291152,
+              "longitude": -108.205445,
+              "countyFips": "35045"
             },
             "dateOfBirth": null,
             "startSeason": 2025,
@@ -1392,13 +1392,13 @@
           {
             "id": 88,
             "sourceId": "4895780",
-            "name": "Mouhamed Dioubate",
-            "firstName": "Mouhamed",
+            "name": "Mo Dioubate",
+            "firstName": "Mo",
             "lastName": "Dioubate",
-            "jersey": "23",
+            "jersey": "10",
             "position": "Forward",
-            "height": 79,
-            "weight": 220,
+            "height": 80,
+            "weight": 235,
             "hometown": {
               "city": "Queens",
               "state": "NY",
@@ -1533,7 +1533,7 @@
             "weight": 240,
             "hometown": {
               "city": "Zagreb",
-              "state": "CRO",
+              "state": "Croatia",
               "country": null,
               "latitude": null,
               "longitude": null,
@@ -1577,11 +1577,11 @@
             "weight": 180,
             "hometown": {
               "city": "Lexington",
-              "state": "KY",
+              "state": "NE",
               "country": null,
-              "latitude": 38.0464066,
-              "longitude": -84.4970393,
-              "countyFips": "21067"
+              "latitude": 40.7788486,
+              "longitude": -99.7414869,
+              "countyFips": "31047"
             },
             "dateOfBirth": null,
             "startSeason": 2026,
@@ -1617,8 +1617,8 @@
             "lastName": "Lowe",
             "jersey": "15",
             "position": "Guard",
-            "height": 73,
-            "weight": 170,
+            "height": 74,
+            "weight": 175,
             "hometown": {
               "city": "Missouri City",
               "state": "TX",

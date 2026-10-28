@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-27T11:10:39.871540",
+  "lastUpdated": "2026-10-28T11:44:42.049484",
   "team": "Kentucky",
   "dataSource": "https://api.collegebasketballdata.com",
   "seasonsIncluded": [
@@ -2118,7 +2118,7 @@
           "conference": "SEC",
           "athleteId": 88,
           "athleteSourceId": "4895780",
-          "name": "Mouhamed Dioubate",
+          "name": "Mo Dioubate",
           "position": "F",
           "games": 31,
           "starts": 10,
@@ -2169,56 +2169,6 @@
             "defensive": 0.8,
             "total": 2.7,
             "totalPer40": 0.161
-          },
-          "shootingStats": {
-            "trackedShots": 179,
-            "freeThrowRate": 63.1,
-            "assistedPct": 26.3,
-            "dunks": {
-              "attempted": 12,
-              "made": 11,
-              "pct": 91.7,
-              "assisted": 7,
-              "assistedPct": 63.6
-            },
-            "layups": {
-              "attempted": 85,
-              "made": 58,
-              "pct": 68.2,
-              "assisted": 24,
-              "assistedPct": 41.4
-            },
-            "tipIns": {
-              "attempted": 10,
-              "made": 4,
-              "pct": 40
-            },
-            "twoPointJumpers": {
-              "attempted": 44,
-              "made": 18,
-              "pct": 40.9,
-              "assisted": 10,
-              "assistedPct": 55.6
-            },
-            "threePointJumpers": {
-              "attempted": 28,
-              "made": 6,
-              "pct": 21.4,
-              "assisted": 6,
-              "assistedPct": 100
-            },
-            "freeThrows": {
-              "attempted": 113,
-              "made": 73,
-              "pct": 64.6
-            },
-            "attemptsBreakdown": {
-              "dunks": 6.7,
-              "layups": 47.5,
-              "tipIns": 5.6,
-              "twoPointJumpers": 24.6,
-              "threePointJumpers": 15.6
-            }
           },
           "perGameAverages": {
             "points": 8.81,
